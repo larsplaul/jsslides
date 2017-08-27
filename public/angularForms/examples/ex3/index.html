@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="formDemoApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <style>
+    input {
+      margin-bottom: 5px;
+    }
+
+    span {
+      color: red;
+      font-size: smaller;
+      margin-left: 0.3em;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+  <script src="app.js"></script>
+  <style>body {
+    padding: 0.5em;
+  }</style>
+  <title></title>
+</head>
+
+<body ng-controller="MainCtrl as ctrl">
+<!--show-->
+<form ng-submit="ctrl.submit()" name="f1" novalidate>
+  User:<br/>
+  <input type="text" ng-model="ctrl.user.username" name="uname"
+         required ng-minlength="4">
+  <span ng-show="f1.uname.$error.required">*</span>
+  <span ng-show="f1.uname.$error.minlength">Min-length is 4</span>
+
+  <br/>Email:<br/>
+  <input type="email" ng-model="ctrl.user.mail" name="mail"
+         required>
+  <span ng-show="f1.mail.$error.required">*</span>
+  <span ng-show="f1.mail.$error.email">Not legal email</span>
+  <br/>
+  <input type="submit" value="Save" class="btn btn-info"
+         ng-disabled="f1.$invalid">
+</form>
+<!--/show-->
+<br/>
+<pre>user:  {{ctrl.user | json}}</pre>
+<pre>Saved: {{ctrl.saved | json}}</pre>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+        <h2>Note: The future is already here!</h2>
+        <h2 data-config-subtitle></h2>
+        <img src="images/es2015_typescript.PNG" style="float:right; width:300px;">
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>JavaScript - a little bit of history 1</h2>
+    </hgroup>
+
+    <article>
+      <ul>
+        <li>First version shipped with Netscape Navigator, August 19, 1996</li>
+        <li>Before Netscape went down, they started the standard ECMAScript with the purpose of guiding
+          the path for future JavaScript
+        </li>
+        <li>ECMAScript had a few releases in the years 1997 - 1999 (ES1- ES3) and then went into hibernation for the
+          next 10 years
+        </li>
+        <li>During this 10 years, Microsoft dominated the scenes but at the same time they weren't improving their
+          product and hence
+          <em>Firefox</em> was born and a whole heap of other browsers such as <em>Chrome</em>, <em>Opera</em>.
+        </li>
+        <li>ECMAScript released it's 5th edition ES 5 in 2009 (the version we have being using up until now)</li>
+        <li>ES 6 (es2015) was released June 2015</li>
+        <li>ES 7 (es2016) was feature frozen June 2016</li>
+        <li>ES 8 (es2017) expected to release 2017</li>
+      </ul>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Language_Resources">ECMAScript</a>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>JavaScript - a little bit of history 2</h2>
+    </hgroup>
+
+    <article>
+      <p style="margin-top: -25px;">In a perfect world, we would all use es2015 (the now official name for ES 6) getting
+        ready to move toward es2016</p>
+      <p>However, far from all browser understand es2015, especially not for users running older versions (of both OS
+        and Browser)</p>
+      <p>Even on the server side (with NodeJS) we don't have full support if we wan't to stick to the LTS releases</p>
+      <p>Because of this and the (pre es2015) long periods between new releases a number of alternative solutions were
+        invented,all adding syntactic sugar on top of ES 5</p>
+      <ul>
+        <li>Typescript: transpiles TypeScript &rightarrow; ES 5</li>
+        <li>CoffeeScript: transpiles CoffeeScript &rightarrow; ES 5</li>
+        <li>( BabelJS: transpiles es2015 &rightarrow; ES 5 )</li>
+      </ul>
+      <p><em style="font-size: 0.8em;color: #2a6496">This has also lead to the prediction that JavaScript will end up as
+        (or is) the <b>Virtual Machine Language of the WEB</b>, used by other, more complete languages, to transpile into</em></p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Which technology should we go for?</h2>
+      <h2 style="font-size: 1em;">Assuming our goal is to use our knowledge for future employment :-)</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -26px;">As of now it seems like the most "future-safe" choices are to go, either the
+        official ECMAScript way (es2015 &rightarrow;) or to use Typescript</p>
+      <div class="row">
+        <div class="col-md-6 build">
+          <p style="color:#285e8e;font-weight: bold;">es2015 &rightarrow;</p>
+          <div style="font-size: 0.8em;" >
+            <p>The natural evolution of JavaScript, bringing features like <em>arrow functions</em>, <em>Classes and
+              Inheritance</em>,
+              <em>promises</em>, <em>Generators</em> and much more.
+            </p>
+            <p>Can be used in "all" browsers using a polyfil or a transpiler</p>
+            <p>Can be used with NodeJS (almost) out of the box with LTS v6.x, otherwise via a transpiler (Babel)</p>
+            <p>Available out of the box with newer versions of ReactJS</p>
+          </div>
+        </div>
+        <div class="col-md-6 build">
+          <p style="color:#285e8e;font-weight: bold;">Typescript</p>
+          <div style="font-size: 0.8em;">
+            <p>A free open source language, developed and maintained by Microsoft.
+              It is a strict superset of JavaScript, and adds optional static typing and many of the features from
+              es2015 and es2016</p>
+            <p>Can (obviously) be used in all browsers when compiled into ES5</p>
+            <p>Can be used with NodeJS with a typescript compiler</p>
+            <p>Angular 2 is designed to be written with TypeScript (but can also be used with ES 5 and es 2015)</p>
+          </div>
+        </div>
+      </div>
+      <div class="build">
+        <p>We will focus on both <em>es2015</em> and <em>Typescript</em> via a number of exercises in this period</p></div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>es2015</h2>
+    </hgroup>
+    <article>
+      <div class="row" style="margin-top: 3em;">
+        <div class="col-md-8">
+          <p>This link will be the main resource for <a href="http://es6-features.org/">es2015 features</a>
+            . Use it as a reference for most of the exercises</p>
+          <p>Next week we will dig deeper into topics like promises and Generators and how to use these features to
+            simplify <em>asynchronous</em> programming</p>
+          <p style="color:#285e8e;font-weight: bold;">Setting up WEbStorm for es2015 Development<br/></p>
+          <p>Use this link for information
+            <a href="https://blog.jetbrains.com/webstorm/2015/05/ecmascript-6-in-webstorm-transpiling/">Transpiling in
+              Webstorm</a><br/>
+          <ul style="font-size: 0.8em;">
+            <li>Node version LTS v6.x &rightarrow; You (most likely) only need the step "set ECMAScript 6 as the
+              JavaScript version"
+            </li>
+            <li>Node version LTS v4.x &rightarrow; You need the step above + the step "Setting up Babel File Watcher"
+            </li>
+          </ul>
+          </p>
+
+        </div>
+        <div class="col-md-4">
+          <img style="width: 100%;" src="images/es2015.jpg"
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>es2015 - Getting started</h2>
+    </hgroup>
+    <article>
+      <div class="row" style="margin-top: 3em;">
+        <div class="col-md-6">
+          <img src="../images/Demo.png">
+        </div>
+        <div class="col-md-6" style="margin-top: 2em;">
+          <img style="width: 300px;" src="images/es2015.jpg"
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ECMAScript2015 - Selected Topics</h2>
+      <h2 style="font-size: 1em;">Iteration Protocols</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">A couple of additions to ECMAScript 2015 (ES6) aren't new built-ins or syntax, but
+        protocols. <br/>
+        These protocols can be implemented by any object respecting some conventions.</p>
+      <p>There are two protocols:
+        The <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols#iterable">iterable
+          protocol</a>
+        and the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols#iterator">iterator
+          protocol</a></p>
+      <p style="color:#285e8e;font-weight: bold;">The Iterable Protocol</p>
+      <p style="font-size: 0.8em;">The iterable protocol allows JavaScript objects to define or customize their
+        iteration behavior, such as what values are looped over in a for..of construct. Some built-in types are built-in
+        iterables with a default iteration behavior, such as Array or Map,
+        while other types (such as Object) are not.<br/>
+      </p>
+      <p style="color:#285e8e;font-weight: bold;">The Iterator Protocol</p>
+      <p style="font-size: 0.8em;">The iterator protocol defines a standard way to produce a sequence of values (either
+        finite or infinite).
+      </p>
+      <p>See here for details <a
+              href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols">Iteration
+        protocols</a></p>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Iteration Protocols - Simple Examples</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Example implementing the <em>iterator</em> protocol</p>
+          <pre class="prettyprint pre14">
+function makeIterator(array) {
+  var nextIndex = 0;
+
+  return {
+    next: function () {
+      return nextIndex < array.length ?
+      {value: array[nextIndex++], done: false} :
+      {done: true};
+    }
+  }
+}
+//Here we can do:
+let it = makeIterator(['yo', 'ya']);
+console.log(it.next().value); // 'yo'
+console.log(it.next().value); // 'ya'
+console.log(it.next().done);  // true
+        </pre>
+        </div>
+
+        <div class="col-md-6">
+          <p>Example implementing the <em>iterable</em> (and thereby also the iterator) protocol</p>
+          <pre class="prettyprint pre14">
+function makeIterator2(array) {
+  var itt= {};
+  itt[Symbol.iterator] = function() {
+    var nextIndex = 0;
+    return {
+      next: function () {
+        return nextIndex < array.length ?
+        {value: array[nextIndex++], done: false} :
+        {done: true};
+      }
+    }
+  }
+  return itt;
+}
+//Here we can iterate using the for-of syntax:
+var it2 = makeIterator2(['yo', 'ya']);
+for(let i of it2){
+  console.log(i);
+}
+        </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -20px;">Generators provide a powerful alternative to custom iterators: they allow us to define an iterative algorithm
+        by writing a single function which can maintain its own state.</p>
+      <p>A generator is a special type of function that works as a factory for iterators.
+        A function becomes a generator if it contains one or more <b>yield</b> expressions and if it uses the <b>function*</b>
+        syntax.</p>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p style="color:#285e8e;font-weight:bold;font-size: 0.8em;">Simple Generator Function</p>
+          <pre class="prettyprint pre20">
+
+function<b>*</b> gen() {
+  <b>yield</b> "Hello";
+  <b>yield</b> "es2015";
+  <b>yield</b> "Generators";
+}
+          </pre>
+        </div>
+        <div class="col-md-7">
+          <p style="color:#285e8e;font-weight: bold;font-size: 0.8em;">
+            The generator function returns a Generator object which conforms to both the <em>iterable</em> and the <em>iterator</em> protocol.
+          </p>
+<pre class="prettyprint pre20">
+let g = gen();
+//Using the iterator protocol
+console.log(g.next().value); // Hello
+console.log(g.next().value); // ES2015
+console.log(g.next().value); // Generators
+
+//using the iterable protocol
+for(let i of gen()) {
+  console.log(i);
+}
+</pre>
+
+        </div>
+      </div>
+
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators another (infite) example </h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint">
+function* idMaker(){
+  var index = 0;
+  while(true)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+
+for(let i of gen){
+  console.log(i);
+  if(i === 5) //Will continue "forever" without this
+    break;
+}
+      </pre>
+    </article>
+  </slide>
+
+  <slide class=" nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+      <h2>Rest of today; Exercises :-)</h2>
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

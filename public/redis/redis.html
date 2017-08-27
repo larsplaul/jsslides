@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title></h1>
+        <h2 data-config-subtitle></h2>
+        <p data-config-presenter></p>
+        <p style="width: 18em;">This presentation is built almost completely from a presentation by <a
+                href="http://slides.com/racku">Rackspace University</a></p>
+      </div>
+      <div style="float:left;margin-left: 8em;"><img src="images/redis-logo.png" style="float:left"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SQL versus NoSQL - A quick summary</h2>
+    </hgroup>
+
+    <article style="margin-top: 15px;">
+      <p>Database Landscape</p>
+      <div style="margin-left: 3em;margin-right: 3em;">
+        <img style="width:90%" src="images/databaselandscape.png">
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Relational Database</h2>
+      <h3>Key Concepts</h3>
+    </hgroup>
+
+    <article style="margin-top: 15px;">
+      <div class="row">
+        <div class="col-md-3">
+          <p style="font-weight: bold;color: darkblue">Tables</p>
+        </div>
+        <div class="col-md-9">
+          <p>Basic data-storage unit in a relational database.Tables consist of columns and rows.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p style="font-weight: bold;color: darkblue">Columns</p>
+        </div>
+        <div class="col-md-9">
+          <p>Specific set of values in a table of the same type. It defines a specific attribute of the table or
+            data.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p style="font-weight: bold;color: darkblue">Rows (records)</p>
+        </div>
+        <div class="col-md-9">
+          <p>Represents a set of data about a specific item</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <img style="width: 95%" src="images/rowcol.JPG">
+        </div>
+        <div class="col-md-7">
+          <img style="width: 95%" src="images/foreignkeys.png">
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Relational Database</h2>
+      <h3>The Problem</h3>
+    </hgroup>
+    <article style="margin-top: 15px;">
+      <img style="width: 100%;" src="images/relationalproblem.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>rdbms may not be the best fit</h2>
+      <h3 style="font-size: 0.9em;">Many large companies needed something different, to accommodate their growing data
+      </h3>
+    </hgroup>
+    <article style="margin-top: 15px;margin-left: 3em;">
+      <img style="width: 90%;" src="images/largecompanies.JPG">
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>NoSQL to the Rescue</h2>
+    </hgroup>
+    <article style="margin-top: 15px;">
+      <img style="width: 58%;margin-left: 5em;" src="images/NoSqlTypes.JPG">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is NoSQL?</h2>
+      <h3>Hard to define, but most share these common characteristics</h3>
+    </hgroup>
+    <article>
+      <div style="font-size:1.5em;color: darkblue;margin-left: 4em;">
+        <ul>
+          <li>Non-relational</li>
+          <li>Distributed</li>
+          <li>Open-source</li>
+          <li>Horizontally scalable</li>
+          <li>Schema-less</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Aggregate</h2>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <p>An “Aggregate” is a collection of related objects that we wish to treat as a unit</p>
+      <img style="margin-left: 2em;" src="images/aggregate.png">
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Key/Value Databases</h2>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <p>Primarily constructed of aggregates that have a Key or ID that’s used to access the data.</p>
+      <p>The database <b>cannot see structure</b> within the aggregate</p>
+      <img style="margin-left: 10em;width:30%;" src="images/keyvalue.png">
+      <div style="margin-top: 1em;">
+        <img src="images/redis-logo.png" style="float:left;width: 15%">
+        <p style="float:left;margin-top: 2em;">Redis is a Key/Value database (+ more as you will see)</p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Document Databases</h2>
+    </hgroup>
+    <article>
+      <div>
+        <ul style="color: darkblue">
+          <li>Like a Key-Value database, document databases primarily store and access data using aggregates</li>
+          <li>In contrast to the Key-Value database, as we have seen with MongoDB and mongoose, document data bases can
+            see structure within the aggregate
+          </li>
+          <li>You are able to retrieve the whole aggregate or specific parts of it</li>
+        </ul>
+        <div style="margin-top: 2em;">
+          <img src="images/mongologo.png" style="float:left;width: 15%">
+          <p style="float:left;margin-top: 3em;">MongoDB, as we have seen, is a document database</p>
+        </div>
+
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Column Family Databases</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -25px;">
+        <p>Data can be structured in a couple of different ways</p>
+        <ul style="color: darkblue">
+          <li>Row -oriented: each row is an aggregate with column families representing useful chunks of data within the
+            aggregate
+          </li>
+          <li> Column-oriented: each column family defines a record type with rows for each of the records</li>
+          <li>You are able to retrieve the whole aggregate or specific parts of it</li>
+        </ul>
+        <div style="margin-top: 1em;">
+          <img src="images/columnfamily.png" style="margin-left:5em;width: 55%">
+        </div>
+      </div>
+      <p>Not a part of this course</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Graph Databases</h2>
+    </hgroup>
+    <article>
+      <div>
+
+        <ul style="color: darkblue;font-size: 1.4em;">
+          <li>Unique compared to most NOSQL types because it was not developed with the intention of scaling
+            horizontally into a cluster
+          </li>
+          <li>Data is stored as “nodes” that are connected by edges</li>
+          <li>Edges are directional in nature and must be specified</li>
+          <li>Queries need a starting point and then will traverse the edges to gather the data requested</li>
+        </ul>
+
+      </div>
+      <p>Not a part of this course</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Graph Databases</h2>
+    </hgroup>
+    <article>
+      <div>
+        <img src="images/graph.png">
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Redis</h2>
+    </hgroup>
+    <article>
+      <div>
+        <img src="images/redis-logo.png" style="width:40%;;margin-left: 8em;margin-top: 3em;">
+        <p><a href="http://openmymind.net/redis.pdf">The little Redis Book</a></p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is Redis</h2>
+    </hgroup>
+    <article>
+      <div>
+        <ul style="color: darkblue;font-size: 1.2em;">
+          <li>Redis is an open source, <b>in-memory</b> <b>persistent</b> key-value store.</li>
+          <li><b>RE</b>mote <b>DI</b>ctionary <b>S</b>erver</li>
+          <li>Redis is known for being <b>extremely</b> fast</li>
+        </ul>
+        <p>But Redis is more than just a simple key-value store. Keys can contain "advanced" structures such as:</p>
+        <ul>
+          <li>Strings</li>
+          <li>Hashes</li>
+          <li>Lists</li>
+          <li>Sets</li>
+          <li>Sorted sets</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Memory and Persistence</h2>
+    </hgroup>
+    <article>
+      <p style="color:darkblue">In Memory</p>
+      <p>The entire dataset needs to be able to exist in memory on the server to take advantage of the potential speed
+        benefits</p>
+      <p style="color:darkblue">Persistence</p>
+      <p>
+        With respect to persistence, by default, Redis snapshots the database to disk based on how many keys have
+        changed.
+        You configure it so that if X number of keys change, then save the database every Y seconds
+      </p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Redis Data Structures</h2>
+      <h3>Strings</h3>
+    </hgroup>
+    <article>
+      <p>
+        Strings are the most basic kind of Redis value. Redis Strings are binary safe, this means that a Redis string
+        can contain any kind of data, for instance a JPEG image or a serialized Ruby object.
+      </p>
+      <p>Example</p>
+      <pre class="prettyprint pre18">
+set users:leto '{"name": leto, "planet": dune, "likes": ["spice"]}'
+get users:leto
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Redis Data Structures</h2>
+      <h3>Hashes</h3>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <p>
+        Redis Hashes are maps between string fields and string values, so they are the perfect data type to represent
+        objects
+        (eg: A User with a number of fields like name, surname, age, and so forth)
+      </p>
+      <br/>
+      <div class="row">
+        <div class="col-md-5">
+          <img src="images/hashes.png" style="width: 85%;">
+          <p>{key:value}<br/> {field1: “A”, field2: “B”...}</p>
+        </div>
+        <div class="col-md-7">
+          <p>In a lot of ways, hashes are like strings. The important difference is that they provide an extra level of
+            indirection: a field. Therefore, the hash
+            equivalents of set and get are:</p>
+        <pre class="pre18">
+hset users:goku powerlevel 9000
+hget users:goku powerlevel
+        </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Redis Data Structures</h2>
+      <h3>Lists</h3>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <p>Lists let you store and manipulate an array of values for a given key. You can add values to the list, get the
+        first or last
+        value and manipulate values at a given index. Lists maintain their order and have efficient index-based
+        operations.
+      </p>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="images/list.png" style="width: 45%;">
+        </div>
+        <div class="col-md-9">
+          <p>Example: Push a new user at the front of the list, then trim it so that it only contains the last 50
+            users.</p>
+          <pre class="pre18">
+lpush newusers goku
+ltrim newusers 0 49
+          </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Redis Data Structures</h2>
+      <h3>Sets</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <p>Sets are used to store unique values and provide a number of set-based operations, like unions.
+        Sets aren’t ordered but they provide efficient value-based operations.
+      </p>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="images/set.png" style="width: 95%;">
+          <p>{A,B,C,D}</p>
+        </div>
+        <div class="col-md-9">
+          <p>Example: . A friend’s list is the classic example of using a set</p>
+          <pre class="pre18">
+sadd friends:leto ghanima paul chani jessica
+sadd friends:duncan paul jessica alia
+          </pre>
+          <p>Efficiently tell (O(1)) whether userX is a friend of userY or not:</p>
+          <pre class="pre18">
+sismember friends:leto jessica
+sismember friends:leto vladimir
+          </pre>
+          <p>Does two or more people share the same friends</p>
+          <pre class="pre18">
+sinter friends:leto friends:duncan </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Redis Data Structures</h2>
+      <h3>Sorted Sets</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <p>The last and most powerful data structure are sorted sets. If hashes are like strings but with fields, then
+        sorted sets
+        are like sets but with a score. The score provides sorting and ranking capabilities
+      </p>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="images/sortedset.jpg" style="width: 95%;">
+          <p>{value:score}<br/> {C:1, D:2, A:3, D:4}</p>
+        </div>
+        <div class="col-md-9">
+          <p>Example: A ranked list of friends</p>
+          <pre class="pre18">
+zadd friends:duncan 70 jan 95 paul 95 chani 75 jessica 1 Peter
+          </pre>
+          <p>How many friends does duncan have with a score of 90 or over?</p>
+          <pre class="pre18">
+szcount friends:duncan 90 100
+          </pre>
+
+        </div>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Redis Use Case</h2>
+    </hgroup>
+    <article>
+      <ul style="color: darkblue;font-size: 1.5em;margin-left: 3em;margin-top: 2em;">
+        <li>Caching</li>
+        <li>Session Store</li>
+        <li>Leaderboards</li>
+        <li>Order by user votes and time</li>
+        <li>Analytics</li>
+        <li>......</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Caching</h2>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <div class="row" style="font-size: 0.9em;">
+        <div class="col-md-6">
+          <img src="images/caching.png" style="width: 100%;margin-top: 3em;">
+        </div>
+        <div class="col-md-6">
+          <p>Redis allows you to mark a key for expiration. You can give it an absolute time in the form of a Unix
+            timestamp (seconds
+            since January 1, 1970) or a time to live in seconds. </p>
+          <p>This is a key-based command, so it doesn’t matter what type of data structure the key represents.</p>
+        <pre class="pre18">
+expire pages:about 30
+expireat pages:about 1356933600
+          </pre>
+          <p>The first command will delete the key (and associated value) after 30 seconds. The second will do the same
+            at 12:00
+            a.m. December 31st, 2012.</p>
+          <h2>This makes Redis an ideal caching engine</h2>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Session Store</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="images/sessionstore.jpg" style="width: 95%;margin-top: 1em;">
+        </div>
+        <div class="col-md-6">
+          <p>One of the most apparent use cases for Redis is using it as a Session Store.</p>
+          <p>The advantages of using Redis over other session stores, is that Redis offers persistence</p>
+          <p>
+            While maintaining a cache isn't typically mission critical with regards to consistency, most users wouldn't
+            exactly enjoy if all their cart sessions went away</p>
+
+          <p style="color: darkblue;font-weight: bold">This will be our Use Case for Redis in this course </p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>More Use Cases</h2>
+    </hgroup>
+    <article>
+      <p>See:</p>
+      <p><a href="http://redis.io/topics/whos-using-redis">Who's using Redis?</a></p>
+      <p><a href="http://highscalability.com/blog/2011/7/6/11-common-web-use-cases-solved-in-redis.html">11 Common Web
+        Use Cases Solved In Redis</a></p>
+      <p>For additional examples</p>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Todays exercise</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-5">
+          <img src="images/redisExercise.JPG" style="width: 100%;">
+        </div>
+        <div class="col-md-7">
+          <p style="font-weight: bold;color:darkblue;font-size: 1.4em;">Redis as a Session Store.</p>
+          <ul>
+            <li>Setup <em>Node, Express + express-session</em> to use sessions with your remote redis database.</li>
+            <li>Create an administrator page, with information about the current number of users and the ability to show
+              the content of individual session objects
+            </li>
+            <li>Deployment to Openshift, to test the session behaviour with many users</li>
+
+          </ul>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

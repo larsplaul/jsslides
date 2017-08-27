@@ -1,0 +1,17 @@
+{
+    "name": "MVC",
+    "files": [
+      "index.html",
+      "app.js"
+    ],
+  "filesOnlyForPlunkr": [
+    "index.html",
+    "app.js"
+  ],
+
+  "usePlunk": "true",
+  "tags": ["Angular", "Nested Controllers"],
+  "description": "Angular - Nested Controllers"
+
+
+}

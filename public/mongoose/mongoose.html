@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="images/mongoMongoose.JPG" style="float:left"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is Mongoose</h2>
+    </hgroup>
+
+    <article>
+      <div>
+        <p>Mongoose is an object modeling tool for MongoDB and Node.js, somehow similar to a ORM tool as we know</p>
+
+        <p>Mongoose provides a straight-forward, schema-based solution to modeling your application data
+          and includes, out of the box:</p>
+        <ul>
+          <li>Schemas</li>
+          <li>Built-in type casting</li>
+          <li>Validation (also included with plain MongoDB as of v. 3.2)</li>
+          <li>Query building</li>
+          <li>Business logic hooks (middleware)</li>
+        </ul>
+      </div>
+    </article>
+
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Why Mongoose</h2>
+    </hgroup>
+    <article>
+      <p>Why use a tool like mongoose on a database where one of its featured forces is - it's schema less. i.e. we can
+        have all sort of fields in a document in a collection:</p>
+      <p>
+        <code style="margin-left: 2em;">
+          { name : “Joe”, age : 30, interests : ‘football’ }<br/>
+        </code>
+        <code style="margin-left: 2em;">
+          { name : “Kate”, age : 25 }
+        </code>
+      </p>
+      <br/>
+      <div style="-webkit-border-radius: 21px 20px 20px 20px;
+      -moz-border-radius: 21px 20px 20px 20px;border-radius: 21px 20px 20px 20px;
+      padding: 1em;
+      background:rgba(227,162,11,0.7);
+      -webkit-box-shadow: #10091F 15px 15px 15px;-moz-box-shadow: #10091F 15px 15px 15px; box-shadow: #10091F 15px 15px 15px;">
+
+        <ul style="color: darkblue;">
+          <li>Real life data (often) has structure</li>
+          <li>Real life data (often) has types</li>
+          <li>We want to do more with less work ;-)</li>
+          <li>Basically, same arguments as why we use a ORM with a relational database</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Getting started</h2>
+    </hgroup>
+
+    <article>
+      <div>
+        <p>In your project</p>
+
+        <p style="font-size: 45px;">npm install mongoose</p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Template (suggested) for all projects</h2>
+    </hgroup>
+
+    <article>
+           <pre class="prettyprint pre17" data-file="db.js">
+var mongoose = require( 'mongoose' );
+var dbURI = 'mongodb://localhost/mydb';
+mongoose.connect(dbURI);
+
+mongoose.connection.on('connected', function () {
+  console.log('Mongoose connected to ' + dbURI);
+});
+
+mongoose.connection.on('error',function (err) {
+  console.log('Mongoose connection error: ' + err);
+});
+
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose disconnected');
+});
+
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose disconnected through app termination');
+    process.exit(0);
+  });
+});
+           </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Schemas</h2>
+    </hgroup>
+
+    <article>
+      <p>Everything in Mongoose starts with a Schema.
+        Each schema maps to a MongoDB collection and defines the shape of the documents within that
+        collection.</p>
+
+        <pre class="prettyprint">
+var userSchema = new mongoose.Schema({
+  username: String,
+  email: <b>{type: String, unique:true}</b>,
+  created: <b>{ type: Date, default: Date.now }</b>,
+  modified: Date,
+  lastLogin: Date
+});
+        </pre>
+      <a href="http://mongoosejs.com/docs/guide.html">Schemas</a>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Types</h2>
+    </hgroup>
+    <article>
+      <p><a href="http://mongoosejs.com/docs/schematypes.html">SchemaTypes</a> handle definition of defaults,
+        validation, getters, setters, field selection defaults for
+        queries</p>
+      <div class="row">
+        <div class="col-md-4">
+          <p>Valid Schema Types</p>
+          <ul>
+            <li>String</li>
+            <li>Number</li>
+            <li>Date</li>
+            <li>Buffer</li>
+            <li>Boolean</li>
+            <li>Mixed</li>
+            <li>Objectid</li>
+            <li>Array</li>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <p>Example</p>
+          <pre class=" pre18">
+var schema = new Schema({
+  name:    String,
+  binary:  Buffer,
+  living:  Boolean,
+  updated: { type: Date, default: Date.now },
+  age:     { type: Number, min: 18, max: 65 },
+  mixed:   Schema.Types.Mixed,
+  _someId: Schema.Types.ObjectId,
+  array:      [],
+  ofString:   [String],
+  ...,
+  nested: {
+    stuff: { type: String, lowercase: true, trim: true }
+  }
+})
+          </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Models</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -30px;"> A <a href="http://mongoosejs.com/docs/models.html">Model</a> is a compiled version
+        of the schema.</p>
+
+      <p style="font-size: 0.9em;">Models are fancy constructors compiled from our Schema definitions.
+        Instances of these models represent documents which can be saved and retrieved from our database.
+        All document creation and retrieval from the database is handled by these models
+      </p>
+            <pre class="prettyprint pre16">
+var mongoose = require( 'mongoose' ),
+....
+var userSchema = new mongoose.Schema({
+  username: String,
+  email: {type: String, unique:true},
+  modified : {type: Date, default: Date.now}
+});
+<b style="font-size: large">// Build the User model
+mongoose.model( 'User', userSchema )</b>;
+            </pre>
+      <br/>
+      <p>Using the model "somewhere"</p>
+      <pre class="prettyprint pre16">
+var mongoose = require( 'mongoose' );
+var User = mongoose.model("User");
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Validation</h2>
+      <H3>Basic mongoose validation rules</H3>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Validation is defined in the SchemaType</li>
+        <li>Validation is an internal piece of middleware</li>
+        <li>Validation occurs when a document attempts to be saved, after defaults have been applied</li>
+        <li>Validators are not run on undefined values (except for the required validator)</li>
+        <li>Validation is asynchronously recursive; when you call Model#save, sub-document validation is executed as
+          well
+        </li>
+        <li>Validation supports complete customization</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Validation</h2>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <div class="row">
+        <p style="color: #2a6496">Built in Validators</p>
+        <div class="col-md-5" style="font-size: 0.8em;">
+          <ul>
+            <li>All SchemaTypes have the built in <b>required</b> validator</li>
+            <li>Numbers have <b>min</b> and <b>max</b> validators</li>
+            <li>Strings have <b>enum, match, maxlength</b> and <b>minlength</b> validators</li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+
+          <pre class="pre16">
+var UserSchema = new Schema(
+ {
+   user: {type: String, <b>required</b>: true, <b>minLength</b>: 3},
+   role: {type: String, <b>enum</b>: ['Admin', 'Owner', 'User']}
+ }
+);
+          </pre>
+        </div>
+      </div>
+      <div class="row">
+        <p style="color: #2a6496">Custom Validators</p>
+        <div class="col-md-5" style="font-size: 0.8em;">
+          <p>If the built-in validators aren't enough, validation can be completely tailored to suit your needs</p>
+        </div>
+        <div class="col-md-7">
+          <pre class="pre16">
+var userSchema = new Schema({
+  phone: {
+    type: String,validate: {
+        validator: function(v) {
+           return /d{3}-d{3}-d{4}/.test(v);
+        },
+      message: '{VALUE} is not a valid phone number!'
+    }
+  }
+});
+          </pre>
+        </div>
+        <a href="http://mongoosejs.com/docs/validation.html">Validation</a>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Midleware</h2>
+      <H3>Doing "things" before or after a mongoose function</H3>
+    </hgroup>
+    <article style="margin-top: 0px;">
+      <p style="font-size: 0.8em;">Middleware (pre and post hooks) are functions which are passed control during
+        execution
+        of asynchronous
+        functions.
+        Middleware is specified on the schema level and is useful for writing plugins.
+        Mongoose 4.0 has 2 types of middleware: <b>document middleware</b> and <b>query middleware</b>.
+      </p>
+      <div class="row">
+        <div class="col-md-5" style="font-size: .8em;">
+          <p><b>Document middleware</b> is supported for the following document functions</p></p>
+          <ul>
+            <li>init</li>
+            <li>validate</li>
+            <li>save</li>
+            <li>remove</li>
+          </ul>
+          <p><b>Query middleware</b> is supported for the following Model and Query functions.</p>
+          <ul>
+            <li>count</li>
+            <li>find</li>
+            <li>findOne</li>
+            <li>findOneAndRemove</li>
+            <li>findOneAndUpdate</li>
+            <li>update</li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+          <p>Example (pre-save)</p>
+          <br/>
+<pre class="pre18">
+var userSchema = new mongoose.Schema({
+  username: String,
+  modified : {type: Date, default: Date.now}
+});
+
+userSchema.<b>pre</b>('<b>save</b>', function(next) {
+  this.modified = new Date();
+  next();
+});
+</pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>CRUD with mongoose</h2>
+      <h3>The following examples will all use this simple Schema/Model</h3>
+    </hgroup>
+    <article>
+    <pre class="prettyprint">
+var mongoose = require( 'mongoose' ),
+....
+var userSchema = new mongoose.Schema({
+  username: String,
+  email: {type: String, unique:true},
+  modified : {type: Date, default: Date.now}
+});
+// Build the User model
+mongoose.model( 'User', userSchema );
+    </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Create</h2>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Instance Method</p>
+    <pre class="prettyprint pre18">
+var mongoose = require( 'mongoose' );
+var User = mongoose.model("User"););
+
+// create a new user
+var newUser = User({
+  username: 'Kurt Wonnegut',
+  email: "kw@somewhere.dk"
+});
+
+// save the user
+newUser.save(function(err) {
+  if (err){
+      throw err
+  };
+  console.log('User created!');
+});  </pre>
+        </div>
+        <div class="col-md-6">
+          <p>The Models shortcut method <b>create</b></p>
+          <pre class="prettyprint pre18">
+User.create({
+  username: 'Kurt Wonnegut',
+  email: "kw@somewhere.dk"
+}, function( err, user ){
+if(!err){
+  console.log('User' + user._id +" saved");
+  }
+});
+          </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Read</h2>
+    </hgroup>
+    <article style="margin-top: 20px;">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Simple find</p>
+            <pre class="prettyprint pre18">
+User.find(
+  {'username' : 'Kurt Wonnegut'}, // Find Kurt
+  function (err, users){
+  if (!err){console.log(users);}
+});
+//<b>LIKE</b> 'Kurt' (regEx)
+User.find(
+  {'username' : <b>/Kurt/i</b>}, //Find all Kurt's
+  function (err, users){
+  if (!err){console.log(users);}
+});            </pre>
+        </div>
+        <div class="col-md-6">
+        <p>Specify which fields to return</p>
+<pre class="prettyprint pre18">
+User.find(
+  {'username' : 'Kurt Wonnegut'}, //Find Kurt
+  'name email', // return name and email
+  function (err, users){
+  if (!err){console.log(users);}
+});
+ </pre>
+          </div>
+      </div>
+      <br/>
+        <a href="http://mongoosejs.com/docs/api.html#model_Model.find">Model.findXX-methods</a>
+
+        <p style="margin-top: 10px;" class="smaller"><b>Model.find(query):</b> Return an array of instances matching the
+          query</p>
+        <p class="smaller"><b>Model.findOne(query):</b> Return the first instance found that matches the query</p>
+        <p class="smaller"><b>Model.findById(ObjectID):</b> Return a single instance matching the given ObjectID</p>
+        </ul>
+
+
+    </article>
+  </slide>
+
+  <slide>
+  <hgroup>
+    <h2>Using the Query Builder</h2>
+  </hgroup>
+    <article style="margin-top: 20px;">
+      <pre class="prettyprint pre18">
+var myQuery = User.find({'username' : /Wonnegut/i})
+myQuery.where('modified').gt(new Date(""2014-03-09T00:00:00.000Z")
+myQuery.sort('+username')
+myQuery.select('_id username modified')
+myQuery.exec(function (err, users){
+ if (!err){
+ console.log(users);
+ }
+});</pre>
+      <br/>
+      <p>Using chaining syntax</p>
+       <pre class="prettyprint pre18">
+User.find({'username' : /Wonnegut/i})
+.where('modified').gt(new Date(""2014-03-09T00:00:00.000Z");
+.sort('+username');
+.select('_id username modified');
+.exec(function (err, users){
+ if (!err){
+ console.log(users);
+ }
+});</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Update</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+  <div class="col-md-6">
+    <p>Using <b>find</b> and <b>save</b></p>
+      <pre class="prettyprint pre18">
+User.find({username: "Kurt Wonnegut"},
+        function(err, user) {
+          if (err) throw err;
+          // change the users location
+          user.email= 'wonnegut.gmail.com';
+         // save the user
+         user.save(function(err) {
+           if (err) throw err;
+         });
+}); </pre>
+    </div>
+    <div class="col-md-6">
+      <p>Using <b>findOneAndUpdate</b></p>
+            <pre class="prettyprint pre18">
+User.findOneAndUpdate(
+            {username: 'Kurt Wonnegut' },
+            {email: 'wonnegut.gmail.com' },
+            function(err, user) {
+              if (err) throw err;
+              console.log(user);
+            });
+      </pre>
+      </div>
+        </div>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Delete</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+  <div class="col-md-6">
+    <p>Using <b>find</b> and <b>remove</b></p>
+      <pre class="prettyprint pre18">
+User.find({username: 'Kurt Wonnegut' },
+        function(err, user) {
+           if (err) throw err;
+           // delete him
+           user.remove(function(err) {
+             if (err) throw err;
+             console.log('User deleted!');
+           });
+});
+      </pre>
+    </div>
+    <div class="col-md-6">
+      <p>Using <b>findOneAndRemove</b></p>
+            <pre class="prettyprint pre18">
+User.findOneAndRemove(
+            {username: 'Kurt Wonnegut' },
+             function(err, user) {
+              if (err) throw err;
+              console.log("User Deleted);
+            });
+      </pre>
+      </div>
+        </div>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>See Mongoosejs.com for the full <br/>documentation</h2>
+    </hgroup>
+    <article>
+      <a href="http://mongoosejs.com/docs/api.html#model-js">Mongoose API</a>
+    </article>
+
+  </slide>
+
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

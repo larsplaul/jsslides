@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title></h1>
+
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="images/nosql-expert.gif" style="float:left"></div>
+    </hgroup>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>NoSQL</h2>
+    </hgroup>
+    <article>
+      <br/>
+      <p>The rise of NoSQL databases marks the end of the era of relational database dominance</p>
+      <p>But NoSQL databases will not become the new dominators. Relational will still be popular, and used in the
+        majority of situations.</p>
+      <p>They, however, will no longer be the automatic choice.</p>
+      <br/>
+      <br/>
+      <p>Martin Fowler</p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>NoSQL</h2>
+    </hgroup>
+
+    <article>
+      <div>
+        <p>NoSQL (often interpreted as Not only SQL) databases provides a mechanism for storage and retrieval of data
+          that is modeled in means <b>other than the tabular relations</b> used in relational databases.</p>
+
+        <p style="color: #000000;">Motivations for this approach include:</p>
+        </p>
+        <ul style="color: #000066">
+          <li>Simplicity of design</li>
+          <li>Horizontal scaling</li>
+          <li>Finer control over availability.</li>
+        </ul>
+
+        <p>Its actually hard to say what a NoSQL database is, except for the fact that is does (usually ;-) NOT use
+          SQL</p>
+      </div>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Why NoSQL</h2>
+    </hgroup>
+
+    <article>
+      <ul>
+        <li>Impedance mismatch</li>
+        <li>support large volumes of data by running on clusters</li>
+        <p style="color:#000000;"><b>Common characteristics of NoSQL databases:</b></p>
+        <ul style="color: #000066">
+          <li>Not using the relational model</li>
+          <li>Running well on clusters</li>
+          <li>Open-source</li>
+          <li>Built for the 21st century web estates</li>
+          <li>Schemaless</li>
+        </ul>
+      </ul>
+      <em>A computer cluster consists of a set of loosely or tightly connected computers that work together so that, in
+        many respects, they can be viewed as a single system.
+        Computer clusters have each node set to perform the same task, controlled and scheduled by software</em>
+      <footer class="source">source: http://en.wikipedia.org/wiki/NoSQL</footer>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Consistency</h2>
+    </hgroup>
+
+    <article>
+      <ul style="font-size: 22px;">
+        <li><b style="color:black">CAP Theorem</b><br/>
+          A distributed system cannot simultaneously provide all three of the following desirable properties:
+          Consistency, Availability, Partition tolerance
+        </li>
+        <li><b style="color:black">NoSQL Does nor offer ACID guarantees</b></br>
+          <ul>
+            <li>Atomicity<br/>
+              Everything in a transaction must happen successfully or none of the changes are committed.
+            </li>
+            <li><b>Consistency</b></br>
+              The data will only be committed if it passes all the rules in place in the database
+            </li>
+            <li><b>Isolation</b><br/>
+              Transactions won't affect other transactions by changing data that another operation is counting
+            </li>
+            <li><b>Durability</b><br/>
+              Once data is committed, it is durably stored and safe against errors
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b style="color:black">Instead it offers <em>Eventual Consistency</em></b><br/>
+          Informally guarantees that, if no new updates are made to a given data item, eventually all accesses to that
+          item will return the last updated value.
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Eventual consistency in plain English</h2>
+    </hgroup>
+
+    <article>
+      <p style="margin-top: -20px;color:#000000">Eventual Consistency</p>
+      <ul style="font-size: 20px;">
+        <li>I tell you that it's going to rain tomorrow.</li>
+        <li>Your neighbor tells his wife that it's going to be sunny tomorrow.</li>
+        <li>You tell your neighbor that it is going to rain tomorrow.</li>
+      </ul>
+      <p style="font-size: 20px">Eventually, all of the servers (you, me, your neighbor) know the truth (that it's going
+        to rain tomorrow),
+        but in the meantime the client (his wife) came away thinking it is going to be sunny,
+        even though she asked after one of the servers knew the truth</p>
+
+      <p style=";color:#000000">Strict Consistency/ACID compliance:</p>
+      <ul style="font-size: 20px;">
+        <li>Your bank balance is $50.</li>
+        <li>You deposit $100.</li>
+        <li>Your bank balance, queried from any ATM anywhere, is $150.</li>
+        <li>Your daughter withdraws $40 with your ATM card.</li>
+        <li>Your bank balance, queried from any ATM anywhere, is $110.</li>
+      </ul>
+      <p style="font-size: 20px">At no time can your balance reflect anything other than the actual sum of all of the
+        transactions made on your account to that exact moment.</p>
+      <footer class="source">Wise words from <a
+              href="http://stackoverflow.com/questions/10078540/eventual-consistency-in-plain-english">Stackoverflow</a>
+      </footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The CAP Theorem</h2>
+    </hgroup>
+
+    <article>
+      <div class="row" style="margin-top: -20px;">
+        <div class="col-md-6" style="font-size: 22px;">
+          <p><b>Consistency</b></p>
+
+          <p style="margin-top: -10px;">All the servers in the system will have the same data so anyone using the system
+            will get the same copy regardless of which server answers their request.</p>
+
+          <p><b>Availability</b></p>
+
+          <p style="margin-top: -10px;">The system will always respond to a request (even if it's not the latest data or
+            consistent across the system or just a message saying the system isn't working).</p>
+
+          <p><b>Partition Tolerance</b></p>
+
+          <p style="margin-top: -10px;">The system continues to operate as a whole even if individual servers fail or
+            can't be reached.</p>
+        </div>
+        <div class="col-md-6"><img src="images/cap.PNG" style="width: 100%;margin-top: 2em;"></div>
+      </div>
+      <div style="font-size: 24px;color: #000066;">The CAP theorem states:<br/>
+        It's theoretically impossible to have all 3 requirements met, so a combination of 2 must be chosen and this is
+        usually the deciding factor in what technology is used.
+      </div>
+      <footer class="source">source: http://en.wikipedia.org/wiki/NoSQL</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Types of NoSQL DataBases</h2>
+    </hgroup>
+
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          <p style="color:#000000;"><b>Common characteristics of NoSQL databases:</b></p>
+          <ul style="color: #000066">
+            <li>Key-Value Stores</li>
+            <li>Document Stores (CouchDB, Mongo etc.)</li>
+            <li>Object Databases</li>
+            <li>Wide Column Stores</li>
+            <li>Graph Databases</li>
+          </ul>
+          <p>We will will introduce MongoDB + redis this semester</p>
+
+        </div>
+        <div class="col-md-6">
+          <img src="images/NoSQL-Comparison-Graphic.png" style="width:100%;">
+        </div>
+      </div>
+      <footer class="source">source: http://en.wikipedia.org/wiki/NoSQL</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Handling Relational Data</h2>
+    </hgroup>
+
+    <article>
+      <p style="color:#000000;">Since most NoSQL databases lack ability for joins in queries, the database schema
+        generally needs to be designed differently.<br/>
+        There are three main techniques for handling relational data in a NoSQL database</p>
+
+      <div class="row">
+        <div class="col-md-3">Multiple Queries</div>
+        <div class="col-md-9" style="font-size: large">Instead of retrieving all the data with one query, it's common to
+          do several queries to get the desired data. NoSQL queries are often faster than traditional SQL queries so the
+          cost of having to do additional queries may be acceptable
+        </div>
+      </div>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-3">Caching/replication/ de-normalized data</div>
+        <div class="col-md-9" style="font-size: large">Instead of only storing foreign keys, it's common to store actual
+          foreign values along with the model's data.
+          <a href="http://en.wikipedia.org/wiki/NoSQL#Caching.2Freplication.2Fnon-normalized_data">De-normalization
+            etc.</a>
+          </a></div>
+      </div>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-3">Nesting Data</div>
+        <div class="col-md-9" style="font-size: large">With document databases like MongoDB it's common to put more data
+          in a smaller number of collections.
+          For example in a blogging application, one might choose to store comments within the blog post document so
+          that with a single retrieval one gets all the comments.
+          Thus in this approach a single document contains all the data you need for a specific task
+        </div>
+      </div>
+      <footer class="source">source: http://en.wikipedia.org/wiki/NoSQL</footer>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Document Oriented Databases</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -30px;"> A document-oriented database is a computer program designed for storing,
+        retrieving, and managing <b>document-oriented information</b>, also known as semi-structured data.</p>
+
+      <p style="color: #000000">MongoDB is a Document Database <a href="http://www.mongodb.com/document-databases">Document
+        Databases</a></p>
+      <ul>
+        <li><b>Documents are independent units</b> which makes performance better (data is read contiguously off disk)
+          and makes it easier to distribute data across multiple servers while preserving its locality
+        </li>
+        <li><b>Application logic is easier to write.</b> No need to translate between objects in your application and
+          SQL queries, you can just turn the object model directly into a document
+        </li>
+        <li><b>Unstructured data can be stored easily</b>, since a document contains whatever keys and values the
+          application logic requires. <br/>
+          In addition, costly migrations are avoided since the database does not need to know its information schema in
+          advance
+        </li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>SQL versus NoSQL</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>The two main reasons to use NoSQL
+          <ul>
+            <li>To improve programmer productivity by using a database that better matches an application's needs.</li>
+            <li>To improve data access performance via some combination of handling larger data volumes, reducing
+              latency, and improving throughput.
+            </li>
+          </ul>
+        <li>If data is critical stay on solid ground.</li>
+        <li>If you don’t need to support large volumes, don’t distribute and choose the best model for the job.</li>
+        <li>If you find yourself modeling complex Normalized Data Models and constantly looking for Atomicity and Transaction ($isolated in MongoDB) you should perhaps consider another database type</li>
+        <li>Read more about NoSQL on the web or in books, e.g. NoSQL Distilled.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Mongo DB</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>MongoDB stores all data in documents</li>
+        <li>MongoDB stores documents on disk in the BSON serialization forma</li>
+        <li>MongoDB documents are composed of field-and-value pairs and have the following structure
+        <li/>
+        <li>The value of a field can be any of the BSON data types, including other documents, arrays, and arrays of
+          documents
+        </li>
+      </ul>
+      <a href="https://docs.mongodb.org/manual/core/crud-introduction/">Examples</a>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Install MongoDB</h2>
+
+      <h3>Install MongoDB-1</h3>
+    </hgroup>
+    <article>
+
+      <a href="http://docs.mongodb.org/manual/installation/">Install MongoDB</a>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Install MongoDB</h2>
+
+      <h3>Install MongoDB-2</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Run the install file or get the zip
+        <li>Go to the bin folder in the install directory,here you find the <b>mongo</b> and <b>mongod</b> programs
+          <ul>
+            <li>The first is a cmd tool to communicate with a database</li>
+            <li>The latter is the database server.</li>
+          </ul>
+        </li>
+        <li>
+          <p>You need a directory to the mongodb data</p>
+          <p>The default location is a ”data” folder in your root as sketched below:<br/>
+            <b>&nbsp;&nbsp; data<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db</b>
+          </p>
+        </li>
+        <li>If you have this you can just run the <b>mongod</b></li>
+      </ul>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>MongoDB</h2>
+
+      <h3>Start the Server</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>mongoDb</b> has a large number of options you can provide when you start the server.</li>
+        <li>Normally this is done in a <b>config file</b>, e.g.<br/>
+          <code>dbpath=c:\data\db<br/>
+            logpath=c:\data\mongoserver.log<br/>
+            verbose=vvvvv
+          </code>
+        </li>
+        <li>Run the mongod with the -f mongod.conf</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Start Mongo within WebStorm</h2>
+    </hgroup>
+    <article>
+      <div class="row" style="margin-top: -25px;">
+        <div class="col-md-10">
+          <p style="font-size: 21px;">For those of you, who find it hard to start MongoDB from a command prompt, or just
+            like to do everything
+            from one tool (WebStorm), here is how to start it from within WebStorm.</p>
+
+          <p style="font-size: 21px;margin-top: -12px;">The following assumes that you have created a folder structure
+            like below, in your root (C:\)</p>
+<pre class="prettyprint pre18">
+  data
+     db</pre>
+        </div>
+        <div class="col-md-2">
+          <img src="images/mongo.PNG">
+        </div>
+      </div>
+      <div style="margin-top: 15px;">
+        <ul style="color: #000066; font-size: 21px;">
+          <li>Goto Settings and select: Tools -->ExternalTools</li>
+          <li>Press the + button and provide the following information:
+            <ul>
+              <li>Name: Mongo:</li>
+              <li>Description: Starts MongoDB</li>
+              <li>Program: The full path to mongod.exe</li>
+              <li>Parameters --dbpath /data/db (assuming you have the folder <b>data</b>, with the subfolder <b>db</b>)
+              </li>
+              <li>Working Directory: c:\mongo</li>
+            </ul>
+          <li>Press OK and close the settings Window.</li>
+          <li>Now; goto tools-->Externals Tools --> Mongo, to start the MongoDB</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Using a remote Mongo Database</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -20px;">Ultimately we will deploy our application on OpenShift. OPENSHIFT does offer a free
+        MongoDB. It is however possible to get a free MongoDB several other places with <b>mlab.com</b> as the suggested</p>
+
+      <p><b>Suggestion: Create a free account on mlab.com and:</b></p>
+      <ul style="color: #000066">
+        <li>Log in</li>
+        <li>Create new database</li>
+        <li>Just choose amazon and Single-node</li>
+        <li>Give it a name</li>
+        <li>Click on the database and select Users</li>
+        <li>Add database user (otherwise we can’t connect)</li>
+        <li>Then copy the standard URI (mongodb// …)</li>
+        <li>Change the connection in the program we did before to this string.</li>
+        <li>Run your program and go to mongolab an click on collections to browse data.</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Connect to MongoDB</h2>
+    </hgroup>
+    <article>
+      <p><b>Use the mongo program</b></p>
+      <ul>
+        <li>If you run it on your local machine you don’t need to provide any parameters</li>
+        <li>If you want't to connect to a remote server (mongoLab) you need to specify where the server is
+          located<br/><br/>
+          <pre class="prettyprint ">
+mongo ds061158.mongolab.com:61158/mydb -u &ltdbuser&gt -p &ltdbpassword&gt
+server                  port      db
+        </pre>
+          <br/>
+          We return to this later
+
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Getting Started</h2>
+    </hgroup>
+    <article>
+      <p>Observe how we can insert any kind of object to the collection (no Schema)</p>
+      <pre class="prettyprint pre18">
+db.persons.insert({"name" : "Lars Mortensen", "position" : "Teacher"});
+db.persons.insert({"name" : "Kurt Wonnegut","grades" : [{"MEAN": 10},{"Android":10}]});
+      </pre>
+      <p style="margin-top: 0.6em;">In the database (observe the generated id's)</p>
+      <div class="row">
+        <div class="col-md-7">
+      <pre class="prettyprint pre18">
+{
+ "_id" : ObjectId("56dd4319c652e3256c94862f"),
+ "name" : "Lars Mortensen"
+}
+{
+  "_id" : ObjectId("56dd4b44c652e3256c948631"),
+  "name" : "Kurt Wonnegut",
+  "grades" : [{ "MEAN" : 10 },{ "Android" : 10}]
+}
+      </pre>
+        </div>
+        <div class="col-md-5">
+          <img src="images/objectid.JPG" style="width: 100%;">
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Using mongo from Node.js</h2>
+    </hgroup>
+    <article>
+      <div>
+        <p>Several libraries exists, we will introduce two:</p>
+        <ul>
+          <li><b>mongodb</b> (npm install mongodb). The official supported driver for "low-level" interaction (think
+            JDBC) with MongoDB
+          </li>
+          <li><b>mongoose</b> (npm install mongoose). Package that offers Schemas, Validation and more on top of MongoDB
+            (think ORM)
+          </li>
+        </ul>
+        <p>We will use the <em>mongodb driver</em> to get a true understanding of a document oriented database and
+          MongoDB in particular</p>
+        <p>We will introduce <em>mongoose</em> because: </p>
+        <ul>
+          <li>It is used a lot out there</li>
+          <li>Normally we have schema information of the information we want to persist</li>
+          <li>It simplifies things - we need to write less code ;-)</li>
+          <li>Mongoose is covered is a separate lesson</li>
+        </ul>
+        </li>
+      </div>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>Read the MongoDB manual for details</h2>
+    </hgroup>
+    <article>
+      <p><a href="http://mongodb.github.io/node-mongodb-native/2.2/quick-start/">Quick Start (perfect to get started)</a></p>
+      <p><a href="https://docs.mongodb.com/manual/reference/sql-comparison/">SQL to MongoDB Mapping Chart</a></p>
+      <p><a href="https://docs.mongodb.org/manual/core/crud-introduction/">CRUD</a></p>
+      <p><a href="https://docs.mongodb.org/manual/core/data-modeling-introduction/">Data Models</a></p>
+      <br/>
+      <br/>
+      <p><a href="http://mongodb.github.io/node-mongodb-native/2.2/api/">Node-API</a></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Indexes</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -30px;">Indexes support the efficient execution of queries in MongoDB. Without indexes, MongoDB must perform a collection scan, i.e. scan every document in a collection, to select those documents that match the query statement.
+
+      <p>Indexes are special data structures  that store a small portion of the collection’s data set in an easy to traverse form.
+        <br/>The index stores the value of a specific field or set of fields, ordered by the value of the field.
+        <br/>MongoDB can return sorted results by using the ordering in the index.</p>
+      <img src="images/index-for-sort.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Cool Indexes in MongoDB</h2>
+      <h3>Which we will use in the exercise for today ;-)</h3>
+    </hgroup>
+    <article>
+      <p style="font-weight: bold;color: darkblue;margin-top: -30px;">2dsphere Indexes &nbsp;&nbsp; <a href="https://docs.mongodb.com/manual/core/2dsphere/">Mongo Manual</a></p>
+      <p>A 2dsphere index supports queries that calculate geometries on an earth-like sphere. 2dsphere index supports all MongoDB geospatial queries: queries for inclusion, intersection and proximity. </p>
+      <p style="font-weight: bold;color: darkblue"><a href="http://tugdualgrall.blogspot.dk/2014/08/introduction-to-mongodb-geospatial.html">Lets take a look here</a></p>
+      <br/>
+      <p style="font-weight: bold;color: darkblue">TTL Indexes &nbsp;&nbsp; <a href="https://docs.mongodb.com/manual/core/index-ttl/">Mongo Manual</a></p>
+      <p>TTL indexes are special single-field indexes that MongoDB can use to automatically remove documents from a collection after a certain amount of time.
+        <br/>Data expiration is useful for certain types of information like machine generated event data, logs, and session information that only need to persist in a database for a finite amount of time.</p>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Express - Suggested Connection Setup</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6" style="margin-top: -30px;">
+          <p style="font-size: 0.8em;">Add a folder db and a file db.js with this content:</p>
+      <pre class="prettyprint pre14">
+var MongoClient = require('mongodb').MongoClient
+var connection;
+var connect = function(url, done) {
+  if (connection) return done()
+  MongoClient.connect(url, function(err, db) {
+    if (err){
+      return done(err);
+    }
+    connection = db;
+    done();
+  })
+}
+var get = function() {
+  return connection;
+}
+var close = function(done) {
+  if (connection) {
+    connection.close(function(err, result) {
+      connection= null;
+      done(err,result)
+    })
+  }
+}
+module.exports.connect = connect;
+module.exports.get = get;
+module.exports.close = close;
+      </pre>
+        </div>
+        <div class="col-md-6">
+          <p style="font-size: 0.8em;">Initialize the connection like this:</p>
+          <pre class="prettyprint pre14">
+//In bin-->www, replace these lines:
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+//with this:
+var db = require("../db/db");
+var connection_string = "mongodb://xxxxxxxxxxxxxxxxxx";
+db.connect(connection_string,function(err){
+  if(err){
+    console.log("Could not connect to Database");
+    return;
+  } else
+  {
+     server.listen(port);
+     server.on('error', onError);
+     server.on('listening', onListening);
+  }
+}); </pre>
+          <p style="font-size: 0.8em;">And, whenever the connection is required</p>
+          <pre class="prettyprint pre14">
+var connection = require("../db/db");
+var db = connection.get();  //Get it like this
+          </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

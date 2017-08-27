@@ -1,0 +1,15 @@
+{
+    "name": "MVC",
+    "files": [
+      "info.js"
+    ],
+  "filesOnlyForPlunkr": [
+  "index.html",
+  "app.js"
+],
+  "showThisAlways": "index.html",
+  "usePlunk": "true",
+  "tags": ["Angular", "CRUD"],
+  "description": "Angular - Forms - ng-model"
+
+}

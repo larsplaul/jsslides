@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node- Getting Started</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" media="all" href="../theme/css/default.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+    <script src="../angular/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.18/i18n/angular-locale_da.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../js/presenter.js"></script>
+
+
+    <base target="_blank">
+
+    <!-- This opens all links in a new tab. -->
+    <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+    <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+
+<slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="autofadein" style="color: white;">
+        <div style="float: left">
+            <h1 data-config-title style="float:left;"></h1>
+
+            <h2 data-config-subtitle></h2>
+
+            <p data-config-presenter></p>
+        </div>
+        <!--<div style="float:left;margin-left: 2em;"><img src="images/node_logo.png" style="float:left"></div>-->
+    </hgroup>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Testing with Mocha and Should</h2>
+
+        <h3>A quick summary</h3>
+    </hgroup>
+    <article>
+        <p style="margin-top:-40px; ">Mocha allows developers to choose their style of Domain Specific Language.
+            We will however only focus on the Behaviour Driven Design (BDD) interface.</p>
+
+        <p>The "BDD" interface provides describe(), it(), before(), after(), beforeEach(), and afterEach()</p>
+
+        <h3>BDD Style</h3>
+       <pre class="prettyprint pre17">
+describe('Array', function(){
+  before(function(){
+    // ...
+  });
+
+  describe('#indexOf()', function(){
+    it('should return -1 when not present', function(){
+      [1,2,3].indexOf(4).should.equal(-1);
+    });
+  });
+});
+       </pre>
+
+
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>BDD Is Narrative</h2>
+
+    </hgroup>
+    <article>
+        <p style="margin-top:-40px; ">&nbsp;</p>
+
+       <pre class="" style="background-color: #f9cc46;">
+<b>Describe</b> User Registration
+  While validating the registration info
+   - <b>it</b> should make sure the email address is valid
+   - <b>it</b> should verify the email doesn't already exist
+     ...
+  While creating the user's database record
+   - <b>it</b> should save successfully in the database
+     ...       </pre>
+        <h3>Often Test Cases are used for Documentation</h3>
+
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Installing Mocha</h2>
+
+        <h3>NPM of course :-)</h3>
+
+    </hgroup>
+    <article>
+        <p style="margin-top:-40px; ">&nbsp;</p>
+
+        <p style="font-size: 65px;color: #000066">npm install mocha -g</p>
+
+
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>First Mocha Test</h2>
+    </hgroup>
+    <article>
+        <div style="margin-top: -35px;">
+            <div style="margin-bottom: 10px;">Using the built in assert module</div>
+        <pre class="prettyprint">
+var assert = require("assert")
+describe('Array', function(){
+  describe('#indexOf()', function(){
+    it('should return -1 when value is not present',
+            function(){
+      assert.equal(-1, [1,2,3].indexOf(5));
+      assert.equal(-1, [1,2,3].indexOf(0));
+    })
+  })
+})
+</pre>
+            <div  style="margin-top: 15px;color:#000066">
+                <ul style="list-style: none;">
+                    <li>The <b>describe()</b> block is used to group individual specs, at least one describe block is
+                        required
+                    </li>
+                    <li>The <b>it()</b> block sets up the code for a single test (spec)</li>
+                    <li>The <b>assert</b> module contains a series of matchers which perform the comparison</li>
+                </ul>
+            </div>
+        </div>
+
+        </div>
+
+    </article>
+</slide>
+
+<slide>
+<hgroup>
+    <h2>First Mocha Test</h2>
+    <h3><b>Should</b>-style</h3>
+</hgroup>
+<article>
+    <div style="margin-top: -35px;margin-bottom: 10px;">
+        Using the the <em>should </em>module
+    </div>
+    <p>Remember: <b>NPM install should</b></p>
+        <pre class="prettyprint">
+describe('Array', function(){
+  describe('#indexOf()', function(){
+    it('should return -1 when the value is not present', function(){
+      [1,2,3].indexOf(5).should.equal(-1);
+      [1,2,3].indexOf(0).should.equal(-1);
+    })
+  })
+})
+        </pre>
+</article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Testing Asynchronous Code</h2>
+
+
+    </hgroup>
+    <article>
+        <p>Mocha provides a <em>done</em> callback function that lets it know when an asynchronous test is complete</p>
+        <p style="color: #000088">Testing the "Make It Modular Exercise" from Learnyounode</p>
+        <pre class="prettyprint ">
+describe('myModule', function () {
+    it("should find five *.js files", function (done) {
+        myModule(tempDir,"js",function(err,data){
+        if(err){
+          done(err);
+        }
+        //assert.equal(data.length , 2);
+        data.should.have.length(5);
+        done();
+      });
+   });           </pre>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>The Module System</h2>
+
+        <h3>Sources of Modules</h3>
+    </hgroup>
+    <article>
+        <pre class="prettyprint">
+//<b style="color: #000088">Import a core module (the file system module)</b>
+var fs = require('fs');
+
+//<b  style="color: #000088">Using an external module (the "express" Web Server Module)</b>
+// First run <b>'npm install express'</b>
+var express = require('express');
+
+// <b  style="color: #000088">Import a module relative to the current project/file</b>
+var myModule = require('./myModules/myModule');
+            </pre>
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Creating our own modules</h2>
+
+        <h3>Exporting Modules</h3>
+    </hgroup>
+    <article>
+        <div class="row" style="margin-top: -35px;">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <p>Exporting an (API) object </p>
+<pre class="prettyprint pre16">
+//In file: /lib/calculator.js
+module.exports = {
+        add: function (n1, n2) {
+        return n1 + n2;
+       }
+}
+</pre>
+            </div>
+            <div class="col-md-6" style="margin-top: 10px;">
+                <p>Using the Module </p>
+<pre class="prettyprint pre16">
+// In file: moduleUser.js
+var calculator = require("./lib/calculator");
+
+console.log(calculator.add(2,2));
+
+
+</pre>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <p>A Utility function or Constructor</p>
+<pre class="prettyprint pre16">
+//In file: /lib/add.js
+module.exports = function add (n1, n2) {
+        return n1 + n2;
+       };
+
+
+</pre>
+            </div>
+            <div class="col-md-6" style="margin-top: 10px;">
+                <p>Using the Module </p>
+<pre class="prettyprint pre16">
+// In file: moduleUser.js
+var add = require("./lib/add");
+
+console.log(add(2,2));
+
+</pre>
+            </div>
+        </div>
+
+
+    </article>
+</slide>
+<slide>
+    <hgroup>
+        <h2>Structuring a Node Application</h2>
+
+        <h3>Via Modules of course!</h3>
+    </hgroup>
+    <article>
+
+
+        <p>In order to figure out how to layout the structure of our module, lets get inspired by a "real" module</p>
+
+        <p>Goto <a href="https://www.npmjs.org/">NPM</a> and locate the <em style="color: #000088">async module</em> (one of the most
+            depended upon modules).
+            We will use the layout found here as our template</p>
+
+        <p>Follow the link (on the NPM async-page) to the repository. How is the layout of the module?</p>
+
+        <div class="build">
+            <ul style="font-size: 22px;color:#00163B">
+                <li>deps</li>
+                <li>lib</li>
+                <li>test</li>
+            </ul>
+            <div>Investigate the content of the three folders and explain (as good as you can) their purposes<br/>
+                Investigate the file package.json and explain (as good as you can) its purpose
+            </div>
+        </div>
+
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Creating our first Testable Module</h2>
+
+        <h3>Part-1</h3>
+    </hgroup>
+    <article>
+        <p style="margin-top: -35px;">Open WebStorm and create a new project <em>moduleDemo</em></p>
+
+        <p>In this project we will implement a simple calculator module including corresponding test cases</p>
+
+        <p>Create a folder <em>calculator</em> This will include everything related to our module</p>
+
+        <p>In that folder create a <em>lib</em> and a <em>test</em> folder </p>
+
+        <p>The folder for dependencies (deps) will be created in another way</p>
+
+        <img src="../images/Demo.png" style="width:150px;float: left">
+
+        <h3 style="float: left;margin-top: 15px;">Class Demo</h3>
+
+
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Creating our first Testable Module</h2>
+
+        <h3 style="color:#000066">Part-2 <span>Create the manifest for the new Module</span></h3>
+    </hgroup>
+    <article>
+        <p style="margin-top: -35px;">Navigate to your <em>moduleDemo</em> folder and type NPM init</p>
+
+        <p>Select defaults for most of the questions, but add the following</p>
+        <ul>
+            <li>main -> bin/calculator.js</li>
+            <li>test -> mocha test/test.js</li>
+        </ul>
+        <p>Investigate the content of the generated package.json file</p>
+
+        <p>We need <em>should</em> for our assertions. Type <em>NPM install should --save</em></p>
+
+        <p>Observe the new folder <em>node_modules</em>. It corresponds to the <em>deps</em> folder </p>
+
+        <p style="float: left">Add <em>Mocha</em> to package.json</p>
+            <pre style="float:left;margin-left:15px;" class="prettyprint pre18">"devDependencies": {
+    "mocha": "^1.21.4"
+  }</pre>
+
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Creating our first Testable Module</h2>
+
+        <h3 style="color:#000066">Part-3 <span>Implementing the files</span></h3>
+    </hgroup>
+    <article>
+        <div class="row" style="margin-top: -35px;">
+            <div class="col-md-5" style="margin-top: 10px;">Create the file test.js in the test folder and add the
+                following content.
+            </div>
+            <div class="col-md-7">
+                      <pre class="prettyprint pre17">
+var should = require("should");
+
+describe('#calculator', function(){
+  describe('add', function(){
+    it('should return 5', function(){
+      calculator.add(2,2).should.equal(4);
+    })
+  })
+})            </pre>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+
+        <div class="col-md-5" style="margin-top: 10px;">Create the file calculator.js in the bin folder and add the
+            following content.
+        </div>
+        <div class="col-md-7">
+<pre class="prettyprint pre18">
+module.exports = {
+  add: function (n1, n2) {
+    return n1 + n2;
+  }
+            </pre>
+        </div>
+    </article>
+    <p style="color: #000066">Test the module via <em>npm test</em></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Creating our first Testable Module</h2>
+
+        <h3 style="color:#000066">Part-4 <span>The final</span></h3>
+    </hgroup>
+    <article>
+        <p style="margin-top: -35px;">Finally crete af new javaScript file in the root called <em>moduleUser.js</em></p>
+
+        <p">This file simulates the actual file in our project which will use the module.
+        Create a calculator and use it to add a few numbers</p>
+
+
+        <h3 style="color: #000066">Your folder structure should now look as sketched below</h3>
+
+        <img src="images/folderStructure.PNG" style="width:300px;margin-left: 200px;">
+
+
+    </article>
+</slide>
+
+<slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+        <h2>Rest of today; Exercises :-)</h2>
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+        <!-- populated from slide_config.json -->
+    </p>
+</slide>
+
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

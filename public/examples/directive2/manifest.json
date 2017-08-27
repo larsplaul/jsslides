@@ -1,0 +1,19 @@
+{
+    "name": "Example Directives",
+    "files": [
+        "index.html",
+        "indexV2.html",
+        "script1.js",
+        "personDetail.html"
+    ],
+    "filesOnlyForPlunkr": [
+        "index.html",
+        "script1.js",
+        "personDetail.html",
+        "README.md",
+        "style.css"
+    ],
+    "usePlunk" : "true",
+    "tags": ["angularjs","example"],
+    "description" : "Angular - Example - Directives"
+}

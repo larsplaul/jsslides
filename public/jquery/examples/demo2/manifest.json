@@ -1,0 +1,16 @@
+{
+    "name": "Chaining",
+    "files": [
+        "../../img/chaining.png",
+        "index.html"
+    ],
+    "filesOnlyForPlunkr": [
+        "index.html"
+    ],
+    "showThisAlways": "index.html",
+    "usePlunk": "true",
+    "tags": [
+        "JQuery"
+    ],
+    "description": "JQuery - Example - Chaining"
+}

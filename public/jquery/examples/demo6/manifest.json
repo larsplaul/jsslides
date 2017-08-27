@@ -1,0 +1,18 @@
+{
+    "name": "Get and Set",
+    "files": [
+        "js1.js",
+        "index.html"
+    ],
+    "filesOnlyForPlunkr": [
+        "index.html",
+        "js1.js"
+    ],
+    "showThisAlways": "index.html",
+    "usePlunk": "true",
+    "tags": [
+        "javascript",
+        "JQuery"
+    ],
+    "description": "JavaScript - Example - add remove"
+}

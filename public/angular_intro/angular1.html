@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" media="all" href="../theme/css/default.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/presenter.js"></script>
+
+    <base target="_blank">
+    <style>
+        code {
+            color: darkblue;
+        }
+    </style>
+
+    <!-- This opens all links in a new tab. -->
+    <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+    <!--In order to have more than one slideset in the project-->
+    <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+        <div style="float: left;">
+            <h1 data-config-title style="float:left;"></h1>
+
+            <h2 data-config-subtitle></h2>
+
+            <p data-config-presenter></p>
+        </div>
+        <div style="float:left;margin-left: 2em;"><img src="../../images/AngularLogo.png" style="float:left"></div>
+    </hgroup>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Important topics</h2>
+    </hgroup>
+
+    <article>
+        <div style="font-size: 28px">
+            <p>In order to lay the ground for our understanding af Angular and similar technologies we need to
+                discuss several important topics first:</p>
+            <ul>
+                <li>Templating in general and;</li>
+                <li>Server Side Templating Versus Client Side Templating</li>
+                <li>The Model View Controller Pattern (MVC)</li>
+                <li>Single Page Applications (SPA's)</li>
+            </ul>
+        </div>
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+
+        <h2>Web Template Systems</h2>
+    </hgroup>
+    <article>
+        <div class="row" style="margin-top: -20px;">
+            <div class="col-md-9">
+                <p>A web template system uses a template processor to combine web templates to form finished web
+                    pages,
+                    possibly using some data source to customize the pages or present a large amount of content on
+                    similar-looking pages.</p>
+
+                <div>
+                    <div class="build">
+                        <div>
+                            <p class="smaller" style="color: #000066">Overall, there are five types of templating
+                                systems,
+                                classified based on when
+                                assembly happens -
+                                (When placeholders are substituted for variable information) </p>
+                            <ul style="color: #000066">
+                                <li><p class="smaller">Server-side - run-time substitution happens on the web server
+                                    </br><b> Our focus for this Period</b></p></li>
+                                <li><p class="smaller">Client-side - run-time substitution happens in the web
+                                    browser</p></li>
+                                <div style="color: gray">
+                                    <li><p class="smaller">Edge-side - run-time substitution happens on a proxy
+                                        between
+                                        web server
+                                        and
+                                        browser</p></li>
+                                    <li><p class="smaller">Outside server - static web pages are produced offline
+                                        and
+                                        uploaded to
+                                        the
+                                        web server;</p></li>
+                                    <li><p class="smaller">Distributed - run-time substitution happens on multiple
+                                        servers</p></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"><img src="images/templating.jpg" style="margin-top:40px;width:100%"/></div>
+        </div>
+        <footer class="source"> http://en.wikipedia.org/wiki/Web_template_system</footer>
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Server Side Rendering with a new <br/>page for each request</h2>
+    </hgroup>
+
+    <article>
+        <p style="margin-top: -30px;">Courses "page flickering" when navigating, and the server has to regenerate a
+            complete page for each request.</p>
+
+        <div>
+            <img src="images/webOldDays.svg" style="width: 80%;margin-left: 6%">
+        </div>
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Server Side Rendering with a AJAX</h2>
+    </hgroup>
+
+    <article>
+        <p style="margin-top: -30px;">Loads and initial page and uses AJAX to dynamically fetch partials rendered on
+            the server </p>
+
+        <p class="smaller" style="margin-top: -15px;color: #000066">This is probably the most used strategy today
+            and can generate very dynamic and responsive client code </p>
+
+        <p class="smaller" style="margin-top: -15px;color: #000066">This was the strategy used in the "Jokes"
+            exercise</p>
+
+        <div>
+            <img src="images/webAjaxServerSideTemplating.svg" style="width: 70%;margin-left: 12%;margin-top:15px;">
+        </div>
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Client Side Rendering with a Angular</h2>
+    </hgroup>
+
+    <article>
+        <p style="margin-top: -30px;">Loads and initial page and uses AJAX to dynamically fetch partials which will
+            be <em>rendered on the client</em></p>
+
+        <p class="smaller" style="margin-top: -15px;color: #000066">The newest strategy and still needs to prove
+            itself </p>
+
+        <div>
+            <img src="images/ClientSideTemplating.svg" style="width: 90%;margin-left: 8%;margin-top:15px;">
+        </div>
+    </article>
+
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Pros & Cons</h2>
+    </hgroup>
+
+    <article>
+        <div class="row" style="margin-top: -30px;">
+            <div class="col-md-6">
+                <h3 style="color:#000066;">Server Side Templating with Ajax</h3>
+                <ul class="smaller" style="color:darkgreen;">
+                    <li class="smaller">A proven and reliable technology "used all over" out there</li>
+                    <li class="smaller">We are in full control over the hardware (and the user experience)</li>
+                    <li>Server side rendering is faster (DOM manipulation is slow, and JavaScript in interpreted)</li>
+                </ul>
+                <ul class="smaller" style="color:darkred;">
+                    <li>The Server has do at lot of work, which could have been delegated to the client</li>
+                    <li>The Server API gets more complex (has to support both pure data request, and request for complex
+                        templates)
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 style="color:#000066;">Client Side Templating</h3>
+                <ul class="smaller" style="color:darkgreen;">
+                    <li>This is was HTML5 was Designed for</li>
+                    <li>Off line APPLICATIONS, using local storage</li>
+                    <li>Reduces Network Traffic</li>
+                    <li>Cool transitions between pages, when partials are cached or even initially loaded (these
+                        slides)
+                    </li>
+                    <li>Slower than Server Side Rendering - yes, but the client only needs to render on page, the server
+                        "thousands"
+                    </li>
+                    <li>Lot's of UI with very little code</li>
+                    <li>Time is on our side (mobile hardware, desktops etc. gets faster and faster</li>
+                </ul>
+                <ul class="smaller" style="color:darkred;">
+                    <li>A great initial load, if "all" pages must be loaded initially</li>
+                    <li>Some bad cases out there. Twitter 2012 <a
+                            href="https://blog.twitter.com/2012/improving-performance-on-twittercom">Improving
+                        performance on twitter.com</a></li>
+                    <li>We loose control over User Experience (impossible to test with all possible hardware
+                        configurations)
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Which One Should I Go For</h2>
+    </hgroup>
+    <article>
+        <p>If you are in doubt, select the proven technology <em>Server Side Templating and Ajax</em></p>
+
+        <p>This semester, select <em>Angular</em> - Because we are brave ;-), and want to introduce cutting edge
+            technologies :-)</p>
+
+        <p>Also: it doesn't have to be a one our the other</p>
+
+        <p style="color:#000066">Most important for you future life: Know all your options, and the implications of a
+            choice. </p>
+
+        <p>Below you will find some different articles, offering different point of views on the subject:</p>
+        <ul>
+            <li><a href="http://blog.mwaysolutions.com/2013/11/08/client-vs-serverside-rendering-the-big-battle-2/">Client
+                vs serverside rendering – the big battle</a></li>
+            <li>
+                <a href="http://technologyconversations.com/2014/07/10/server-vs-client-side-rendering-angularjs-vs-server-side-mvc/">
+                    Server vs client side rendering</a>
+            </li>
+            <li><a href="http://openmymind.net/2012/5/30/Client-Side-vs-Server-Side-Rendering/">Client-Side vs.
+                Server-Side Rendering</a></li>
+        </ul>
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>The MVC Pattern</h2>
+    </hgroup>
+
+    <article>
+        <p style="margin-top: -25px;">As with other software patterns, MVC expresses the "core of the solution" to a
+            problem while allowing it to
+            be adapted for each system. Particular MVC architectures can vary <u>significantly</u> from the traditional
+            description here</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="smaller" style="color:#000066;">
+                    <li> A controller can send commands to the model to update the model's state (e.g., editing a
+                        document). It can also send commands to its associated view to change the view's presentation of
+                        the model (e.g., by scrolling through a document).
+                    </li>
+                    <li> A model notifies its associated views and controllers when there has been a change in its
+                        state. This notification allows the views to produce updated output, and the controllers to
+                        change the available set of commands. In some cases an MVC implementation might instead be
+                        "passive," so that other components must poll the model for updates rather than being notified.
+                    </li>
+                    <li> A view requests information from the model that it uses to generate an output representation to
+                        the user.
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4" style="text-align: center;">
+                <p class="smaller" style="text-align: center;">MVC Basic</p>
+                <img src="images/MVC-Process.svg" style="width:100%;"/>
+            </div>
+
+        </div>
+        <footer class="source"><a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>
+        </footer>
+    </article>
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>The MVC Pattern with Angular</h2>
+    </hgroup>
+    <article>
+        <p>Angular is running a full Model View Controller (more precisely a <a
+                href="http://en.wikipedia.org/wiki/Model_View_ViewModel">Model View ViewModel</a> on the client) as
+            sketched (simplified) below</p>
+        <img src="images/MVC-Angular.svg" style="width: 60%;margin-left: 15%;margin-top:15px;margin-bottom: 15px;">
+
+        <p>If you ever never had the need to synchronize you data with others, you could build an Angular-MVC
+            application
+            that could run completely offline, using your browsers local storage </p>
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Single Page Applications (SPA's)</h2>
+    </hgroup>
+
+    <article>
+        <p>A single-page application (SPA), also known as single-page interface (SPI), is a web application or web site
+            that fits on a single web page with the goal of providing a more fluid user experience akin to a desktop
+            application.</p>
+        <ul>
+            <li>In a SPA, either all necessary code – HTML, JavaScript, and CSS – is retrieved with a single page load
+                or the appropriate resources are dynamically loaded and added to the page as necessary, usually in
+                response
+                to user actions
+            </li>
+            <li> The page does not reload at any point in the process, nor does control transfer to another
+                page, although modern web technologies (such as those included in HTML5) can provide the perception and
+                navigability of separate logical pages in the application.
+            </li>
+            <li>Interaction with the single page application
+                often involves dynamic communication with the web server behind the scenes.
+            </li>
+        </ul>
+        <h3>An example: These slides :-)</h3>
+        <footer class="source"><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page
+            Applications</a>
+    </article>
+
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Angular - lets get started</h2>
+    </hgroup>
+
+    <article>
+        <h3>First lets see what Angular is not:</h3>
+
+        <h3>Angular is not in any way tied to Java, JAX RS, Node/Express or any other specific Web Server Technology </h3>
+
+        <h3>It can be and is used with most existing web server technology</h3>
+        <h3><a href="https://www.madewithangular.com/#/">Built With AngularJS</a></h3>
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Angular - Demo</h2>
+    </hgroup>
+
+    <article>
+        <img src="../images/Demo.png">
+    </article>
+
+</slide>
+
+
+<slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+        <!-- populated from slide_config.json -->
+    </p>
+</slide>
+
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

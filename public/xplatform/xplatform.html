@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="images/Crossplatform.jpg"
+                                                     style="margin-left:200px;float:left; width:450px;">
+
+      </div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2 style="font-size: 1.5em;">In real life, which platforms must we support?</h2>
+      <h3>Up until know (1-3 semester almost all focus has been on Web)</h3>
+    </hgroup>
+
+    <article class="smaller">
+
+      <div class="row">
+        <div class="col-md-6">
+          <img src="images/Mobile-stats-vs-desktop-users-global-550x405.png" style="width:100%"/>
+        </div>
+        <div class="col-md-6">
+          <img src="images/Mobile-Internet-Trends-Mary-Meeker-2015-1-550x417.png" style="width: 100%;">
+        </div>
+        <footer class="source"><a
+                href="http://www.smartinsights.com/mobile-marketing/mobile-marketing-analytics/mobile-marketing-statistics/">ref</a>
+        </footer>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2 style="font-size: 1.5em;">It seem's like the answer is (as a minimum) 3</h2>
+      <h3>Three platforms which each requires very different developer skills</h3>
+    </hgroup>
+
+    <article class="smaller">
+      <div class="row">
+        <img src="images/platformSkils.PNG" style="width: 100%"/>
+      </div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup><h2>How can we handle this "problem"?</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <p>Some of the answers to this question are:</p>
+      <hr/>
+      <ul>
+        <li>Hire three set's of developers (or developers with many skill)</li>
+        <li>Use some kind of a cross platform development technology</li>
+        <li>Limit the amount of platforms to support (???)</li>
+        <li>...</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>Cross Platform Development</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <p style="margin-top: -20px;">Judging by the number of available technologies, this seems like the way many has
+        chosen.
+        <br/>The following are just af few examples</br>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Xamarin">Xamarin</a> &rightarrow;
+          <span style="font-size: 0.9em;">Write code in <b>C#</b>.
+            <span style="font-size: 0.9em;">Tightly bound to C# and Visual Studio and not completely free</span></li>
+        <li><a href="https://en.wikipedia.org/wiki/Codename_One">Codename One</a> &rightarrow;
+          <span style="font-size: 0.9em;">Write code in <b>Java</b>. A set of Software Development Tools aiming to provide <em>Write Once, Run Anywhere</em>
+            code for various desktop and mobile operating systems like Windows macOS Android and iOS</span></li>
+        <li><a href="https://en.wikipedia.org/wiki/Appcelerator_Titanium">Appcelerator Titanium</a> &rightarrow;
+          <span style="font-size: 0.9em;">Open-source framework that allows the creation of mobile apps on platforms including iOS,
+            Android and Windows Phone from a single <b>JavaScript</b> codebase</span></li>
+        <li><a href="https://en.wikipedia.org/wiki/Apache_Cordova">Apache Cordova (Phonegap)</a> &rightarrow;
+          <span style="font-size: 0.9em;">Framework that enables developers to build mobile apps using <b>CSS3, HTML5, and JavaScript</b>
+            instead of relying on platform-specific APIs</span></li>
+        <li><a href="https://software.intel.com/en-us/multi-os-engine/details">Intels Multi-OS Engine</a> &rightarrow;
+          <span style="font-size: 0.9em;">New plug-in technology that integrates into Android Studio.
+            Developers can start a mobile app project in Android Studio using <b>Java</b>, then utilize the Multi-OS engine to configure the project to
+            build and run as an iOS* App on the iOS* simulator</span></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Which ones should we go for?</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <p>Since this course is titled <em>"Full Stack JavaScript"</em> we will focus on JavaScript technologies from here
+        on, but don't forget: there are many alternatives</p>
+      <p>There seems to be a general acceptance (especially if you don't read articles tied to a specific technology)
+        that Native <b>always</b> gives the best user experience</p>
+      <ul class="build">
+        <li><span style="color: darkgreen;font-weight: bold">Native &rightarrow; High User Experience</span><br/>
+          <span style="font-size: 0.9em;">
+            With "JavaScript" this is only possible using the newest technologies like NativeScript and React Native (next slide)<br/>
+            Real Native is probably the way all would go, if "cost was not an issue" or using strategies like above if/when they mature.
+            </span>
+        </li>
+        <li><span style="color: palegreen;font-weight: bold">Hybrid &rightarrow; Lower User Experience</span> <br/>
+          <span style="font-size: 0.9em;">Don't read lower as "not acceptable". When development costs are taken into account this
+          is a strategy accepted by many companies. <br/>
+          This is the strategy used by Cordova and Ionic (which uses Cordova), and what we are going to use in this course</span>
+        </li>
+        <li><span style="color:darkred;font-weight: bold">WEB &rightarrow; Low User Experience</span>
+          <span style="font-size: 0.9em;">This is either pure responsive web pages users have navigated to with their browser, or
+            responsive pages running in an embedded web-view. Will never get the true look of a native app</span>
+        </li>
+
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Some of the JavaScript "newcomers"</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div class="row" style="margin-top: -20px;">
+          <div class="col-md-2">
+            <p style="font-weight: bold">NativeScript</p>
+            <img src="images/NativeScript_logo.png" style="width: 60px;">
+          </div>
+          <div class="col-md-10" style="font-size: 0.9em;">
+            <p>An open source framework for building <b>truly native mobile apps</b> with <b>JavaScript</b>.
+              Use web skills, like Angular, FlexBox and CSS, and get native UI and performance on iOS and Android.</p>
+            <em>Telerik</em> (the company behind NativeScript) and the <em>Angular</em> team works closely together so
+            Angular 2 is
+            the suggested JS framework to use
+          </div>
+        </div>
+        <div class="row" style="border-top: solid steelblue 2px;margin-top: 10px; padding-top: 10px;">
+          <div class="col-md-2">
+            <p style="font-weight: bold">React Native</p>
+            <img src="images/react-native.png" style="width: 60px;">
+          </div>
+          <div class="col-md-10" style="font-size: 0.9em;">
+            <p>Like with NativeScript this is a technology where you build a real mobile app that's indistinguishable
+              from an app built using Objective-C or Java.</p>
+            <p>The building blocks used is <b>JavaScript</b> and <b>React</b>. The fact that <em>Facebook</em> uses <em>React
+              Native</em> serves as the ultimate "proof of concept"</p>
+          </div>
+        </div>
+        <div>
+          <p>The main difference between these two technologies are:</p>
+          <p><b>NativeScript</b> &rightarrow; <span style="font-size: 0.9em;">
+        This is more a "write once use anywhere" solution where Angular 2 skills can be used for both Web and App development</span>
+          </p>
+          <p><b>React Native</b> &rightarrow;
+            <span style="font-size: 0.9em;">Facebook refer to their strategy as "Learn once, use anywhere".
+        React and React Native is not the same, but as a developer your are using the same overall strategy</span></p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+      <h2>Complete the demo :-)</h2>
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

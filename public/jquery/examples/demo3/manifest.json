@@ -1,0 +1,17 @@
+{
+    "name": "Chaining",
+    "files": [
+        "index.html"
+    ],
+
+    "filesOnlyForPlunkr": [
+        "index.html"
+    ],
+    "showThisAlways": "index.html",
+    "usePlunk": "true",
+    "tags": [
+         "JQuery"
+    ],
+    "description": "JQuery - Example - Event-chaining"
+
+}

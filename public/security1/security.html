@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title></h1>
+
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="images/security.png" style="float:left"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Security </h2>
+      <h3>That's easy - anyone can do it right, yeah????</h3>
+    </hgroup>
+    <article class="build">
+      <div class="row">
+        <div class="col-md-8">
+          <p style="clear: both;font-style: italic;color: #2a6496">"There are only two types of companies: those that
+            have been hacked and those that will
+            be.<br/>
+            And even they are converging into one category:
+            companies that have been hacked and will be hacked again." </p>
+          <p>A popular rephrase ;-)</p>
+          <p style="font-style: italic;color: #2a6496">
+            There are two types of companies: those who have been hacked, and those who don’t yet know they have been
+            hacked
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-5"/>
+            <img style="float: left;margin-right: 15px;" src="../Security2/images/fbiDirector.jpg">
+          </div>
+          <div class="col-md-7"/>
+          <p style="font-size: 0.6em;">Robert S. Mueller, III<br/>
+            Director<br/>
+            Federal Bureau of Investigation<br/>
+            RSA Cyber Security Conference<br/>
+            San Francisco, CA<br/>
+            March 01, 2012<br/>
+            <span style="font-size: 0.5em; color:darkblue"> <a
+                    href="https://archives.fbi.gov/archives/news/speeches/combating-threats-in-the-cyber-world-outsmarting-terrorists-hackers-and-spies">
+              Ref.</a></span>
+          </p>
+        </div>
+      </div>
+      </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Initial Discussion</h2>
+    </hgroup>
+
+    <article>
+      <br/>
+      <br/>
+      <br/>
+      <p style="font-size: 1.7em;">Name all the Security-Terms/Vulnerabilities you can think of</p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Security</h2>
+      <h3>Our Goals</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+
+      <ul>
+        <li>Understand the most fundamental security terms</li>
+        <li>Understand the most fundamental Web Security Threads</li>
+        <li>Understand the basics of SSL, security certificates and how to use it with our applications</li>
+        <li>Understand and implement <b>Express</b> <em>Best Practice Security</em></li>
+        <li>Understand how to handle user passwords the right way and implement it in Node/Express applications</li>
+        <li>Understand and implement authentication and authorization based on Json Web Tokens</li>
+        <li>Have a fundamental understanding of the node passport package/system</li>
+        <li>Understand how to ensure our node dependencies (npm packages) are secure</li>
+        <li>Have a fundamental understanding about OAuth 2 + OpenId Connect and how to use it from Node</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Period-4 Main Task</h2>
+    </hgroup>
+    <article>
+      <p style="font-size: 1.2em;color: #2a6496">Implement a proposal for an Express/Mongo + Rect-seed
+        including:</p>
+      <ul>
+        <li>Basic architecture layout for the application</li>
+        <li>Should follow the basic security advices recommended by expressjs.com</li>
+        <li>Support for Token based authentication and authorization</li>
+        <li>Support for Mongo DB</li>
+        <li>Support for AngularJS and a default authentication strategy</li>
+        <li>Support for (correct) Password Handling</li>
+        <li>Should (by default) always use SSL</li>
+        <li>Should be ready to deploy on your favourite cloud hosting service</li>
+      </ul>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Basic Security Terms</h2>
+      <h3>The Big Fours in Web (server) Security</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li><span style="color: #2a6496;font-weight: bold">Authentication</span><br/> Confirming the identity of a
+          client (via some kind of login procedure)
+        </li>
+        <li><span style="color: #2a6496;font-weight: bold">Authorization</span> <br/>Determing whether an authenticated
+          client is allowed to receive a service or perform an operation
+        </li>
+        <li><span style="color: #2a6496;font-weight: bold">Confidentiality (privacy)</span><br/>
+          Protection from disclosure to unauthorised persons
+        </li>
+        <li><span style="color: #2a6496;font-weight: bold">Integrity</span><br/>
+          Maintaining data consistency (data cannot be modified)
+        </li>
+      </ul>
+      <p>In the scope of Web Security, the last two are both achieved via encryption (SSL)</p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>TLS</h2>
+      <h3>Our how to get a green chainlock in the browser</h3>
+    </hgroup>
+    <article>
+      <p>In order to understand how we can provide secure connections on the internet you need to understand (as a
+        minimum):</p>
+      <ul>
+        <li>Symmetrick Key Encryption</li>
+        <li>Public Key Encryption</li>
+        <li>Digital Signatures</li>
+        <li>Digital Certificates</li>
+        <li>Hierachical Trust for Digital Certificates</li>
+        <li>TLS</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Symmetric Key + Public Key Encryption</h2>
+      <h3>A quick summary from 3. semester</h3>
+    </hgroup>
+    <article style="margin-top: 0px;">
+      <div style="font-size: 0.8em;">
+        <p>You should really (really ;-) watch these two videos if you still feel you are on unfamiliar ground here </p>
+        <p><a href="https://www.youtube.com/watch?v=ERp8420ucGs">Symmetric Key and Public Key Encryption</a></p>
+        <p><a href="https://www.youtube.com/watch?v=LRMBZhdFjDI">Certificates</a></p>
+      </div>
+      <img style="width: 80%;margin-left: 3em;" src="images/encryptionBasic.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Symmetric Key Encryption</h2>
+      <h3>Pros & Cons</h3>
+    </hgroup>
+    <article style="margin-top: 0px;">
+      <p>What are the Pros and Cons of Symmetric Key Encryption</p>
+      <div class="row">
+        <div class="col-md-6">
+          <img style="width: 70%" src="images/Speed.jpg">
+        </div>
+        <div class="col-md-6">
+          <img style="width: 70%" src="images/keyExchange.png">
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Public Key Encryption</h2>
+      <h3>In this technology there are two keys, a public and a private key</h3>
+    </hgroup>
+    <article style="margin-top: 0px;">
+
+      <ul>
+        <li>
+          <span style="color: #2a6496; font-weight: bold">The public Key</span><br/>
+          This key is available to anyone, so anyone can encrypt a message with this key.
+        </li>
+        <li>
+          <span style="color: #2a6496; font-weight: bold">The private key</span><br/>
+          Only the private key can decrypt a message encoded with it’s corresponding public key
+        </li>
+      </ul>
+      <img style="width: 65%; margin-left: 5em;" src="images/publicEncryption.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Combining the two</h2>
+      <h3>Exemplified with Pretty Good Privacy (PGP)</h3>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Encryption</p>
+          <img style="width: 100%" src="images/pgb1.png">
+        </div>
+        <div class="col-md-6">
+          <p>Decryption</p>
+          <img style="width: 100%" src="images/pgb2.png">
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Digital Signatures</h2>
+    </hgroup>
+    <article style="margin-top: 0px;">
+      <p>A major benefit of public key cryptography is that it provides a method for employing digital signatures</p>
+      <p>Signing the whole Document</p>
+      <img style="width: 75%; margin-left: 3em;" src="images/signatureAll.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Digital Signatures</h2>
+      <h3>Signing a Digest</h3>
+    </hgroup>
+    <article style="margin-top: 0px;font-size: 0.9em;">
+
+      <p>Signing the whole document is slow, and produces an enormous volume of data—at least double the size of the
+        original information</p>
+      <div class="row">
+        <div class="col-md-5">
+          <ul>
+            <li>An improvement is to sign only a digest of the message using a one-way hash function in the process</li>
+            <li>A one-way hash function takes variable-length input—in this case, a message of any length, even
+              thousands or
+              millions of bits—and produces a fixed-length output; say, 160-bits.
+            </li>
+            <li>The hash function ensures that, if the information is changed in any way—even by just one bit—an
+              entirely
+              different output value is produced
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+          <img style="width: 95%; margin-left: 3em;" src="images/signatureHash.png">
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Digital Certificates</h2>
+    </hgroup>
+    <article>
+      <p>A digital certificate is data that functions much like a physical certificate.
+        A digital certificate is information included with a person’s public key that helps others verify that a key is
+        genuine or valid.</p>
+      <p>
+        A digital certificate consists of three things:
+      <ul>
+        <li>A public key.</li>
+        <li>Certificate information. (“Identity” information about the user, such as name, user ID, and so on.</li>
+        <li>One or more digital signatures.</li>
+      </ul>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Certificate Formats</h2>
+    </hgroup>
+    <article>
+      <p>Several kind of certificate formats exists including:</p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <ul>
+            <li>PGP Certificates</li>
+            <li>X.509 Certificates</li>
+          </ul>
+          <p><b>X.509</b> is published as ITU recommendation ITU-T X.509 which defines a standard certificate format for
+            public key certificates and certification validation
+            which more or less has been accepted by the internet</p>
+        </div>
+        <div class="col-md-6">
+          <img style="width:100%;" src="images/certificate.png">
+        </div>
+      </div>
+      <p>Exercise: Find details for the certificate issued to Fronter.com</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Public key Infrastructure (PKI)</h2>
+      <h3>Hierarchical Trust</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <p>In a hierarchical system, there are a number of “root” certificates from which trust extends.
+        These certificates may certify certificates themselves, or they may certify certificates that certify still
+        other certificates down some chain
+      </p>
+      <img style="width:65%; margin-left: 4em;" src="images/hierachicalTrust.PNG">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Security on the Internet</h2>
+      <h3>How its all combined to provide a secure TLS connections</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <p>TLS include two layers:</p>
+      <ul>
+        <li>A Record Protocol and a Handshake Protocol, and these are layered above a transport protocol such as
+          TCP/IP.
+        </li>
+        <li>They both use asymmetric and symmetric cryptography techniques.</li>
+        <li>The figure below illustrates the Handshake Part</li>
+      </ul>
+      <img style="width:70%; margin-left: 4em;" src="images/tls.PNG">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SSL with Node/Express and Openshift</h2>
+      <h3>Using a shared certificate</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <p>Obtaining and installing a certificate can be a cumbersome process which often is necessary (when?), but not
+        always.
+        OPENSHIFT uses a very common architecture, including a reverse proxy as sketched below</p>
+      <div class="row" style="font-size: 0.8em;">
+        <div class="col-md-5">
+          <br/>
+          <img style="width:100%" src="images/ReverseProxy-Structure.jpg">
+          <br/><br/>
+          <p>Among other things this proxy supplies a certificate (issued to whom?) and can take care of the resource
+            demanding encryption and decryption process.</p>
+          <p>Internally, after the proxy, all request are HTTP (not HTTPS), when forwarded to your server</p>
+        </div>
+        <div class="col-md-7">
+          <p>Nothing in this proxy will prevent users from trying to make a HTTP request, but the proxy does sets a
+            header <b>x-forwarded-proto</b>
+            which you can use to check for the original protocol and redirect if not HTTPS</p>
+          <pre class="prettyprint pre16">
+app.use(function (req, res, next) {
+  if ( req.headers['x-forwarded-proto'] === 'http' ) {
+    var tmp= 'https://'+req.headers.host+req.originalUrl;
+    res.redirect(tmp);
+
+  } else {
+    return next();
+  }
+});
+          </pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Hacking is Illegal</h2>
+      <h3>In all forms</h3>
+    </hgroup>
+    <article>
+      <div>
+        You migth feel, that if anyone would leave a server vulnerable to attacks like those we are going
+        to investigate, they "had it coming".
+      </div>
+
+      <div class="row" style="margin-top: 1em;">
+        <div class="col-md-6">
+          <br/><br/>
+          BUT you can <b>literally go to jail</b> for trying something like this, without the (very clear) acceptance
+          from the owner of a
+          site
+        </div>
+        <div class="col-md-6">
+          <img style="width: 60%;margin: 1em;" src="images/jail.jpg"/>
+        </div>
+
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The Simple Site We are going to Hack</h2>
+    </hgroup>
+    <article>
+
+      <div class="row" style="margin-top: 1em;">
+        <div class="col-md-5">
+          <br/><br/><br/>
+          <ul>
+            <li>Users will "login" by providing their name and a secret to simulate users personal data (yellow)</li>
+            <li>All "logged in" users will se a page with their name + secret (yellow) and a list of all other users
+              (green)
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-7">
+          <img style="width: 100%;" src="images/aboutSiteToHack.PNG"/>
+        </div>
+
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Hacker Architecture for this Demo/exercise/competition</h2>
+    </hgroup>
+    <article>
+
+      <div class="row" style="margin-top: 1em;">
+
+        <div class="col-md-7">
+          <img style="width: 100%;" src="images/HackerArchitecture.PNG"/>
+        </div>
+
+        <div class="col-md-5">
+          <br/>
+          <ol style="color: darkred; font-size: 0.9em;">
+            <li>The hacker will "login" with a user name + "<em>something more</em>"</li>
+            <br/>
+            <li>Depending on the "<em>something more</em>" above and the "stupidity" of the designer,
+              the hacker will steal the session id's belonging to other users
+            </li>
+            <br/>
+            <li>If 2 was a "success" the hacker will enter the site (using the stolen session id's),
+              and steal other users secrets
+            </li>
+          </ol>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+
+  <script>
+    $(function () {
+      var url = location.protocol + "//" + location.host;
+      $("#url0").text(url + "/session2").attr("href", url + "/session2");
+      $("#url1").text(url + "/session2").attr("href", url + "/session2");
+      $("#url2").text(url + "/hackerEntry/?cookie=A message (perhaps a cookie value)");
+      $("#url3").text(url + "/hackerEntry?cookie=xx");
+    })
+  </script>
+
+
+  <slide>
+    <hgroup>
+      <h2>Sessions, Session Hijacking and XSS</h2>
+    </hgroup>
+    <article>
+      <div class="row" style="margin-top: 1em;">
+        <p>Before we start, lets recap on the topics:</p>
+        <ul>
+          <li>Sessions (one more time)</li>
+          <li>Session Hijacking</li>
+          <li>XSS (Cross Site Scripting)</li>
+        </ul>
+        <p> Login to this site: <a id="url0" href=""></a></p>
+        <p style="color: darkred">PLEASE don't do anything else than what your are asked to (you will get your
+          chance)</p>
+      </div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Basic (Web) Security Threads</h2>
+      <h3>Cross Site Scripting (XSS) Discussion</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+      <div class="row">
+
+        <div class="col-md-6" style="font-size: 0.8em;">
+          <p>This site is an <b>extremely silly</b> implementation of a session based system. It:</p>
+          <ul>
+            <li>Writes back user input (user name) to all users without sanitization</li>
+            <li>It uses session cookies with the property httpOnly = false</li>
+          </ul>
+          <h2>Competition</h2>
+          <img style="width:35%; margin-top: -0px;" src="images/competition.jpg">
+          <ul>
+            <li>First one to crack a sessionID: <b>2 small beers</b></li>
+            <li>First one to discover a secret: <b>One Large BEER :-)</b></li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div style="font-size: 0.6em;">
+            <p>URL for the embedded (iframe) page below is:<br/> <a id="url1" href=""></a></p>
+            <p>So if you succeed in stealing a SessionID, use POSTMAN to log on to this site using this SessionID </p>
+          </div>
+          <iframe src="/session2" style=height:400px;width:100%;float:left;background-color:#e6e6e6;"></iframe>
+        </div>
+      </div>
+    </article>
+  </slide>
+  <script>
+
+    var myVar = null;
+    $(document).ready(function () {
+      $("#span").hide();
+    })
+    function listen() {
+      if (myVar === null) {
+        myVar = setInterval(dataFetcher, 5000);
+        $("#span").show();
+      }
+    }
+
+    function stopListen() {
+      clearInterval(myVar);
+      myVar = null;
+      $("#span").hide();
+    }
+
+    function dataFetcher() {
+      $.get("/hackerInfo", function (data) {
+        var d = "";
+        data.forEach(function (hackerItem) {
+          d += hackerItem + "<br/>";
+        });
+        $("#hackerData").html(d);
+      });
+    }
+
+
+  </script>
+  <slide>
+    <hgroup>
+      <h2>Hackers Help Page</h2>
+    </hgroup>
+
+    <article style="margin-top: 25px;">
+      <div class="row">
+        <div class="col-md-7" style="font-size: 0.7em;">
+          <button class="btn btn-primary" id="btnStart" onclick="listen()">Listen</button>
+          <button id="btnEnd" class="btn btn-danger" onclick="stopListen()">Stop</button>
+          <span id="span" style="color: #3c763d">&nbsp;Listening</span>
+          <p>My server provides you with a little help for your hacking attempts. You can very easily send a message
+            via this URL:</p>
+          <p id="url2" style="color: darkblue"></p>
+          <p>You can monitor all messages being sent to this page by pressing "listen" <b>TRY</b></p>
+          <p>You can send a HTTP request using plain JavaScript as sketched below:</p>
+          <pre class="prettyprint pre14">
+&lt;script&gt;
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open(&quot;GET&quot;,"<span id="url3"></span>+");
+xmlHttp.send();
+&lt;/script&gt;</pre>
+          <p>If the backend developers has been stupid enough you can read (session) cookies like:</p>
+          <pre class="prettyprint pre14">
+console.log(document.cookie); </pre>
+
+        </div>
+        <div class="col-md-5" id="hackerData" style="height:400px;overflow-y: auto;font-size: 0.6em;"></div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Bacic Security Threads</h2>
+      <h3>XSS - Discussion</h3>
+
+    </hgroup>
+    <article>
+      <div style="margin: 1.2em; font-size: 1.6em;">
+        <ul>
+          <li>What is XSS</li>
+          <li>How Do we Avoid it</li>
+          <li>Angular and XSS ??? (use Google)</li>
+          <li>
+            <ul>
+              <li>React and XSS ??? (use Google)</li>
+            </ul>
+            <ul>
+              <li><a href="https://facebook.github.io/react/docs/dom-elements.html#dangerouslysetinnerhtml">dangerouslySetInnerHTML</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Basic Security Threads</h2>
+      <h3>Cross-Site Request Forgery (CSRF) </h3>
+    </hgroup>
+    <article style="font-size: .9em;">
+      <p style="margin-top: -25px;">
+        Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web
+        application in which they're currently authenticated.<br/>
+        CSRF rely on the fact that browsers automatically add cookies to HTTP requests if it has cookies associated
+        with the target domain and path. That includes session cookies.
+      </p>
+
+      <p><b>CSRF</b> attacks specifically target <em>state-changing requests</em>, not theft of data (such as move 1000$
+        from
+        you
+        account into hacker.com's account),
+        since the attacker has no way to see the response to the forged request.</p>
+      <div class="row">
+        <div class="col-md-7">
+          <p>With a little help of social engineering (Phishing), such as sending a link via email or chat, an attacker
+            may trick
+            the
+            users of a web application into executing actions of the attacker's choosing. If the victim is a normal
+            user,
+            a
+            successful CSRF attack can force the user to perform state changing requests like transferring funds,
+            changing
+            their email address, and so forth. If the victim is an administrative account, CSRF can compromise the
+            entire
+            web application.
+          </p>
+        </div>
+        <div class="col-md-5">
+          <img src="images/csrf.png" style="width: 100%"/>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>CSRF Example</h2>
+    </hgroup>
+    <article>
+      <div style="font-size: 0.85em">
+        <p style="margin-top: -30px;">
+          Assume a website <b>testsite.com</b>, and this site has user accounts.
+          It is given that an admin user is able to delete the user account for "bob" by visiting the URL
+          <span style="font-style: italic">testsite.com/user.php?delete=bob </span>
+          If a non-admin user visits this URL, nothing will happen because they don't have admin privileges.</p>
+        <p>Now assume there is a malicious user with his own website, <b>malicioususer.com</b>. This malicious user
+          could
+          include
+          code on a page of his site like this:<br/>
+          <code>&lt;img src=&quot;http://testsite.com/user.php?delete=bob&quot;/&gt;</code></p>
+        <p>When the admin of testsite.com visits this page, he won't see anything
+          (http://testsite.com/user.php?delete=bob is not a valid image).
+          However testsite.com still received a request, and if the admin is logged in, the action will be performed and
+          bob's account will be deleted.
+        </p>
+        <img src="images/csrf_flowchart.png" style="margin-left: 6em; width:60%;float:left">
+        <footer class="source">
+          <a href="http://halls-of-valhalla.org/beta/articles/cross-site-request-forgery-demystified,47/">ref</a>
+        </footer>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>CSRF Example</h2>
+    </hgroup>
+    <article>
+      <div style="font-size: 0.85em">
+        <p style="margin-top: -30px;">
+          The previous example was the simplest form of CSRF.
+          Typically the more interesting types of actions on a website will be performed using POST,
+          so an img tag or hyperlink won't be a possible attack vector in most cases, but it's still possible to include
+          auto-submitting forms and AJAX requests to perform CSRF.
+        </p>
+        <pre class="prettyprint pre16">
+&lt;body&gt;
+  &lt;img href=&quot;testsite.com/banking?transferTo=tom@malicioususer.com&quot; /&gt;
+
+  &lt;!&ndash; or with a hidden form post &ndash;&gt;
+
+  &lt;script type=&quot;text/javascript&quot;&gt;
+  $(document).ready(function() {
+    window.document.forms[0].submit();
+  });
+  &lt;/script&gt;
+
+  &lt;div <b>style=&quot;display:none;&quot;&gt</b>;
+    &lt;form action=&quot;testsite.com/banking&quot; method=&quot;POST&quot;&gt;
+      &lt;input name=&quot;transferTo&quot; value=&quot;tom@malicioususer.com&quot; /&gt;
+    &lt;form&gt;
+  &lt;/div&gt;
+&lt;/body&gt; </pre>
+
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Preventing CSRF</h2>
+    </hgroup>
+    <article>
+      <p>See this article for a great explanation:
+        <a href="http://halls-of-valhalla.org/beta/articles/cross-site-request-forgery-demystified,47/">
+          How Can I Effectively Prevent CSRF?
+        </a></p>
+      <p>Client side with Angular: <a
+              href="https://docs.angularjs.org/api/ng/service/$http#cross-site-request-forgery-xsrf-protection">
+        Cross Site Request Forgery (XSRF) Protection
+      </a></p>
+      <p>Node/Express: <a
+              href="https://expressjs.com/en/advanced/best-practice-security.html#additional-considerations">
+        Additional Considerations
+      </a>
+      </p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Basic Security Threads</h2>
+      <h3>SQL Injection Discussion</h3>
+    </hgroup>
+    <article>
+      <div style="margin: 1em; font-size: 2em;">
+        <ul>
+          <li>What is SQL Injection (<a href="https://www.owasp.org/index.php/SQL_Injection">*</a>)</li>
+          <li>How Do we Avoid it</li>
+          <li>JPA and SQL Injection (<a
+                  href="http://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa">
+            *)</a></li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+  <script>
+    $(function () {
+      $("#mongoFrame").hide();
+    })
+    function show() {
+      $("#mongoFrame").toggle();
+    }
+  </script>
+  <slide>
+    <hgroup>
+      <h2>Basic (Web) Security Threads</h2>
+      <h3>"SQL" Injection and MongoDB Discussion</h3>
+    </hgroup>
+    <article style="margin-top: 10px;">
+
+      <div><span style="font-size: 1.4em;">Is MongoDB vulnerable to "SQL Injection Like" attacks?</span>
+        <button class="btn btn-default" onclick="show()">?</button>
+      </div>
+
+      <iframe id="mongoFrame" data-src="https://duckduckgo.com/?q=mongodb+sql+injection&t=h_&ia=qa"
+              class="scaled_iframe" style="height: 500px;width:100%;"></iframe>
+
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Basic Security Threads</h2>
+      <h3>3rd part dependencies</h3>
+    </hgroup>
+    <article>
+
+      <div class="row" style="margin-top: -30px;">
+        <a href="http://www.infoworld.com/article/2626167/data-security/third-party-code-putting-companies-at-risk.html">
+          <img src="images/thirdParty1.PNG" style="width: 60%;box-shadow: 5px 5px 5px #888888;"></a>
+        <br><br>
+        <a href="http://betanews.com/2014/10/08/professionals-believe-their-java-apps-are-secure-despite-relying-on-third-party-code/"
+           style="margin-left:6em; ">
+          <img src="images/thirdParty2.PNG" style="width: 60%;box-shadow: 5px 5px 5px #888888;"></a>
+        <br/><br>
+        <a href="http://techbeacon.com/third-party-libraries-are-one-most-insecure-parts-application"
+           style="margin-left: 12em;">
+          <img src="images/thirdParty3.PNG" style="width: 50%;box-shadow: 5px 5px 5px #888888;">
+        </a>
+        <br><br/>
+        <a href="http://www.waratek.com/two-thirds-of-enterprise-java-applications-contain-mostly-third-party-code-yet-considered-secure/"
+           style="margin-left: 5em;">
+          <img src="images/thirdParty4.PNG" style="width: 60%;box-shadow: 5px 5px 5px #888888;">
+        </a>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Basic Security Threads</h2>
+      <h3>Discussion &rightarrow; How do you ensure your 3rd part dependencies are secure</h3>
+    </hgroup>
+    <article>
+
+      <ul style="font-size: 1.3em;">
+        <li>In Java how do we ensure that our 3rd party dependencies are secure? (<a
+                href="https://www.owasp.org/index.php/OWASP_Dependency_Check">*</a>)
+          </a></li>
+        <br/>
+        <li>
+          With Node, Express and the "billion" packages on <em>npm</em>, how do we ensure they are secure?
+          (<a href="https://nodesecurity.io/">*</a>)
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Basic (Web)Security Threads</h2>
+      <h3>Node/Express - Best Security Practices</h3>
+    </hgroup>
+    <article>
+      <p>If you forget everything we have talked about up until now (you don't ;-) DON't forget this link:</p>
+
+      <br/>
+      <div style="font-size: 1.7em">
+        <a href="http://expressjs.com/en/advanced/best-practice-security.html">Express, best Practices Security</a>
+      </div>
+    </article>
+  </slide>
+
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

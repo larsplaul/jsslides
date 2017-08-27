@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "files": [
+    "view2.js",
+    "view2.html",
+    "test.js",
+    {"fileName":"User.java","title":"REST Backend"}
+  ],
+  "filesOnlyForPlunkr": [
+    "index.html",
+    "app.js",
+    "view2.js",
+    "view2.html",
+    "test.js"
+  ],
+  "showThisAlways": "index.html",
+  "usePlunk" : "true",
+  "tags": ["Angular"],
+  "description" : "Angular"
+}

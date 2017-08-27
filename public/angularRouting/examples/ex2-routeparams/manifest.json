@@ -1,0 +1,16 @@
+{
+  "name": "routeParams",
+  "files": [
+    {"fileName":"app.js",
+     "include": {"start": "//routeProvider with parameters demo","end": "// End of demo"}
+    },
+    "index.html"
+  ],
+  "filesOnlyForPlunkr": [
+    "index.html",
+    "app.js"
+  ],
+  "usePlunk" : "true",
+  "tags": ["Angular"],
+  "description" : "Angular routeParams"
+}

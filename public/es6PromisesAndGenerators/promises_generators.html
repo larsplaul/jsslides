@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+        <h2 data-config-subtitle></h2>
+        <!--<img src="images/es2015_typescript.PNG" style="float:right; width:300px;">-->
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;"></div>
+    </hgroup>
+  </slide>
+
+
+  <slide>
+    <hgroup><h2>How to avoid the Callback Hell 1</h2></hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          Callback Hell, also known as Pyramid of Doom, or the Christmas Tree Effect,
+          is an anti-pattern seen in code made by programmers not skilled enough in asynchronous programming.
+          <br/>
+
+        </div>
+        <div class="col-md-6">
+      <pre class="prettyprint pre18">
+async1(function(){
+    async2(function(){
+        async3(function(){
+            async4(function(){
+                async5(function(){
+                ....
+            });
+        });
+    });
+});</pre>
+        </div>
+      </div>
+      <br/>
+      <p>The problem becomes even more obvious when we start to consider error handling.
+      <p>
+      <p>Imagine the nightmare it would be, to debug the example if all methods where following the Node pattern:
+        <code>msg(Err,Data)</code> and if each methods on top of that could throw an exception.</p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>How to avoid the Callback Hell 2</h2></hgroup>
+    <article>
+      <p>There are numerous ways to solve the problem, with packages like <em>async</em> as one of the most
+        popular one for server-side Node</p>
+      <p>Today however <em>Promises</em> and <em>Generators</em> seems to be the most accepted and elegant ways to solve
+        this problem.</p>
+      <p>Promises and Generators are both part of both <em>es2005</em> and <em>TypeScript</em> and Promises has been in
+        use for a long time in
+        numerous libraries as for example JQuery and Angular</p>
+      <ul>
+        <li>Promises</li>
+        <li>Generators</li>
+      </ul>
+      Are the focus of todays lesson
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promises</h2>
+      <h4>Wee have already used Promises with Angular (and JQuery)</h4>
+    </hgroup>
+
+    <article>
+      <p>Promises with Angulars $http service</p>
+      <pre class="prettyprint pre18"><div>var def = $http({ method: 'GET', url: '/someUrl'});
+//<b>What does this request return?</b></div>
+        </pre>
+      <div class="build">
+<pre style="margin-top: -2em;" class="prettyprint pre18"><div>//<b>A Promise</b>
+  def.then(function successCallback(response) {
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });</div></pre>
+        <p style="font-size: 1.2em; color: #2a6496">
+          A JavaScript Promise represents the result of an operation that hasn't been completed yet,
+          but will at some undetermined point in the future
+        </p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Promises in es2005</h2></hgroup>
+    <article>
+      <div class="row">
+        <p>Promises provide us with a way to perform asynchronous calls sequentially so:</p>
+        <div class="col-md-6">
+          <p>This code</p>
+          <pre class="prettyprint pre18">
+async1(function(){
+    async2(function(){
+        async3(function(){
+            async4(function(){
+                async5(function(){
+                ....
+            });
+        });
+    });
+});</pre>
+        </div>
+        <div class="col-md-6">
+          <p>will look "something" like this</p>
+          <pre class="prettyprint pre18">
+async1
+  then(async2).
+  then(async3).
+  then(async4).
+  then(async5).
+  catch(errorHandlingForAll);
+});</pre>
+        </div>
+      </div>
+      <br/>
+      <p>The single error handle will handle all errors that could occur (an error will halt the flow)</p>
+
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+  <slide>
+    <hgroup><h2>Creating es2005 Promises</h2></hgroup>
+    <article>
+      <p>
+        A Promise is created using the Promise Constructor.
+        This accepts a function with two arguments (resolve & reject) as its only parameter.
+        The Promise will then either call resolve or reject
+      </p>
+      <p>Promises are only really useful for asynchronous calls, so the example below uses a timer as a simple
+        way to get async behaviour</p>
+      <div class="row">
+        <div class="col-md-7">
+          <pre class="prettyprint pre16">
+var p = new  Promise((resolve, reject)=> {
+  setTimeout(()=>{//To demonstrate an async call
+    var ok = true;//Simulates the result of the operation
+    if (ok) {
+      resolve("Msg from Promise");
+    }
+    else {
+      reject("UPPPPs");
+    }
+  },SOME_DELAY);
+});</pre>
+        </div>
+        <div class="col-md-5">
+          <img style="width:100%" src="images/Creating-Promises.png"/>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>Creating promises for the examples</h2></hgroup>
+    <article>
+      <p>To simply some of the examples, we will create a promise as sketched below:</p>
+      <pre class="prettyprint">
+let promiseFactory = function(msg,delay) {
+  return new Promise((resolve, reject)=> {
+    setTimeout(()=> { //To demonstrate an async call
+      var ok = true;  // simulates the result of the operation
+      if (ok) {
+        <b>resolve(msg)</b>;
+      }
+      else {
+        <b>reject("UPPPPs")</b>;
+      }
+    }, delay);
+  });
+};
+<b>let p = promiseFactory("Msg from Promise",SOME_DELAY);</b>      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Promise States</h2></hgroup>
+    <article>
+      <p>A Promise is in <em>one</em> of these states</p>
+      <ul>
+        <li>pending: initial state, not fulfilled or rejected.</li>
+        <li>fulfilled: meaning that the operation completed successfully.</li>
+        <li>rejected: meaning that the operation failed.</li>
+      </ul>
+      <p>A pending promise can either be fulfilled with a value, or rejected with a reason (error).<br/>
+        When either of these happens, the associated handlers queued up by a promise's then method are called.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Using es2005 Promises</h2></hgroup>
+    <article>
+      <p>
+        We call the promise function by calling the <code>.then(..)</code> function.
+      </p>
+      <p>Depending on whether the promise was fulfilled or rejected,
+        either the first or the second callback will be called</p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <pre class="prettyprint pre18">
+p.then(data=> console.log(data),
+       err => console.log(err)
+);
+//OR a bit clearer, using the catch method
+p.then(data=> console.log(data));
+p.catch(err=> console.log(err));
+
+//Or using chaining
+p.then(data=> console.log(data)).
+  catch(err=> console.log(err));</pre>
+        </div>
+        <div class="col-md-6">
+          <img style="width:100%" src="images/Using-Promises.PNG"/>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Chaining es2005 Promises</h2></hgroup>
+    <article>
+      <p>
+        <code>.then()</code> <b>always</b> returns a promise, which enable us to chain method calls
+      </p>
+      <div class="row">
+        <div class="col-md-7">
+<pre class="prettyprint pre 16">
+let allResults = [];
+var p1 = makePromise("MsgPromise1",8000);
+p1.then(data => {
+  allResults.push(data);
+  return makePromise("MsgPromise2",7000);
+}).then(data =>{
+  allResults.push(data);
+  return makePromise("MsgPromise3",1000);
+}).then(data => {
+  allResults.push(data);
+  return "done: ";
+}).then(data=>{
+  console.log(data+allResults);
+}).catch(error => {
+  console.log("ERROR: "+error);
+});</pre>
+        </div>
+        <div class="col-md-5">
+          <p>This example executes all async calls:</p>
+          <ul>
+            <li>Synchronous</li>
+            <li>In the order they are started (independent on the timer value)</li>
+            <li>Handles all errors in centralized place</li>
+          </ul>
+          <p>When will we see the final result?</p>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Chaining Promises 2</h2></hgroup>
+    <article>
+      <p style="margin-top: -20px;">
+        Remember: <code>.then()</code> <b>always</b> returns a promise, which enable us to chain method calls
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <pre class="prettyprint pre18">
+p1.then(data => {
+  //Returns a specific promise
+  return makePromise("MsgPromise2",7000);
+}).then(data => {
+  //Will be settled with a Promise
+  return "done: ";
+}).then(..);
+}).catch(..);</pre>
+        </div>
+        <div class="col-md-6">
+          <img src="images/chaining.PNG" style="width: 90%">
+        </div>
+      </div>
+      <div style="margin-top: 0.5em;">
+        <p>How the Promise P returned by <code>then()</code> is settled depends on what its callback does:</p>
+        <ul>
+          <li>If it returns a Promise (as in the first <em>then</em>), the settlement of that Promise is forwarded to
+            the next in line
+          </li>
+          <li>If it returns a different value, that value is used to settle the Promise.</li>
+          <li>If throws an exception then P is rejected with that exception.</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Executing Promises in parallel</h2></hgroup>
+    <article>
+      <p>
+        If your Promises does not rely on the result from a previous promise, and the order of the results does not
+        matter,
+        we can execute the task in parallel
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <pre class="prettyprint pre16">
+let promises=[promiseFactory("MsgFromP1",7000),
+              promiseFactory("MsgFromP2",6000),
+              promiseFactory("MsgFromP3",5000)];
+
+Promise.<b>all(promises)</b>.then((data)=>{
+  console.log(data);
+}).catch(..);
+//Will print this:
+//['MsgFromP1', 'MsgFromP2', 'MsgFromP3']
+          </pre>
+        </div>
+        <div class="col-md-6"><img src="images/parallel.PNG" style="width: 90%"/></div>
+      </div>
+      <p>
+        <code>Promise.all()</code> enables us to be notified once all results are ready
+        (like when we did <em>join()</em> on a number of threads in Java).<br/>
+      <ul>
+        <li>Its input is an Array of Promises</li>
+        <li>It outputs a single Promise that is fulfilled with an <em>Array of the results</em>.</li>
+      </ul>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>References</h2></hgroup>
+    <article>
+      <br/>
+      <br/>
+      <br/>
+      <p><a href="https://bitsofco.de/javascript-promises-101/">JavaScript Promises</a></p>
+      <p><a href="http://exploringjs.com/es6/ch_promises.html">Promises for asynchronous programming</a></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Generators</h2></hgroup>
+    <article>
+      <p>Generators are functions which can be exited and later re-entered.
+        Their context (variable bindings) will be saved across re-entrances.</p>
+      <p>Important applications that can take advantage of this is:</p>
+      <ul>
+        <li>Implementing iterables</li>
+        <li>Blocking on asynchronous function calls</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Generators for iteration</h2>
+      <h3>Recap from last week</h3>
+    </hgroup>
+    <article>
+      <p style="margin-top: -35px;">Generators provide a powerful alternative to custom iterators: we can define an
+        iterative algorithm
+        by writing a single function which maintain its own state.</p>
+      <p>A generator is a special type of function that works as a factory for iterators.
+        A function becomes a generator if it contains one or more <b>yield</b> expressions and if it uses the <b>function*</b>
+        syntax.</p>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p style="color:#285e8e;font-weight:bold;font-size: 0.8em;">Simple Generator Function</p>
+          <pre class="prettyprint pre20">
+
+function<b>*</b> gen() {
+  <b>yield</b> "Hello";
+  <b>yield</b> "es2015";
+  <b>yield</b> "Generators";
+}
+          </pre>
+        </div>
+        <div class="col-md-7">
+          <p style="color:#285e8e;font-weight: bold;font-size: 0.8em;">
+            The generator function returns a Generator object which conforms to both the <em>iterable</em> and the <em>iterator</em>
+            protocol.
+          </p>
+          <pre class="prettyprint pre20">
+let g = gen();
+//Using the iterator protocol
+console.log(g.next().value); // Hello
+console.log(g.next().value); // ES2015
+console.log(g.next().value); // Generators
+
+//using the iterable protocol
+for(let i of gen()) {
+  console.log(i);
+}
+</pre>
+
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators another (infite) example </h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint pre18">
+function* idMaker(){
+  var index = 0;
+  while(true)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+
+for(let i of gen){
+  console.log(i);
+  if(i === 5) //Will continue "forever" without this
+    break;
+}
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators - Delegation</h2>
+    </hgroup>
+    <article>
+      <p></p>
+      <div class="row">
+        <div class="col-md-6">
+<pre class="prettyprint pre18">
+function* gen2(){
+  yield 3;
+  yield 4;
+}
+
+function* gen1() {
+  yield 1;
+  yield 2;
+  yield *gen2();
+  yield 5;
+  //Not included in a for-of
+  return 6;
+}
+
+for(let number of gen1()){
+  console.log(number); /1,2,<b>3,4</b>,5
+</pre>
+        </div>
+        <div class="col-md-6">
+          <p>Flow can be forwarded into another generator as demonstrated in this exampel</p>
+          <p>To delegate iteration control to another generator we use a variation of the yield keyword: <code>yield
+            *</code></p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Sending messages in an out</h2>
+    </hgroup>
+    <article>
+      <p></p>
+      <div class="row">
+        <div class="col-md-7">
+<pre class="prettyprint pre16">
+function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+}
+
+var it = foo( 5 ); //Initial value sent to generator
+
+// note: not sending anything into `next()` here
+console.log( it.next() );    // { value:6, done:false }
+console.log( it.next( 12 ) );// { value:8, done:false }
+console.log( it.next( 13 ) );// { value:42, done:true }
+  </pre>
+        </div>
+        <div class="col-md-5">
+          <p>This syntax is really weird ;-)</p>
+          <p>What's the value of <b>y</b> after the first <code>yield</code></p>
+          <div class="build">
+            <p style="font-weight: bold">24</p>
+            <p>What's the value of <b>z</b> after the second <code>yield</code></p>
+            <p style="font-weight: bold">13</p>
+            <p>Verify this by testing with Node</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Asynchronous Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        Often generators are emphasized because of the way they provide a single-threaded, synchronous-looking code
+        style,
+        while allowing you to hide the asynchronicity away as an implementation detail.</p>
+      <p>This lets us express in a very natural way what the flow of our program's steps/statements is without
+        simultaneously having to navigate asynchronous syntax and gotchas
+      </p>
+      <p>Many examples however, quickly become very complex and API's are changing all the time,
+        so a "great example" found in article might not work</p>
+      <p>Here we will only introduce one example using the <code>co-package</code> which brilliantly combines Generators
+        and Promises </p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Asynchronous Generators 2</h2>
+      <h4>Using Promises and the <em>co-package</em></h4>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;margin-bottom: 5px;">Assume we had this Promise-factory</p>
+      <pre class="prettyprint pre18">
+function promiseFactory(val){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=> {
+      resolve(val*2);
+    })
+  },100);
+};</pre>
+      <div class="row build">
+        <div class="col-md-6">
+          <p style="margin-top:20px;margin-bottom: 5px;">What would this print? (32)</p>
+<pre class="prettyprint pre16">
+promiseFactory(2).
+  then(res => {return promiseFactory(res)}).
+  then(res => {return promiseFactory(res)}).
+  then(res => {return promiseFactory(res)}).
+  then(res =>console.log(res)).
+  catch(err => console.log(err))
+  </pre>
+        </div>
+        <div class="col-md-6">
+          <p style="margin-top:20px;margin-bottom: 5px;">The same with a generator</p>
+          <pre class="prettyprint pre16">
+co(function *(){
+  let v1 = yield promiseFactory(2);
+  let v2 = yield promiseFactory(v1);
+  let v3 = yield promiseFactory(v2);
+  let res = yield promiseFactory(v3);
+  console.log(res);
+}).catch(err=>console.log(err));</pre>
+          <p style="font-size: 0.8em;font-style: italic;color: #2a6496">
+            Observe the sequential nature and how the (async) promise seems to return a value
+          </p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

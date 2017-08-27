@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node- Getting Started</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+  <script src="../angular/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.2.18/i18n/angular-locale_da.js"></script>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+
+  <base target="_blank">
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="autofadein" style="color: white;">
+      <div style="float: left">
+        <h1 data-config-title style="float:left;"></h1>
+
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="images/node_logo.png" style="float:left"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Download Node</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -50px;">
+      <a href="http://nodejs.org/"><img src="images/node_logo.png"/></a>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testing your Node-instalation</h2>
+    </hgroup>
+    <article>
+         <pre class="prettyprint pre18" data-lang="javascript">
+var http = <b>require('http')</b>;
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(5555, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:5555/');
+         </pre>
+      <div style="margin-top: 10px;">
+        Create a new file; <em>firstServer.js</em><br/> Add the content above, and execute it with node from the
+        command line:<br/>
+        node firstServer.js
+      </div>
+
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>A short introduction to NPM - 1</h2>
+
+      <h3>Node's Package Manager (npm)</h3>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          <p><b>npm</b> is:</p>
+          <ul>
+            <li>An online repository (the worlds largest ;-) for publishing open-source Node.js projects;</li>
+            <li>A command-line utility for interacting with this repository that aids in:
+              <ul>
+                <li>package installation</li>
+                <li>version management</li>
+                <li> and dependency management</li>
+              </ul>
+            </li>
+          </ul>
+          </div>
+        <div class="col-md-6">
+          <p><b>npm</b> the worlds largest code repository</p>
+          <img style="width:100%" src="images/module-counts.png"/>
+        </div>
+        </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>A short introduction to NPM - 2</h2>
+
+      <h3>Node's Package Manager</h3>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -15px;">
+      <img src="images/npm.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Using NPM</h2>
+    </hgroup>
+    <article class="smaller">
+      <div style="width: 80%;float:left;">
+        <ul>
+          <li>Create an new folder somewhere on your system called nodeExercises</li>
+          <li>Open a command prompt and navigate to your new folder and type: <em>npm install learnyounode</em>
+          </li>
+          <li>Since development goes so fast, global packages often gets "old" early, even for a new node-installation</br>
+          Do a: <code>npm i npm@latest -g</code>
+          </li>
+          <li>See what was generated in the folder</li>
+          <li>Type <em>learnyounode</em> &rarr; Nothing happens</li>
+          <li>Install it globally: <em>npm install learnyounode -g</em></li>
+          <li>Type <em>learnyounode</em></li>
+          <li>If you want to see what and where things were installed type:</li>
+          <ul>
+            <li> npm root</li>
+            <li> npm bin</li>
+            <li> npm root -g</li>
+            <li> npm bin -g</li>
+          </ul>
+        </ul>
+      </div>
+      <img src="../images/demo.png" style="float:left;width: 20%;margin-top: 100px;"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Recommended IDE for Javascript<br/> Development</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -50px;">
+      <img src="images/webstorm_logo.gif"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Using Node with WebStorm</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -50px;">
+      <img src="../images/demo.png"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>How to Node</h2>
+
+      <h3>http://nodejs.org/api/</h3>
+    </hgroup>
+    <article>
+      <iframe data-src="http://nodejs.org/api/" style="width: 100%;height:500px;margin-top: -30px;"></iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node and Asynchronous Programming </h2>
+
+      <h3>First "The old way"</h3>
+    </hgroup>
+    <article>
+          <pre class="prettyprint pre18" data-lang="javascript" style="margin-top: -20px;">
+var fs = require('fs');
+var content = fs.readFile<b>Sync</b>(process.argv[2]);
+<b>console.log("When do we see this output?");</b>
+console.log(content.toString());
+          </pre>
+      <div>
+        All synchronous (or blocking) filesystem methods in the fs module end with 'Sync'.
+      </div>
+      <div>
+        The readFileSync(..) method returns a Buffer.<br/>
+        Buffer objects are Node's way of efficiently representing arbitrary arrays of data, whether it be ascii,
+        binary or some other format.<br/>
+        Buffer objects can be converted to strings by calling the toString() method
+      </div>
+      <br/>
+
+      <div>
+        process.argv[2] returns the first argument passed to your program i.e. node myProg <b>arg1</b> arg 2
+      </div>
+      <br/>
+      <b>Write and execute the program</b>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node and Asynchronous Programming </h2>
+
+      <h3>The "Node/JavaScript way"</h3>
+    </hgroup>
+    <article>
+          <pre class="prettyprint pre18" data-lang="javascript" style="margin-top: -20px;">
+var fs = require('fs');
+fs.readFile(process.argv[2],function(err,data ){
+  if(err){
+    console.log("Error");
+  }
+  else{
+    <b>console.log( data.toString());</b>
+  };
+});
+<b>console.log("When do we see this output?");</b>
+              </pre>
+      <ul>
+        <li>The callback delivers data via a Buffer</li>
+        <li>Observe the standard error check node pattern</li>
+      </ul>
+      <br/>
+      <b>Write and execute the program</b>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Streams and Pipes</h2>
+
+    </hgroup>
+    <article>
+      <div style="margin-bottom: 65px;">
+        Just like in Java, streams are an important abstraction in Node, when doing IO
+      </div>
+      <div style="width: 45%;float: left;margin-right:5%;">
+        <img src="images/stream.png" style="width: 100%;margin-bottom: 15px;">
+
+        <div>As in java, we can have input or output streams</div>
+      </div>
+      <div class="build">
+        <div style="width: 45%;float: left;">
+          <img src="images/streamPipe.png" style="width: 100%;margin-bottom: 15px;">
+
+          <div>
+            A readable stream can be piped to a writable stream by doing
+            <em>readableStream.pipe(writableStream)</em>
+          </div>
+        </div>
+      </div>
+      <footer class="source">source: http://maxogden.com/node-streams.html/</footer>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Streams</h2>
+
+      <h3>Functions on Streams</h3>
+
+    </hgroup>
+    <article>
+
+      <div style="width: 47%;float: left;margin-right: 5%;">
+        <img src="images/readableStrema.png" style="width: 50%;margin-bottom: 15px;">
+
+        <div>
+          <b>Readable Streams</b> will emit <em>data events</em> each time they get a "chunk" of data and then
+          they will
+          emit an <em>end</em> event when they are all finished (the observer pattern)
+        </div>
+      </div>
+      <div style="width: 47%;float: left">
+        <img src="images/writableStream.png" style="width: 50%;margin-bottom: 15px;">
+
+        <div>
+          <b>Writable Streams</b> must implement two functions: <em>write</em> and <em>end</em>.<br/><br/>
+          When we write data to a writable stream it will return either true or false. True means keep sending
+          more data with write and false means don't write any more data until it emit <em>drain</em>.
+          This feature lets a stream communicate "upstream" to it's writers
+        </div>
+      </div>
+
+
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Streams and Pipes</h2>
+
+      <h3>Example - Copying a File, Downloading a file</h3>
+
+    </hgroup>
+    <article>
+
+      <div style="width: 65%;float: left;margin-top: -30px;">
+<pre class="prettyprint">
+var fs = require("fs");
+fs.createReadStream(process.argv[2])
+
+   <b>.pipe</b>(fs.createWriteStream(process.argv[3]));
+</pre>
+      </div>
+      <div style="width: 30%;float: left;">
+        <img src="images/streamPipe.png" style="width: 100%;margin-bottom: 15px;">
+      </div>
+      <div class="build">
+        <div>
+          <div style="margin-top:10px;margin-bottom: 10px;">
+            Both the http- request and response objects are Node streams!
+            So we can use the streaming abstractions to send and receive data
+          </div>
+          <div style="width: 65%;float: left">
+            <pre class="prettyprint">
+var request = require("request");
+var fs = require("fs");
+// HTTP GET Request
+request("http://plaul3.cloudapp.net:9090/CA-Chat.jar")
+
+   <b>.pipe</b>(fs.createWriteStream("chat.jar"));
+</pre>
+          </div>
+          <div style="width: 30%;float: left;margin-top: 75px;">
+            <img src="images/streamPipe.png" style="width: 100%;margin-bottom: 15px;">
+          </div>
+        </div>
+        <b>Write and execute these examples</b>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node networking</h2>
+
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -50px;">
+      <p>Node.js, like Java as we already have seen, ships with a number of built in capabilities for networking.</p>
+
+      <p>This week we will focus on the http and net modules to design some simple http and TCP server and client
+        examples.
+        After that, we wil mainly use the external Express module to build or web-servers</p>
+      <img src="images/imgres.jpg">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node networking</h2>
+
+      <h3>HTTP Client Example</h3>
+    </hgroup>
+    <article>
+        <pre class="prettyprint pre16" data-lang="javascript" style="margin-top: -25px;">
+var http = require('http');
+
+var request =http.get(process.argv[2],function(response){
+  response.setEncoding("utf8"); //If we dont do this, data is returned in a Buffer
+  var allData = "";
+  response.<b>on("data"</b>,function(data){
+    allData += data;
+  });
+  response.<b>on("end"</b>,function(){
+    console.log(allData);
+  });
+});
+request.on("error",function(e){
+  console.log("ups: "+e);
+});        </pre>
+      <div>The <em>get</em> method is a convenience method for GET-requests. In the exercises you will use the
+        <em>http.request(..)</em> method.
+      </div>
+      <div style="margin-top: 8px;">The "data" event is emitted when a chunk of data is available and can be emitted
+        many times for a single request.
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node networking</h2>
+
+      <h3>A HTTP Server Example</h3></h3>
+    </hgroup>
+    <article>
+<pre class="prettyprint pre18" data-lang="javascript">
+var http = require('http');
+http.createServer(function (request, response) {
+  response.writeHead(200, {'Content-Type': 'text/plain'});
+  response.end('Hello World\n');
+}).listen(1337, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:1337/');
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node networking</h2>
+
+      <h3>TCP Echo Server</h3>
+    </hgroup>
+    <article>
+<pre class="prettyprint pre18" data-lang="javascript">
+var net = require('net');
+
+var server = net.createServer(function (socket) {
+  socket.write('Echo server\r\n');  //We can write to the socket
+  //Wee could have "subscribed" on the sockets <em>data</em>event
+
+   //Or, for an echo server, just pipe the input stream to the output stream :-)
+  <b>socket.pipe(socket)</b>;
+});
+
+server.listen(1337, '127.0.0.1');
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Node networking</h2>
+
+      <h3>TCP Echo-Client/Chat-Client Demo</h3>
+    </hgroup>
+    <article>
+        <pre class="prettyprint pre18" data-lang="javascript" style="margin-top: -30px;">
+var client = require('net').Socket();
+
+//client.connect(9999, 'plaul3.cloudapp.net', function() {
+client.connect(1337, 'localhost', function() {
+  client.write('CONNECT#Lars\n');
+  client.write('SEND#*#Hello everybody\n');
+  client.write('CLOSE#\n');
+});
+
+client.on('data', function(data) {
+  console.log('Received: ' + data);
+});
+        </pre>
+      <div style="margin-top: 15px;">What would you see, if you connect this client to the <em>Echo Server</em>
+        (previous slide)?
+      </div>
+      <div class="build">
+        <div>What would you see, if you connect this client to your 3. semester <em>Chat server (CA1)</em>?</div>
+        <div><b>Write and execute this example</b></div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+      <h2>Rest of today; Exercises :-)</h2>
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

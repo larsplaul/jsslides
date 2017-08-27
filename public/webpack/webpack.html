@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><!DOCTYPE html>
+    <html>
+    <head>
+      <title></title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" media="all" href="../theme/css/default.css">
+      <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+      <script src="../js/jquery-1.11.1.min.js"></script>
+      <script src="../js/presenter.js"></script>
+
+      <base target="_blank">
+      <style>
+        code {
+          color: darkblue;
+        }
+      </style>
+
+      <!-- This opens all links in a new tab. -->
+      <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+      <!--In order to have more than one slideset in the project-->
+      <script src="slides.js"></script>
+
+    </head>
+
+    <!--Setup Angular for the full slide-set-->
+    <!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <img src="images/ts_es6_node.PNG" style="margin-left:200px;float:left; width:350px;">
+      <div style="float:left;"></div>
+    </hgroup>
+  </slide>
+
+
+  <slide>
+    <hgroup><h2 style="font-size: 1.6em;">What is Module Bundling and why bother?</h2></hgroup>
+    <article>
+      <p style="margin-top: -20px;">
+        On a high level, module bundling is simply the process of stitching together a group of modules
+        (and their dependencies) into a single file(or group of files) in the correct order.
+      </p>
+      <p>Why Bundle files?</p>
+      <p>
+        When you divide your program into modules, you typically organize those modules into different
+        files and folders (think Angular).<br/>
+        As a result, each of those files has to be included in your main HTML file in a &lt;script&gt; tag,
+        which is then loaded by the browser when a user visits your home page.<br/>
+        Having separate &lt;script&gt; tags for each file means that the browser has to load each file
+        individually:<br/>
+        <em style="font-weight: bold;color: #2a6496;margin-left: 2em;">&rightarrow;This has a cost in terms of page load
+          time.</em>
+      </p>
+      <p style="font-size: 0.85em;">
+        To get around this problem, we bundle all files into one big file (or a couple files) in order to reduce the
+        number
+        of requests. <br/>
+        Another common approach to speed up the bundling operation is to <b>“minify”</b> the bundled code. </br>
+        <b>Minification</b> is the process of removing unnecessary characters from source code (those only meant for
+        humans).
+      </p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Ways to Bundle</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -20px; margin-bottom: 4px;margin-left:10em; color: #2a6496">Non Standard</p>
+      <div><a href="https://en.wikipedia.org/wiki/CommonJS">CommonJS</a><br/>
+        <p style="margin: 10px;font-size: 0.85em;">
+          CommonJS is a project to define a common API and ecosystem for JavaScript. </br>
+          One part of CommonJS is the Module specification. Node.js is a server-side JavaScript runtimes that
+          implement modules based on the CommonJS Module specification
+        </p>
+      </div>
+      <div><a href="https://en.wikipedia.org/wiki/Asynchronous_module_definition">Asynchronous module definition
+        (AMD)</a><br/>
+        <p style="margin: 10px;font-size: 0.85em;">
+          AMD is another specification for modules. <em>RequireJS</em> is probably the most popular implementation of
+          AMD.
+          One major difference from CommonJS is that AMD specifies that modules are loaded asynchronously.
+        </p>
+      </div>
+      <p style="margin-top: 25px;margin-bottom: 4px;margin-left:10em;color: #2a6496">Native JS (es2015)</p>
+      <div><a hfef="http://es6-features.org/#ValueExportImport">ES6 Modules</a><br/>
+        <p style="margin: 16px;font-size: 0.85em;">
+          As we have seen, es2015 and forward has native support for Modules.<br/>
+          Exporting/importing values from/to modules without global namespace pollution
+        </p>
+      </div>
+      <footer class="source"><a
+              href="http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs">
+        Relation between CommonJS, AMD and RequireJS?</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Which Bundler should I chose?</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-4">
+          <p>The "big" players</p>
+          <ul>
+            <li>Browserify</li>
+            <li>RequireJS</li>
+            <li>WebPack</li>
+          </ul>
+          <div style="font-size: 0.9em;">
+            <p>We will focus on <b>WebPack</b></p>
+            <ul>
+              <li>It is the newest player, and have learnt from mistakes done by the others</li>
+              <li>It never tries to be compatible with node.js</li>
+              <li>It is built, from the ground up, to help you manage static assets for the front-end</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-8"><img src="images/whichBundler.PNG">
+          <p><a href="https://www.google.dk/trends/explore?date=2013-10-10%202016-11-10&q=webpack,Browserify,RequireJS">
+            Live</a>
+            </a></p></div>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>WebPack</h2>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-5">
+          <p style="color: #2a6496">Goals</p>
+          <p style="font-size: 0.6em">
+            According to <a href="https://webpack.js.org/">What is WebPack</a></p>
+          <ul>
+            <li>Split the dependency tree into chunks loaded on demand</li>
+            <li>Keep initial loading time low</li>
+            <li>Every static asset should be able to be a module</li>
+            <li>Ability to integrate 3rd-party libraries as modules</li>
+            <li>Ability to customize nearly every part of the module bundler</li>
+            <li>Suited for big projects</li>
+          </ul>
+        </div>
+        <div class="col-md-7"><img style="width: 100%;margin-top:2em;" src="images/what-is-webpack.png"></div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WebPack - this semester</h2>
+    </hgroup>
+    <article>
+      <p>
+        We only have limited time for this part, but we will still (throughout the course) introduce examples of how to:</p>
+      <ul>
+        <li>Use Node.js packages on Clients (require)</li>
+        <li>Import bootstrap with npm and package with webpack</li>
+        <li>Use webpack/babel with Angular 1.x</li>
+        <li>Use Babel to transpile ES6 &rightarrow; ES5</li>
+        <li>Use webpack with React</li>
+        <li>Include <em>.css</em> into or bundles</li>
+        <li style="color:gray">Use TypeScripts and <em>tsc</em> to transpile TypeScript &rightarrow; ES5</li>
+
+      </ul>
+      </p>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>WebPack - a (very) quick intro</h2></hgroup>
+    <article>
+      <div class="row" style="margin-top: -20px;">
+        <div class="col-md-6">Install it <br/></div>
+        <div class="col-md-6">
+          Global: <code>npm i -g webpack</code> <span style="color:darkred" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></br>
+          Local : <code>npm i webpack --save-d </code><span style="color:darkgreen" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </div>
+      </div>
+      <hr/>
+      <div class="row" style="margin-top: 0.4em;">
+        <div class="col-md-6">
+          <p>First Run:<br/><code> webpack &lt;entrypoint&gt; &lt;output&gt;</code></p>
+        </div>
+        <div class="col-md-6">
+          <code>webpack main.js bundle.js</code></div>
+      </div>
+      <hr/>
+      <div class="row" style="margin-top: 0.4em;">
+        <div class="col-md-6">
+          <p>Defining a Config File</p>
+          <p>webpack uses a principle of an <b>entry point</b> and an <b>output location</b>,
+            just like int the command above</p>
+        </div>
+        <div class="col-md-6">
+           <pre class="prettyprint pre20">
+module.exports = {
+  <b>entry</b>: './main.js',
+  <b>output</b>: {
+             filename: './bundle.js'
+          }
+};</pre>
+        </div>
+      </div>
+      <hr/>
+      <div class="row" style="margin-top: 0.4em;">
+        <div class="col-md-6">
+          <p>Configuring <b>Watch Mode</b></p>
+          <p style="font-size: 0.8em;">
+            Signal webpack to watch for the code for change and automatically "rerun" the webpack command.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <pre class="prettyprint pre20">
+module.exports = {
+  entry: './main.js',
+  <b>watch</b>; true,
+  ...
+};</pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>WebPack - a (very) quick intro 2</h2></hgroup>
+    <article>
+      <div class="row" style="margin-top: -26px;">
+        <div class="col-md-6" style="font-size: 0.85em;">
+          <p style="margin-bottom: 6px;"><b>Loaders</b></p>
+          Loaders are transformations that are applied on a resource file of your app.<br/>
+          They are functions that take the source of a resource file as the parameter
+          and return the new source.
+          For example, we can use loaders to tell webpack to load:
+          <ul>
+            <li>ES-6 and transpile with Babel</li>
+            <li>TypeScript and transpile with tsc</li>
+            <li>...</li>
+          </ul>
+          <hr/>
+          <ul>
+            <li><b>test</b> A Regular expression that tests what kind of files to run through this loader.</li>
+            <li><b>exclude</b>  Which files the loader should exclude /ignore.</li>
+            <li><b>loader</b> The name of the loader we are going to use (babel-loader)</li>
+            <li><b>query </b>  Here we can pass options to the loader</li>
+            <li><b>presets </b> Use the es2015 presets that were installed earlier (babel)</li>
+          </ul>
+        </div>
+        <div class="col-md-6"><pre style="margin-top: 5em;" class="prettyprint pre20">
+module.exports = {
+  // ...
+  module: {
+    loaders: [
+        {
+          <b>test</b>: /\.js$/,
+          <b>exclude</b>: /node_modules/,
+          <b>loader:</b> 'babel<b>-loader</b>',
+          <b>query</b>: {
+                 <b>presets</b>: ['es2015']
+                }
+        }
+     ],...</pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Demo Time ;-)</h2>
+    </hgroup>
+    <article>
+      <img style="margin-top: 4em;" src="../images/Demo.png">
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

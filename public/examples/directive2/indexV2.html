@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+  <script src="script.js"></script>
+  <title></title>
+</head>
+
+<body ng-app="directive2" ng-controller="Ctrl">
+<!--show-->
+<b>Passing Data to Directives v-1</b>
+<person-detail
+   ng-init="person.firstName='Donald'; person.lastName='Duck'">
+</person-detail>
+
+<person-detail
+   ng-init="person.firstName='Peter'; person.lastName='Pan'">
+</person-detail>
+
+<em>{{person.firstName}} {{person.lastName}}</em>
+
+<!--/show-->
+</body>
+
+</html>
+
+<!--commentForSlides
+If we add additional instances of the directive, they will all share the same scope
+commentForSlides-->

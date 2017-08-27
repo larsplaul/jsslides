@@ -1,0 +1,12 @@
+
+input.ng-valid.ng-touched{
+    background-color: lightgreen;
+}
+input.ng-invalid.ng-touched {
+    background-color: lightsalmon;
+}
+.name.ng-invalid-required.ng-touched {
+    background-color: yellow;
+}
+
+

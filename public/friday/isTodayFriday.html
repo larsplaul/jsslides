@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Is today Friday</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <style>
+      #outer {margin-left: auto; margin-right: auto; width: 850px;color: darkblue}
+    </style>
+    <script>
+      
+      function numbOfToday() {return new Date().getDay();}
+      function setPicture() {
+        var day = numbOfToday();
+        var img = document.getElementById("img");
+        var txt = document.getElementById("txt");
+        if (day == 5) {
+            txt.innerHTML = "<p>YES - Today is Friday</p><p>Complete your Studypoint Exercises and GO AND HAVE LOTS OF FUN :-)</p>";
+           img.innerHTML = "<img src='images/beer1.jpg' width='800' height='600' >";
+        } else{
+          txt.innerHTML = "<p>Sorry - Today is "+today()+ "</p><p>Stay Sober :-(</p>"
+           img.innerHTML = "<img src='images/no-drinking-sign.jpg' width='409' height='546' >";
+        }
+      }
+      
+      function today() {
+        var date = new Date();
+        var day = date.getDay();
+        weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        return weekdays[day];
+      }
+      window.addEventListener("load", setPicture, false);
+
+    </script>
+  </head>
+  <body>
+    <div id="outer" class="container" >
+      <h2 id="txt"></h2>
+      <div id="img"></div>
+    </div>
+  </body>
+</html>

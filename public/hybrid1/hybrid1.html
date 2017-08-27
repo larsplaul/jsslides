@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="images/crossplatform1.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+
+        <h2 data-config-subtitle></h2>
+
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="images/Smartphones.png" style="float:left;width: 400px;">
+      </div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Native, Hybrid or HTML5</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+      <div class="row">
+        <div class="col-md-5">
+          <p>
+            <b>Native Apps</b> are specific to a given mobile platform (iOS or Android) using the development tools
+            and
+            language that the respective platform supports. Native apps look and perform the best
+          </p>
+
+          <p>
+            <b>HTML5 Apps</b> use standard web technologies, like JavaScript and CSS to create cross platform mobile
+            applications.
+            Limitations from this strategy is, session management, no secure offline storage, no access to
+            native device functionality (camera, calendar etc.)
+          </p>
+
+          <p>
+            <b>Hybrid Apps</b> make it possible to embed HTML5 apps inside a thin native container, combining the best
+            (and
+            worst) elements of Native and HTML5 apps.
+          </p>
+        </div>
+        <div class="col-md-7" style="padding-top: 3em; padding-left: 0em;">
+          <img src="images/hybridAppDevelopment.jpg" style="width: 100%;">
+        </div>
+        <footer class="source"><a href="http://www.sysfore.com/mobile-apps-overview.aspx">ref</a></footer>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Native, Hybrid or HTML5</h2>
+
+      <h3>Comparing Mobile Apps Development Strategies</h3>
+    </hgroup>
+
+    <article>
+      <article class="smaller">
+        <table class="table table-sm ! important" id="tb11">
+          <thead>
+          <tr>
+            <th>Features</th>
+            <th>Native Apps</th>
+            <th>HTML5 Apps</th>
+            <th> Hybrid Apps</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Navigation</td>
+            <td> Fast</td>
+            <td> Slow</td>
+            <td>Slow</td>
+          </tr>
+          <tr>
+            <td>Look and Feel</td>
+            <td>Native</td>
+            <td>Emulated</td>
+            <td> Emulated</td>
+          </tr>
+          <tr>
+            <td>Graphics</td>
+            <td>Native APIs</td>
+            <td>HTML5, Canvas, SVG</td>
+            <td> HTML5, Canvas, SVG</td>
+          </tr>
+          <tr>
+            <td>Camera</td>
+            <td> Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Notifications</td>
+            <td> Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Contacts, Calendar</td>
+            <td> Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Geo-location</td>
+            <td> Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Swipe</td>
+            <td> Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Pinch, Spread</td>
+            <td> Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Connectivity</td>
+            <td> Online and offline</td>
+            <td>online</td>
+            <td>Online and offline</td>
+          </tr>
+          <tr>
+            <td>Performance</td>
+            <td> Fast</td>
+            <td> Slow</td>
+            <td> Slow</td>
+          </tr>
+          <tr>
+            <td>Development Skills</td>
+            <td> Objective-C, Java, C#</td>
+            <td> HTML5, CSS, JavaScript</td>
+            <td> HTML5, CSS, JavaScript</td>
+          </tr>
+          <tr>
+            <td>Distribution</td>
+            <td>App store</td>
+            <td> Web</td>
+            <td> App store</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <footer class="source"><a href="http://www.sysfore.com/mobile-apps-overview.aspx">ref</a></footer>
+      </article>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Native Apps</h2></hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/nativeApp.jpg" style="width: 90%;">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Hybrid Apps - How Does it Work 1</h2>
+      <h3>Hybrid Apps with Cordova/PhoneGap</h3>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -20px;">
+      <div>
+        <img src="images/phonegap-plugins.jpg" style="width: 75%;">
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Hybrid Apps - How Does it Work 2</h2>
+      <h3>Hybrid Apps with Cordova/PhoneGap</h3>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -20px;">
+      <div>
+        <img src="images/architecture.jpg" style="width: 75%;">
+      </div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Cordova vs PhoneGap </h2>
+      <h3>PhoneGap, Cordova, and what’s in a name?</h3>
+
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -30px;">
+      <div>
+        <img src="images/phonegap-cordova.png" style="width: 90%;">
+        <p><a href="http://blog.ionic.io/what-is-cordova-phonegap/">The Last Word on Cordova and PhoneGap</a></p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MEAN + Ionic </h2>
+
+
+    </hgroup>
+    <article class="flexbox vcenter">
+      <div>
+        <img src="images/MobileMean.PNG" style="width: 80%;margin-left: 2em;">
+
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The Ionic Framework</h2>
+      <h3>Hybrid Apps with Cordova, Ionic and AngularJS and Sass</h3>
+
+    </hgroup>
+    <article style="margin-top: 5px;">
+      <p>Ionic is an free and open source library of mobile-optimized <b>HTML</b>, <b>CSS</b> and <b>JS components</b>,
+        <b>gestures</b>, and <b>tools</b> for building highly interactive apps.</p>
+      <p>Built with <b>Sass</b> and optimized for <b>AngularJS</b></p>
+      <div class="flexbox vcenter">
+
+        <img src="images/ionic-1.JPG" style="width: 100%;">
+
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Instaling ionic and dependencies 1</h2></hgroup>
+    <article>
+      <p style="color: #2a6496; font-size: xx-large;margin-top: 3em;">
+        For this part I expect a lot of help, in the class, for those of you following the Android Course
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Instaling ionic and dependencies 2</h2></hgroup>
+    <article>
+      <p>Follow the instructions here to setup your system: <a
+              href="http://ionicframework.com/docs/guide/installation.html">Installation</a></p>
+      <p><a href="http://developer.android.com/sdk/index.html">Install Android Studio (the simplest way to get the
+        SDK)</a></p>
+      <p>Set up your paths (Windows) (Mac users try this: <a href="http://slides.com/zukzuk/ionic#/12">Scripts</a>)</p>
+      <textarea cols="70" rows="2" readonly>
+setx ANDROID_HOME %LOCALAPPDATA%\Android\sdk"
+setx PATH "%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools" </textarea>
+
+      <p>Install Android System Images: Open a command prompt and type: android: TODO</p>
+      <p>Enabling On-device Developer Options on your phone: <a
+              href="http://developer.android.com/tools/device.html#developer-device-options">Developer Options</a></p>
+      <p>Final Check: Connect your phone and type adb devices, and you should see something like this: </p>
+      <pre class="prettyprint pre18" style="width:20em;">
+List of devices attached
+w3d7JW915678	device</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>So what is Ionic?</h2></hgroup>
+    <img src="images/AngularIonic.png">
+
+    <p><b>Ionic</b> is a complete open-source SDK for hybrid mobile app development</p>
+    <p> Built on top of AngularJS and Apache Cordova, Ionic provides tools and services for developing hybrid mobile
+      apps using Web technologies like:</p>
+    <br/>
+    <ul>
+      <li>CSS</li>
+      <li>HTML5</li>
+      <li>Sass (we can start without knowledge about <a href="http://sass-lang.com/">Sass</a>, but we won't see all the
+        benefits
+      </li>
+    </ul>
+    <p>Apps can be built with these Web technologies and then distributed through native app stores to be installed on
+      devices by leveraging Cordova</p>
+
+    <article>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Now, lets build an app ;-)</h2></hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-8">
+          <p>We will build a simple Project/Task-app following the steps given in the ionic-book <a
+                  href="http://ionicframework.com/docs/guide/starting.html">Starting your app</a></p>
+          <br/>
+          <p>When completed we will (after all, this is a Full Stack JavaScript Course) add a backend with
+            Express + MongoDB/Mongoose to finally see, what we have talked about for almost a year -
+            <b>how easy it is to add an hook up an app, to an
+              existing REST-API</b></p>
+        </div>
+        <div class="col-md-4">
+          <img src="images/3-mockup.png" style="width: 100%;">
+        </div>
+      </div>
+      <img src="../images/Demo.png" style="width: 30%">
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>Lets get a backend with a REST-API</h2></hgroup>
+    <article>
+
+      <p>
+        <a href="https://github.com/Lars-m/ionicClassDemoBackend.git">https://github.com/Lars-m/ionicClassDemoBackend.git</a>
+      </p>
+      <ul>
+        <li>Clone the project</li>
+        <li>Start your MongoDB instance</li>
+        <li>Start the server (the REST-API) via:  <b>npm test</b></li>
+        <li>Start the server via <b>npm start</b> - Test via http://localhost:3000</li>
+        <li>Create a Node-js Cartridge on OpenShift (with MongoDB + RockMongo) and deploy the server</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>First Step -2 (the app-client)</h2></hgroup>
+    <article>
+      <p>ionic provides three ready-made <a href="and dependencies"> templates </a>to get a squick start</p>
+      <p>We will use the first. Navigate to were you want to put you project and write:</p>
+      <p><code>ionic start todo blank</code></p>
+      <p>Here is what the outer structure of your Ionic project will look like:</p>
+      <pre class="prettyprint pre18">
+├── bower.json     // bower dependencies
+├── config.xml     // cordova configuration
+├── gulpfile.js    // gulp tasks
+├── hooks          // custom cordova hooks to execute on specific commands
+├── ionic.project  // ionic configuration
+├── package.json   // node dependencies
+├── platforms      // iOS/Android specific builds will reside here
+├── plugins        // where your cordova/ionic plugins will be installed
+├── scss           // scss code, which will output to www/css/
+└── www            // application - JS code and libs, CSS, images, etc.</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>On-device Debugging</h2></hgroup>
+    <article>
+      <p>Connect your mobile and (if not already done) install the app</p>
+      <p>Open Chrome and type: <em>chrome://inspect/#devices</em></p>
+      <p>You will see something like below. Press <b>inspect</b> and start debugging</p>
+      <img src="images/debugging.PNG">
+      <h2>How cool is that ;-)</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Learning ionic</h2>
+      <h3>How can we learn Ionic and Mobile App Development in such a short time?</h3>
+    </hgroup>
+
+    <article>
+      <ul>
+        <li>You can't learn mobile development in the time we have, but you can get a great start :-)</li>
+        <li>Ionic - well its Angular + a lot of ionic directives, so you already now most of it</li>
+        <li>The greatest difference is that Ionic uses the UI-Router (pretty much what is in Angular 2) so you must, and
+          should, learn how to use that
+        </li>
+        <li>Use the <a href="http://ionicframework.com/docs/">Ionic Documentation</a></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>What else should I learn - 1</h2></hgroup>
+
+    <article>
+      <ul>
+        <li>Since everything we do, boils down to plain HTML, CSS + JavaScript the "only" thing we get for "simple"
+          applications is the ability to install the App and start it via an icon
+        </li>
+        <li>Users could have seen pretty much the same using their browser and a responsive site</li>
+        <li>The really benefit however, comes when we start to use the specif features in a device like:
+          <ul>
+            <li>Camera</li>
+            <li>Calendar</li>
+            <li>Device motion</li>
+            <li>Device Orientation</li>
+            <li>GeoLocation</li>
+            <li>SMS</li>
+            <li>.....</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Accessing phone-specific features</h2>
+      <h3>Using ngCordova</h3>
+    </hgroup>
+    <article>
+      <p>The easiest way to use phone-features is to use <span
+              style="font-size: x-large;font-weight: bold;color:darkblue">ngCordova</span></p>
+      <p> It provides simple <em>AngularJS</em> wrappers for the most popular Cordova and PhoneGap plugins available,
+        where you can take a picture, scan a barcode, upload a file, turn on your flashlight, get your current location,
+        and much more with just a few lines of code.</p>
+      <p>Using it is extremely simple:</p>
+      <ul>
+        <li>Basic setup for each application that requires access to the plugins <a
+                href="http://ngcordova.com/docs/install/">Install</a></li>
+        <li>Read the <a href="http://ngcordova.com/docs/common-issues/">Common Issues with Cordova</a></li>
+        <li>Find your plug-in and use the examples to get started <a href="http://ngcordova.com/docs/plugins/">Plugins
+          overview</a></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>What else should I learn - 2</h2></hgroup>
+
+    <article>
+      <p style="color:darkblue">Most (interesting) Apps will require a backend</p>
+      <ul>
+        <li>Learn the cool features like WebSockets or use backends like FireBase for a quick start</li>
+        <li>Learn the cool GeoLocation features included in many databases</li>
+        <li>This includes MongoDB
+          <ul>
+            <li><a href="https://docs.mongodb.org/manual/applications/geospatial-indexes/">Geospatial Indexes and
+              Queries</a></li>
+            <li><a href="http://tugdualgrall.blogspot.dk/2014/08/introduction-to-mongodb-geospatial.html">Introduction
+              to mongodb Geospatial feature</a></li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Doing all of it ;-)</h2>
+    <h3>The Ionic Friend-finder Exercise will involve all these ideas</h3></hgroup>
+    <article>
+      <img src="images/friendFinderEx.PNG">
+    </article>
+  </slide>
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+      <h2>Complete the demo :-)</h2>
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

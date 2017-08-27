@@ -1,0 +1,17 @@
+{
+  "name": "routeParams",
+  "files": [
+    "app.js",
+    "test.js",
+     "index.html"
+  ],
+  "filesOnlyForPlunkr": [
+    "index.html",
+    "app.js",
+    "test.js"
+  ],
+  "showThisAlways": "index.html",
+  "usePlunk" : "true",
+  "tags": ["Angular"],
+  "description" : "Angular"
+}

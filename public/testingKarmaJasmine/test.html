@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground" style="background: #00163B">
+  <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+  <hgroup class="auto-fadein" style="color: white;">
+    <div style="float: left;">
+      <h1 data-config-title style="float:left;"></h1>
+
+      <h2 data-config-subtitle></h2>
+
+      <p data-config-presenter></p>
+    </div>
+    <div style="float:left;margin-left: 2em;"><img src="images/angularKarmaJasmine.png"
+                                                   style="float:left;width: 350px;"></div>
+  </hgroup>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>The Test Process</h2>
+
+    <h3> A Short recap</h3>
+  </hgroup>
+  <article>
+    <img src="images/TheTEstProcess.PNG" style="width:90%;margin-top: -60px;margin-left: 5%;">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Testing systems that grows in size</h2>
+
+    <h3> Mocks - a short recap</h3>
+  </hgroup>
+  <article>
+    <img src="images/Mock1.PNG" style="width:90%;margin-top: -60px;margin-left: 5%;">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Testing systems that grows in size</h2>
+
+    <h3> Mocks - a short recap</h3>
+  </hgroup>
+  <article>
+    <ul>
+      <li>Mock objects are simulated objects that mimic the behavior of real objects in controlled ways.</li>
+      <li>Mock objects have the same interface as the real objects they mimic, allowing a client object to remain
+        unaware
+        of whether it is using a real object or a mock object.
+      </li>
+      <li>Many available mock object frameworks allow the programmers to create mocks Automatically from existing
+        code/interfaces
+      </li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Mocking</h2>
+  </hgroup>
+  <article>
+    <div class="row" style="margin-top: 75px;">
+      <div class="col-md-6">
+        <img src="images/mocks2.PNG" style="width:100%;">
+      </div>
+      <div class="col-md-6" style="margin-top: 25px;">
+        <p>For the coming days we will have great focus on <b>Mocking</b> and tools that helps us with doing
+          just that</p>
+      </div>
+    </div>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Testing</h2>
+
+    <h3> What have we used up until now</h3>
+  </hgroup>
+
+  <article>
+    <div class="row">
+      <div class="col-md-3" style="height:6em;">
+        <img src="images/junit-logo.png">
+      </div>
+      <div col-md-9>For the first two semesters, and the start of this semester, we unit-tested with JUnit since it's
+        the most
+        popular Unit Test Framework for Java.
+        It was easy to get started because JUnit includes it "all" a testrunner, a visual GUI, a console and the
+        necessary assertions
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="height:6em;">
+        <img src="images/restAssured.png" style="width: 100%">
+      </div>
+      <div col-md-9>For our Backend REST-testing we selected Rest-Assured, an open-source Java Domain-specific language (DSL) that makes testing REST service simple.
+        It simplifies things by eliminating the need to use boiler-plate code to test and validate complex responses.
+        It also supports <em>XML</em>and <em>JSON</em> Request/Responses
+      </div>
+    </div>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Karma, Jasmine and Angular</h2>
+
+    <h3> What we will add</h3>
+  </hgroup>
+  <article>
+    <img src="images/angularKarmaJasmine.png" style="width:50%;margin-left: 25%;">
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2 style="float: left;">Karma</h2><img src="images/karma-logo.jpg"
+                                            style="height: 50px;margin-left: 40px; float: left>;">
+  </hgroup>
+  <article>
+    <div class="row" style="margin-top: -15px;">
+      <div class="col-md-5" style="height:250px;">
+        <img src="images/karma-browsers.png" style="width:100%;margin-top: 80px;">
+      </div>
+      <div class="col-md-7">
+        <div style="font-size: 24px;">
+          <p>Karma is a tool (a test runner) that can run our tests, written in <b>Mocha, Jasmine</b> or whatever, and
+            it
+            runs the test in (real) Browsers
+          </p>
+
+          <p>Karma has a Web Server listening to clients</p>
+
+          <p>I can run the tests in <em>multiple browsers</em>, which is important since JavaScript is not always
+            JavaScript,
+            being interpreted in different browsers
+          </p>
+        </div>
+        <p>Keywords</p>
+        <ul class="smaller" style="color: #000066;margin-left: 30px;">
+          <li>Multi Device Testing on real Devices</li>
+          <li>Execute Test Code Through Clients</li>
+          <li>Easy Debuging (via the Browser)</li>
+          <li>Testing Framework Agnostic (Jasmine, Mocha etc.)</li>
+          <li>Easily integration with Development Tools (can be run from within WebStorm)</li>
+          <li>Easily integration with Continuous Integration Tools</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <img src="images/jasmine-logo.png" height="width:100px;;">
+  </hgroup>
+  <article>
+    <ul>
+      <li> Behavior Driven Development <b>(BDD)</b> framework for javascript</li>
+      <li>Can test both server and client code</li>
+      <li>Jasmine can (like mocha) be read by non-programmers --> Use test as documentation</li>
+      <li>Clear and obvious syntax</li>
+      <li>It does not require a DOM</li>
+      <li>Provides a mechanism for testing both synchronous ans asynchronous code</li>
+      <li>AngularJS is tested by Jasmine</li>
+    </ul>
+  </article>
+  <footer class="source"><a href="http://jasmine.github.io/2.0/introduction.html">Jasmine</a></footer>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>BDD Is Narrative</h2>
+    <img src="images/jasmine-logo.png" style="width:100px;">
+  </hgroup>
+  <article>
+    <p style="margin-top:-40px; ">&nbsp;</p>
+
+       <pre class="" style="background-color: #f9cc46;">
+<b>Describe</b> User Registration
+  While validating the registration info
+   - <b>it</b> should make sure the email address is valid
+   - <b>it</b> should verify the email doesn't already exist
+     ...
+  While creating the user's database record
+   - <b>it</b> should save successfully in the database
+     ...       </pre>
+    <h3>Test Cases can be used as Documentation</h3>
+
+    <h3>Test Cases can be used as Documentation</h3>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Suites <code>describe</code> our tests</h2>
+    <img src="images/jasmine-logo.png" style="width:100px;">
+  </hgroup>
+  <article>
+    <p style="margin-top: -25px;">A test suite begins with a call to the global Jasmine function <b>describe</b> with
+      two parameters: a string and a
+      function. The string is a name or title for a spec suite – usually what is being tested. The function is a block
+      of code that implements the suite.</p>
+    <pre class="prettyprint">
+<b>describe('myApp.view1 module', function() {</b>
+
+  beforeEach(module('myAppRename.view1'));
+
+   <b>describe('view1 controller', function(){</b>
+      it('should ....', inject(function($controller) {
+      //spec body
+      var view1Ctrl = $controller('View1Ctrl');
+      expect(view1Ctrl).toBeDefined();
+   }));
+ });
+});
+    </pre>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Specs - the <code>it</code> function</h2>
+    <img src="images/jasmine-logo.png" style="width:100px;">
+  </hgroup>
+  <article>
+    <ul style="margin-top: -20px;font-size: 22px;">
+      <li>Specs are defined by calling the global Jasmine function <code>it</code>, which, like <em>describe</em> takes
+        a string
+        and a function.
+      </li>
+      <li>The string is the title of the <em>spec</em> and the function is the spec, or test.</li>
+      <li>A <em>spec</em> contains one or more expectations that test the state of the code.</li>
+      <li>An expectation in Jasmine is an assertion that is either true or false.
+        <ul>
+          <li>A <em>spec</em> with all true expectations is a passing spec.</li>
+          <li>A <em>spec</em> with one or more false expectations is a failing spec</li>
+        </ul>
+      </li>
+    </ul>
+    <pre class="prettyprint pre20">
+describe('JavaScript addition operator', function () {
+  <b>it</b>('adds two numbers together', function () {
+    expect(1 + 2).toEqual(3);
+  });
+});</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Expectations and Matchers </h2>
+    <img src="images/jasmine-logo.png" style="width:100px;">
+  </hgroup>
+  <article>
+    <p style="margin-top: -20px;"><b>Expectations</b> are built with the function <code>expect</code> which takes a
+      value, called the
+      <em>actual</em>. It is chained with a
+      <em>Matcher</em> function, which takes the expected value
+    </p>
+
+    <p>
+      Each <b>matcher</b> implements a boolean comparison between the <em>actual</em> value and the <em>expected</em>
+      value. It is
+      responsible for reporting to Jasmine if the expectation is true or false. Jasmine will then pass or fail the spec
+    </p>
+    <pre class="prettyprint">
+it("is less than 10", function () {
+  <b>expect(5)</b>.<b style="color: #006600">toBeLessThan(10)</b>;
+});
+it("is less than 10", function () {
+   expect(15).<b>not</b>.toBeLessThan(10);
+}); </pre>
+    <p>Any <b>matcher</b> can evaluate to a negative assertion by chaining the call to expect with a <b>not</b> before
+      calling the
+      matcher</p>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Matchers</h2>
+    <img src="images/jasmine-logo.png" style="width:100px;">
+  </hgroup>
+  <article>
+    <p style="margin-top: -25px;">Built in <b>Matchers</b></p>
+
+    <p class="smaller" style="margin-top: -15px;">Any <b>matcher</b> can evaluate to a negative assertion by chaining
+      the call to expect with a <b>not</b> before calling the
+      matcher</p>
+    <ul style="color: #000066;font-size: 21px;margin-left: 70px;">
+      <li>toEqual</li>
+      <li>toBe</li>
+      <li>toMatch</li>
+      <li>toBeDefined</li>
+      <li>toBeUndefined</li>
+      <li>toBeNull</li>
+      <li>toBeTruthy</li>
+      <li>toBeFalsy</li>
+      <li>toContain</li>
+      <li>toBeLessThan</li>
+      <li>toBeGreaterThan</li>
+      <li>toThrow</li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Angular and Testing</h2>
+
+    <h3></h3>
+  </hgroup>
+  <article>
+    <h3>Quoting the AngularJs main page:</h3>
+    <br/>
+    <ul>
+      <li>AngularJS was designed from ground up to be testable.</li>
+      <li>It encourages behavior-view separation, comes pre-bundled with mocks, and takes full advantage of dependency
+        injection.
+      </li>
+      <li>It also comes with end-to-end scenario runner which eliminates test flakiness by understanding the inner
+        workings of AngularJS.
+      </li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Mocking and Test Helpers</h2>
+
+    <h3></h3>
+  </hgroup>
+  <article>
+    <p>AngularJS provides its own mocking library called <b>angular-mocks</b></p>
+
+    <p>It requires the angular-mocks.js file to be imported</p>
+
+    <p>It must also be refereed to from the karma.conf.js file</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>angular.mock. <code>inject</code></h2>
+  </hgroup>
+  <article>
+    <p style="margin-top: -30px;">Angular ships with dependency injection built-in, simplifying things when testing</p>
+
+    <p class="smaller" style="margin-top: -10px;color:#000066">The <b>inject</b> function wraps a function into an
+      injectable function. The inject() creates new instance of $injector
+      per test, which is then used for resolving references <br/>
+      NOTE: This function is declared ONLY WHEN running tests with jasmine or mocha
+    </p>
+<pre class="prettyprint pre17">
+angular.module('myApplicationModule', [])
+    .value('mode', 'app')
+    .value('version', 'v1.0.1');
+
+describe('MyApp', function() {
+  <b>// You need to load modules that you want to test,</b>
+  // it loads only the "ng" module by default.
+  beforeEach(<b>module('myApplicationModule')</b>);
+
+  <b>// inject() is used to inject arguments of all given functions</b>
+  it('should provide a version', <b>inject</b>(function(mode, version) {
+    expect(version).toEqual('v1.0.1');
+    expect(mode).toEqual('app');
+  }));
+});
+</pre>
+  </article>
+</slide>
+
+
+<script>
+  $(document).ready(function () {
+
+    $("#ex1").exPresenter({
+      directory: "examples/ex1/",
+      codeClass: "prettyprint pre16",
+      codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:75%",
+      presenterStyle: "float:right;height:200px;width:20%"
+    });
+  })
+</script>
+<slide>
+  <hgroup>
+    <h2>Testing Controllers</h2>
+
+    <h3></h3>
+  </hgroup>
+  <article>
+    <p>
+      There are many ways to test a Controller, one of the best conventions, shown below, involves injecting the <b>$rootScope</b>
+      and <b>$controller</b>:</p>
+
+    <div id="ex1"></div>
+    <div style="margin-top: 20px;">
+      <p class="smaller"><a href="https://docs.angularjs.org/guide/controller">https://docs.angularjs.org/guide/controller</a>
+      </p>
+
+      <p class="smaller"><a href="http://fdietz.github.io/recipes-with-angular-js/controllers/testing-controllers.html">Testing
+        Controllers</a></p>
+    </div>
+    <footer class="source"></footer>
+  </article>
+</slide>
+
+
+<script>
+  $(document).ready(function () {
+    $("#ex2").exPresenter({
+      directory: "examples/ex2/",
+      codeClass: "prettyprint pre14",
+      codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:75%",
+      presenterStyle: "float:right;height:200px;width:20%"
+    });
+  })
+</script>
+<slide>
+  <hgroup>
+    <h2>Testing a Controller with dependencies</h2>
+  </hgroup>
+  <article>
+    <p style="margin-top: -30px;">The seed provides a very simple demo controller with two dependencies</p>
+
+    <p class="smaller" style="color: #000066">The dependencies are very simple in this example and could have been
+      injected as demonstrated on the previous slide. But they could have been much
+      more complex, so lets Mock them out</p>
+
+    <div id="ex2"></div>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Mocking with $httpBackend</h2>
+  </hgroup>
+  <article>
+    <p style="color: #000066"><b>$httpBackend</b> is a fake HTTP backend implementation suitable for unit testing
+      applications that use the $http service.</p>
+
+    <div class="build">
+      <p>
+        During unit testing, we want our unit tests to run quickly and have no external dependencies so we don’t want to
+        send any real requests to a real server. All we really need is to verify whether a certain request has been
+        sent or not, or alternatively just let the application make requests, respond with pre-trained responses and
+        assert that the end result is what we expect it to be.
+      </p>
+
+      <p>
+        <b style="color: #000066">Flushing HTTP requests: </b>
+        The real $httpBackend always responds to requests asynchronously.
+        To simplify testing, the mock $httpBackend has a <b>flush()</b>method, which allows the test to explicitly flush
+        pending
+        requests.<br/>
+        This preserves the async api of the backend, while allowing the test to execute synchronously.
+      </p>
+    </div>
+    <footer class="source"><a href="https://docs.angularjs.org/api/ngMock/service/$httpBackend">https://docs.angularjs.org/api/ngMock/service/$httpBackend</a>
+    </footer>
+
+  </article>
+</slide>
+
+  <script>
+    $(document).ready(function () {
+      $("#ex3").exPresenter({
+        directory: "examples/ex3/",
+        codeClass: "prettyprint pre16",
+        codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:75%",
+        presenterStyle: "float:right;height:200px;width:20%"
+      });
+    })
+  </script>
+
+<slide>
+  <hgroup>
+    <h2>$httpBackend Example</h2>
+    <h4>Example from the seed</h4>
+  </hgroup>
+  <article>
+    <div style="margin-top: -30px; font-size: 0.75em;">
+    <p>This example, taken from the seed, shows how to test the View2Ctrl which performs a REST call to the URL: <em style="font-weight: bold;">api/demouser</em></p>
+    <p style="margin-top: -10px;font-size: 0.7em;">If you want to see an alternative use of the $httpBackend, which will allow you to develop "normally", but with a fake-backend - see the Plunk for this slide</p>
+      </div>
+   <div id="ex3"></div>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2 style="font-size: 43px;">Setting up an Angular Project for testing</h2>
+
+    <h3 style="color:#000088;">Setting up a full stack project for testing is a non-trivial and repetitive task</h3>
+  </hgroup>
+  <article>
+    <div class="row" style="margin-top: -30px;">
+      <div class="col-md-7">
+        <ul>
+          <li>Include server side testing libraries (REST assured Jars)</li>
+          <li>Include Jasmine and refer to it from the Karma configurations file</li>
+          <li>Including Karma and Karma plugins</li>
+          <li>Setting up the karma configuration file</li>
+          <li>Include the Angular-mock file</li>
+          <li>Setting up the Karma configuration file to use Agular-mock</li>
+          <li>Including files for E2E testing</li>
+          <li>Setting up scenario files for E2E testing</li>
+          <li>Laying out our project structure for testing</li>
+          <li>.......</li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <img src="images/boring.jpg" style="width: 100%;margin-top: 50px;">
+      </div>
+    </div>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Seed for Angular projects</h2>
+  </hgroup>
+  <article>
+    <p>We have preparede a seed (heavily inspired by other seeds) which sets up a full project with:</p>
+
+    <div class="row" style="margin-top: -10px;">
+      <div class="col-md-7">
+        <ul>
+          <li>Angular</li>
+          <li>Java Backend</li>
+          <li>JAX RS Support</li>
+          <li>Everything related to testing</li>
+          <li>Getting started code</li>
+          <li>Getting started test examples</li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <img src="images/Happy.jpg">
+      </div>
+    </div>
+    <img src="../images/Demo.png" style="width: 200px;">
+  </article>
+
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>E2E Testing with Protractor</h2>
+
+    <h3>A (very) short Introduction</h3>
+    <img src="images/protractor-logo-large.png" style="width: 300px;margin-top: 10px;">
+  </hgroup>
+  <article>
+    <p>As applications grow in size and complexity, it becomes unrealistic to rely on manual testing to verify the
+      correctness of new features, catch bugs and notice regressions. Unit tests are the first line of defense for
+      catching bugs, but sometimes issues come up with integration between components which can't be captured in a unit
+      test. End to end tests are made to find these problems.</p>
+    <img src="../images/Demo.png" style="width: 200px;">
+    <footer class="source"><a href="https://docs.angularjs.org/guide/e2e-testing">https://docs.angularjs.org/guide/e2e-testing</a></footer>
+  </article>
+</slide>
+
+
+<slide class="nobackground" style="background: #00163B">
+  <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+  <hgroup>
+
+  </hgroup>
+  <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+    <h2>Rest of today; Exercises :-)</h2>
+
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+</slide>
+
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

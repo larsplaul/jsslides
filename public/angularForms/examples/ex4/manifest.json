@@ -1,0 +1,21 @@
+{
+  "name": "FormDemo",
+  "files": [
+    "index.html",
+    "app.js",
+    "style.css"
+  ],
+  "filesOnlyForPlunkr": [
+    "index.html",
+    "app.js",
+    "style.css"
+  ],
+  "usePlunk": "true",
+  "tags": [
+    "Angular",
+    "ng-model"
+  ],
+  "description": "Angular - Forms - ng-model"
+}
+
+

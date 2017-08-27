@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+
+
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <script src="../js/angular/angular.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<!--<body style="opacity: 0" ng-app="SlideApp">-->
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+        <br/>
+
+        <h2 data-config-subtitle style="float:left"></h2>
+        <br/>
+
+        <p data-config-presenter style="float:left"></p>
+      </div>
+      <div style="float:left;margin-left: 2em;"><img src="../../images/AngularLogo.png" style="float:right;width:50%"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Angular and Forms</h2>
+    </hgroup>
+    <article>
+      <p><b>Controls</b> <em>(input, select, textarea)</em> are ways for a user to enter data.</p> <p>A <em>Form</em> is a collection of controls for the purpose of grouping related controls together.</p>
+
+      <p>Form and controls provide validation services, so that the user can be notified of invalid input before submitting a form.</p>
+      <p>This provides a better user experience than server-side validation alone because the user gets instant feedback on how to correct the error,</p>
+      <p>Keep in mind that while client-side validation plays an important role in providing good user experience, it can easily be <em>circumvented</em> and thus can not be trusted.
+        <em>Server-side validation</em> is <b>always necessary</b> for a secure application.</p>
+    </article>
+  </slide>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#ex1").exPresenter({
+        directory: "examples/ex1/",
+        codeClass: "prettyprint pre18",
+        codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:65%;background-color:white;",
+        presenterStyle: "float:right;width:30%",
+        imageStyle: "width:100%;",
+        imageTitle: "Modules"
+      });
+    });
+  </script>
+
+  <slide>
+    <hgroup>
+      <h2>Forms, Inputs and ng-model</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">Note in the example below:</p>
+      <ul>
+        <li>We bind to <em>ctrl.user.username</em> and <em>ctrl.user.password</em></li>
+        <li>We do not declare a user object in the controller. When using <em>ng-model</em> AngularJS automatically
+          creates the objecst necessary for the data bindings (when data has been entered)
+        </li>
+      </ul>
+      <div id="ex1"></div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Form Validation</h2>
+    </hgroup>
+    <article>
+      <p>Angular has built-in support for Client-side validation that supersede basic HTML5 validation</p>
+
+      <p>Angular Validation Handles:</p>
+      <ul>
+        <li>Checking Model changes against binding rules</li>
+        <li>DOM manipulations to provide user feedback</li>
+      </ul>
+
+      <pre class="prettyprint pre22" style="float:left;width:40%">
+
+&lt;form name=&quot;myForm&quot;&gt;&lt;/form&gt;
+        </pre>
+      <p style="float:left; width: 50%;margin-left: 1em;"><em>To get our form validation setup, we need a form with a
+        name attribute to namespace the form scope.</em></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Angular Form States</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">Angular provides both <em>properties</em> on forms that reflect the "validation
+        state" of the form. and matching <em>classes</em> so we can style each state properly</p>
+      <table>
+        <thead>
+        <tr>
+          <th>Property</th>
+          <th>Class</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="success">
+            $valid
+          </td>
+          <td>
+            ng-valid
+          </td>
+          <td>
+            <em class="text-info">Boolean</em> Tells whether an item is currently valid based on the rules you placed.
+          </td>
+        </tr>
+        <tr>
+          <td class="danger">
+            $invalid
+          </td>
+          <td>
+            ng-invalid
+          </td>
+          <td>
+            <em class="text-info">Boolean</em> Tells whether an item is currently invalid based on the rules you
+            placed.
+          </td>
+        </tr>
+        <tr>
+          <td class="active">
+            $pristine
+          </td>
+          <td>
+            ng-pristine
+          </td>
+          <td>
+            <em class="text-info">Boolean</em> True if the form/input <strong>has not</strong> been used yet.
+          </td>
+        </tr>
+        <tr>
+          <td class="warning">
+            $dirty
+          </td>
+          <td>
+            ng-dirty
+          </td>
+          <td>
+            <em class="text-info">Boolean</em> True if the form/input <strong>has</strong> been used.
+          </td>
+        </tr>
+        <tr>
+          <td class="warning">
+            $touched
+          </td>
+          <td>
+            ng-touched
+          </td>
+          <td>
+            <em class="text-info">Boolean</em> True if the input <strong>has</strong> been blurred.
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <h3>Accessing the Angular Form Properties</h3>
+
+      <div style="font-size: 16px;">
+        <p>To access the form: &lt;form name&gt;.&lt;angular property&gt; (var valid = myForm.<b>$valid</b>) </p>
+
+        <p>To access an input: &lt;form name&gt;.&lt;input name&gt;.&lt;angular property&gt; (var fNameValid =
+          myForm.firstName.<b>$valid</b>)</p>
+      </div>
+
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Angular Validation Rules</h2>
+
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;">
+        <p>Available validation parameters for an html-input controls</p>
+        <table>
+          <thead>
+          <tr>
+            <th>Param</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tr>
+            <td>Required</td>
+            <td>String</td>
+            <td>Field is marked invalid until it is filled out</td>
+          </tr>
+          <tr>
+            <td>ng-required</td>
+            <td>boolean</td>
+            <td>Mark an input field as required based on a Boolean condition in the controller.</td>
+          </tr>
+          <tr>
+            <td>ng-minlength</td>
+            <td>number</td>
+            <td>The minimum length of the value in the input field.</td>
+          </tr>
+          <tr>
+            <td>ng-maxlength</td>
+            <td>number</td>
+            <td> The maximum length of the value in the input field.</td>
+          </tr>
+          <tr>
+            <td>ng-pattern</td>
+            <td>string</td>
+            <td>Input field can be checked against the regular expression pattern specified here</td>
+          </tr>
+        </table>
+      </div>
+      <div style="font-size: 0.8em;margin-top: 10px;">
+        <p>Angular has also validation support for the following <em>input types</em></p>
+        <ul style="color: darkblue">
+          <li>type="email"</li>
+          <li>type="date"</li>
+          <li>type="number"</li>
+          <li>type="url"</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#ex2").exPresenter({
+        directory: "examples/ex2/",
+        codeClass: "prettyprint pre18",
+        codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:65%;background-color:white;",
+        presenterStyle: "float:right;width:30%;height:350px;",
+        imageStyle: "width:100%;",
+        imageTitle: "Modules"
+      });
+    });
+  </script>
+  <slide>
+    <hgroup>
+      <h2>Angular Validation Example</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;font-size: 0.75em;">
+        <p>Note in the example below:</p>
+        <ul>
+          <li>The Validation Rules attached to the input controls</li>
+          <li>Errors reported by the HTML-5 controls</li>
+          <li>How the minlength is not reported (not an html-5 property)</li>
+          <li>How binding does not trigger until a field is <em>valid</em></li>
+        </ul>
+      </div>
+      <div id="ex2"></div>
+    </article>
+  </slide>
+
+  <script>
+    $(document).ready(function () {
+      $("#ex3").exPresenter({
+        directory: "examples/ex3/",
+        codeClass: "prettyprint pre16",
+        codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:65%;background-color:white;",
+        presenterStyle: "float:right;width:30%;height:350px;",
+        imageStyle: "width:100%;",
+        imageTitle: "Modules"
+      });
+    });
+  </script>
+  <slide>
+    <hgroup>
+      <h2>Angular - Display Error Messages</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;font-size: 0.7em;">
+        <p style="font-weight:bold">Note in the example below:</p>
+        <ul>
+          <li>The <em>Save</em> button is disabled until all fields are valid, and html-5 error checking is disabled
+            (<em>novalidate</em>)
+          </li>
+          <li>How we show a red <b style="color: red">* </b> on all required fields</li>
+          <li>How we can report specific validation errors (length)</li>
+          <li>How errors anoyingly are reported before the user had a chance to do "his job"</li>
+        </ul>
+      </div>
+      <div id="ex3"></div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Agular Validation - Using CSS Classes</h2>
+    </hgroup>
+    <article>
+      <p style="color: #000066">To allow styling of <em>forms</em> as well as <em>controls</em>, ngModel adds these CSS classes:</p>
+
+      <ul>
+        <li><b>ng-valid:</b> the model is valid</li>
+        <li><b>ng-invalid:</b> the model is invalid</li>
+        <li><b>ng-valid-[key]:</b> for each valid key added by $setValidity</li>
+        <li><b>ng-invalid-[key]:</b> for each invalid key added by $setValidity</li>
+        <li><b>ng-pristine:</b> the control hasn't been interacted with yet</li>
+        <li><b>ng-dirty:</b> the control has been interacted with</li>
+        <li><b>ng-touched:</b> the control has been blurred</li>
+        <li><b>ng-untouched:</b> the control hasn't been blurred</li>
+        <li><b>ng-pending:</b> any $asyncValidators are unfulfilled</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#ex4").exPresenter({
+        directory: "examples/ex4/",
+        codeClass: "prettyprint pre16",
+        codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:65%;background-color:white;",
+        presenterStyle: "margin-top:-35px;float:right;width:30%;height:330px;",
+        imageStyle: "width:100%;",
+        imageTitle: "Modules"
+      });
+    });
+  </script>
+  <slide>
+    <hgroup>
+      <h2>Angular Validation - CSS Classes</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;font-size: 0.75em;">
+        <p>Note in the example below:</p>
+        <ul style="font-size: 0.8em;">
+          <li>How we have styled all invalid inputs with a <em>red</em> background</li>
+          <li>How we have styled all valid inputs with a <em>green</em> background</li>
+          <li>How have provided the <em>name</em> field with a different error color for <em>required</em></li>
+          <li>How error reporting happens on Blur (lost focus) which is much better than on focus</li>
+          <li>Just because it's easy it's <span style="text-decoration: underline">not necessary smart</span>. Different error colours in the same control will usually not make sence</li>
+        </ul>
+      </div>
+      <div id="ex4"></div>
+    </article>
+  </slide>
+
+
+  <slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

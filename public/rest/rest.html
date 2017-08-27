@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node-Intro</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" media="all" href="../theme/css/default.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+    <script src="../angular/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.18/i18n/angular-locale_da.js"></script>
+
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/presenter.js"></script>
+
+    <base target="_blank">
+
+    <!-- This opens all links in a new tab. -->
+    <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+    <!--In order to have more than one slideset in the project-->
+    <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+        <div style="float: left;">
+            <h1 data-config-title style="float:left;"></h1>
+
+            <h2 data-config-subtitle></h2>
+
+            <p data-config-presenter></p>
+        </div>
+        <!--<div style="float:left;margin-left: 2em;"><img src="images/XXX" style="float:left"></div>-->
+    </hgroup>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>REST</h2>
+
+        <h3>A Quick Summary</h3>
+    </hgroup>
+
+    <article>
+        <h3>Principles of a RESTful application</h3>
+        <ul>
+            <li>Uniform interface (use HTTP methods explicitly)</li>
+            <li>Stateless</li>
+            <li> Resource identification through URIs</li>
+            <li>Resources are decoupled from their representation</li>
+            <li>Cacheable</li>
+        </ul>
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>REST with Express</h2>
+
+        <h3>Using the "app" VERB-methods</h3>
+    </hgroup>
+
+    <article>
+        <div class="row build">
+            <div class="col-md-6">
+                <p>Assume we had the following "data model"</p>
+            <pre class="prettyprint pre16">
+var persons = [];
+persons.push({id:1,name:"Lars"});//...
+function findPerson(id){
+  return persons.filter(function(person){
+    return person.id === id;
+  })[0]; </pre>
+            </div>
+            <!-- end of column -->
+            <div class="col-md-6">
+                <p>We could then use the Express VERB methods directly:</p>
+         <pre class="prettyprint pre16" style="float:left;margin-left: 10px;">
+app.<b>all</b>("/person",function(req,res,next){
+  console.log("A request made on /person");
+  next();
+});
+app.<b>get</b>("/person",function(req,res, next){
+  res.end(JSON.stringify(persons));
+});
+app.<b>put</b>("/person",function(req,res, next){});
+app.<b>delete</b>("/person",function(req,res, next){});
+app.<b>post</b>("/person",function(req,res, next){});</pre>
+            </div>
+        </div>
+        <div class="build" style="margin-top: 30px;">
+            <p>Problem: We have used <em>"/person"</em> five different places. This breaks the <em>DRY rule</em> (Don't
+                Repeat Yourself)</p>
+        </div>
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>REST with Express</h2>
+
+        <h3>Grouping Routes with <code>app.route(..)</code></h3>
+    </hgroup>
+    <article>
+        <p style="margin-top: -40px">
+            <code>app,route(..)</code> returns an instance of a single route, which can then be used to handle HTTP
+            verbs with optional middleware.
+        </p>
+        <pre class="prettyprint pre17">
+....
+app.route("/person")
+  .<b>all</b>(function(req,res,next){
+    console.log("A request made on /person");
+    next();
+  })
+  .<b>get</b>(function(req,res, next){
+    res.end(JSON.stringify(persons));
+   })
+  .<b>put</b>(function(req,res, next){})
+  .<b>delete</b>( function(req,res, next){})
+  .<b>post</b>(function(req,res, next){}
+);        </pre>
+        <div class="build" style="margin-top: 15px;">
+            <div>
+                <p class="smaller">This is a (much) better solution than the previous attempt.
+                    For a complex API however it has a problem: </p>
+
+                <p class="smaller">The built in VERB methods does not allow us to alter the path.
+                    What if we wanted to serve a request
+                    for a single person like: <code>person/<b>id</b></em></code> ?
+                </p>
+
+            </div>
+        </div>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Using the Router object</h2>
+        <h3>Modularizing routes with the Router object</h3>
+    </hgroup>
+    <article>
+        <p class="smaller" style="margin-top: -40px;color: #000066">
+            A router is an isolated instance of middleware and routes. Routers can be thought of as "mini" applications, capable only of performing middleware and routing functions. Every express application has a built-in app router
+        </p>
+        <div class="row" >
+            <div class="col-md-7">
+              <pre class="prettyprint pre16" data-file="person.js">
+var express = require('express');
+var router = express.Router();
+
+router.all("/",function(req,res,next){})
+
+router.get("/",function(req,res, next){
+  res.end(JSON.stringify(persons));
+});
+
+router.get("/:id",function(req,res, next){
+  res.end(JSON.stringify(findPerson(req.params.id)));
+});
+router.put("/",function(req,res, next){});
+router.delete("/",function(req,res, next){});
+router.post("/",function(req,res, next){});
+
+<b>module.exports = router;</b>
+              </pre>
+            </div>
+            <div class="col-md-5">
+               <pre class="prettyprint pre16" data-file="app.js">
+
+var person =
+    require('./routes/person');
+...
+
+app.use('<b>/person</b>', person);
+               </pre>
+                <p style="margin-top: 30px;">Observe how we pass in the path in the app.use(..) method, and can add to the path in the Routers VERB-methods</p>
+            </div>
+        </div>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>REST demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+        <img src="../images/Demo.png"/>
+    </article>
+</slide>
+
+<slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+
+    </hgroup>
+    <article class="auto-fadein">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+        <!-- populated from slide_config.json -->
+    </p>
+</slide>
+
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

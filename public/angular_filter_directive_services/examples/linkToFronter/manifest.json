@@ -1,0 +1,13 @@
+{
+    "name": "Example Directives",
+    "files": [
+      "index.html"
+    ],
+    "filesOnlyForPlunkr": [
+        "index.html",
+        "app.js"
+    ],
+    "usePlunk" : "true",
+    "tags": ["angularjs","example"],
+    "description" : "Angular - Example - Filters"
+}

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+        <br/>
+
+        <h2 data-config-subtitle style="float:left"></h2>
+        <br/>
+
+        <p data-config-presenter style="float:left"></p>
+      </div>
+      <div style="float:left;margin-left: 2em;width:400px;"><img src="../jquery/img/jquery.png" style="width:50%"></div>
+    </hgroup>
+  </slide>
+
+  <!--<slide>-->
+  <!--<hgroup>-->
+  <!--<h2>MEAN</h2>-->
+  <!--</hgroup>-->
+  <!--<article>-->
+
+  <!--<img src="../mean/images/meanArchitecture.png" style="width: 70%;margin-left: 10%;margin-top: -20px;">-->
+  <!--</article>-->
+  <!--</slide>-->
+
+  <slide>
+    <hgroup>
+      <h2>What is JQuery</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: 3em;">
+        Query is a fast, small, and feature-rich JavaScript library.
+        </br>
+        It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler
+        with an easy-to-use API that works across a multitude of browsers.
+        </br>
+        With a combination of versatility and extensibility, jQuery has changed the way that millions of people write
+        JavaScript.
+      </p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Include JQuery on our pages</h2>
+    </hgroup>
+    <article>
+      <p style="font-size: larger;color: darkblue">Two strategies:</p>
+      <p><b>1) </b>Download JQuery from :http://jquery.com/download/ and include the file in JQuery pages like:</p>
+      <pre class="prettyprint pre18" style="padding-left: 1em;">
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.8.1.js&quot;&gt;&lt;/script&gt;
+        </pre>
+      </br>
+      <p><b>2) </b>Include it from a CDN (Content Delivery Network</p>
+      <pre class="prettyprint pre18">
+&lt;script src=&quot;https://code.jquery.com/jquery-3.1.0.js&quot;&gt;&lt;/script&gt;
+      </pre>
+      </br>
+      <p>Pros & Cons ?</p>
+    </article>
+  </slide>
+
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery1").exPresenter({
+          directory: "examples/demo1/",
+          codeClass: "prettyprint pre16",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:70%",
+          presenterStyle: "float:right;height:200px;width:20%",
+          commentStyle: "position:absolute;left:60px; top:500px;width:1000px;font-size:22px;",
+          imageStyle: "width:20%;"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>JQuery - The ready() function</h2>
+    </hgroup>
+    <article>
+      <div id="jquery1"></div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>The jQuery Function</h2>
+    </hgroup>
+    <article>
+      <p>
+        The jQuery library defines a single global function named <em style="font-weight: bolder;color:darkblue">jQuery()</em>.
+      </p>
+      <p>This function also defines the global symbol <em style="font-weight: bolder;color:darkblue">$</em> as a
+        shortcut for it. These are the only two symbols jQuery
+        defines in the global namespace.
+      </p>
+      <p style="color:darkblue">Examples</p>
+      <pre class="prettyprint pre20">
+$("div");   // selects all HTML div elements
+$("#myId");// selects one HTML element with ID "myId"
+$(".myClass"); // selects HTML elements with class "myClass"
+$("ul, li, a.navigation");
+// selects anchors with class "navigation" that are nested in list items
+      </pre>
+      <div>
+        The value returned by these examples represents a set of zero or more DOM elements and is known as a jQuery
+        objects
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The jQuery Function - 2</h2>
+    </hgroup>
+    <article>
+      <p>
+        The jQuery function ($) is heavily overloaded, and there are several ways to invoke it:
+      </p>
+      <img src="img/jquerymethod.JPG"/>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>The ready event</h2>
+    </hgroup>
+    <article>
+      <div>
+        In JavaScript we used the onLoad event on the window to ensure that the DOM was built.
+        This strategy however, is often to rigid because the JavaScript code isn't run until all images are finished
+        downloading (this includes banner ads).
+      </div>
+      <br/>
+      <pre class="prettyprint pre20">
+$(document).ready(function(){
+   $("button").click(function(event){
+     alert("I was clicked");
+   });
+});
+//The modern way of calling .ready()
+$(function() {
+  // Handler for .ready() called.
+});
+      </pre>
+      <div>
+        jQuery’s ready event solves both of these problems, in that it checks the document and waits until it's ready to
+        be manipulated.
+        &nbsp;&nbsp;<a href="https://api.jquery.com/ready/">.ready()</a>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery2").exPresenter({
+          directory: "examples/demo2/",
+          codeClass: "prettyprint pre16",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:70%",
+          presenterStyle: "float:right;height:200px;width:20%",
+          imageStyle: "width:100%;"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>Get >> Act and chaining</h2>
+    </hgroup>
+    <article>
+      <p>JQuery’s programming philosophy is: Get >> Act </p>
+      <div id="jquery2"></div>
+    </article>
+  </slide>
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery3").exPresenter({
+          directory: "examples/demo3/",
+          codeClass: "prettyprint pre16",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:70%",
+          presenterStyle: "float:right;height:200px;width:20%",
+          imageStyle: "width:100%;"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>Chaining with events</h2>
+    </hgroup>
+    <article>
+      <p>Chaining also works for events</p>
+      <div id="jquery3"></div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Event Handling</h2>
+    </hgroup>
+    <article>
+      <p>Hook on to the click event</p>
+      <pre class="prettyprint pre18">
+$("p").on("click", function(){
+  alert( $(this).text() );
+}); </pre>
+      <br/>
+      <p>Attach an event that runs only once</p>
+      <pre class="prettyprint pre18">
+$("p").one("click", function(){
+  alert( $(this).text() );
+});</pre>
+      <br/>
+      <p>Remove all event handlers from all paragraphs</p>
+      <pre class="prettyprint pre18">
+$("p").off()
+ </pre>
+      <br/>
+      <a href="https://learn.jquery.com/events/handling-events/">Handlling events</a>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The JQuery (CSS) Syntax</h2>
+    </hgroup>
+    <article>
+      <img src="img/jqueryfunction.PNG">
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>The jQuery Selectors</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;">
+        <p>There are many "cheat sheets" out there, this is just one of them: <a
+                href="http://makeawebsitehub.com/jquery-mega-cheat-sheet/">Mega Cheat sheet</a></p>
+        <iframe src="http://makeawebsitehub.com/jquery-mega-cheat-sheet/"
+                style="height:500px;width:100%;float:left;background-color:#e6e6e6"></iframe>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery4").exPresenter({
+          directory: "examples/demo4/",
+          codeClass: "prettyprint pre18",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:68%",
+          presenterStyle: "float:right;height:200px;width:30%",
+          imageStyle: "width:100%;"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>JQuery get/set-methods</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;">
+        <img src="img/getset.PNG" style="width: 65%;">
+        <div id="jquery4"></div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery5").exPresenter({
+          directory: "examples/demo5/",
+          codeClass: "prettyprint pre16",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:60%",
+          presenterStyle: "float:right;height:400px;width:38%"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>Handling CSS and Classes</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;">
+        <div id="jquery5"></div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery6").exPresenter({
+          directory: "examples/demo6/",
+          codeClass: "prettyprint pre16",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:68%",
+          presenterStyle: "float:right;height:400px;width:30%"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>Add and Delete DOM-Nodes</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;">
+        JQuery suplies a great number of functions to add/remove items with <a href="http://api.jquery.com/append/">append()</a>,
+        <a href="http://api.jquery.com/prepend/">prepend()</a>,
+        <a href="http://api.jquery.com/after()/">after()</a>, <a href="http://api.jquery.com/before/">before()</a>,<a
+              href="http://api.jquery.com/remove/">remove()</a> and
+        <a href="http://api.jquery.com/empty/">empty()</a> as examples
+      </div>
+      <div style="margin-top: 1em;">
+        <div id="jquery6"></div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <script>
+      $(document).ready(function () {
+        $("#jquery7").exPresenter({
+          directory: "examples/demo7/",
+          codeClass: "prettyprint pre16",
+          codeStyle: "float:left;margin-right:5px;margin-bottom:5px;width:68%",
+          presenterStyle: "float:right;height:200px;width:30%"
+        });
+      });
+    </script>
+    <hgroup>
+      <h2>JQuery and this</h2>
+    </hgroup>
+    <article>
+      <div style="margin-top: -30px;">
+        In the context of jQuery <em>this'</em> is a DOM element when you are inside of a callback function being called for example by the click, each, bind, etc. methods.
+        <br/>
+        To access basic javascript methods we can just use <em style="font-weight: bold">this</em>, but to use jQuery functions you must use <em style="font-weight: bold">$(this)</em>
+      </div>
+      <div style="margin-top: 1em;">
+        <div id="jquery7"></div>
+      </div>
+      <br/><br/>
+      &nbsp;&nbsp;<a href="https://remysharp.com/2007/04/12/jquerys-this-demystified">Demystifying this</a>
+    </article>
+  </slide>
+
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<!--<script>-->
+<!--var _gaq = _gaq || [];-->
+<!--_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);-->
+<!--_gaq.push(['_trackPageview']);-->
+
+<!--(function () {-->
+<!--var ga = document.createElement('script');-->
+<!--ga.type = 'text/javascript';-->
+<!--ga.async = true;-->
+<!--ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';-->
+<!--var s = document.getElementsByTagName('script')[0];-->
+<!--s.parentNode.insertBefore(ga, s);-->
+<!--})();-->
+<!--</script>-->
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

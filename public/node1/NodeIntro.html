@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node-Intro</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" media="all" href="../theme/css/default.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+    <script src="../angular/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.18/i18n/angular-locale_da.js"></script>
+
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/presenter.js"></script>
+
+    <base target="_blank">
+
+    <!-- This opens all links in a new tab. -->
+    <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+    <!--In order to have more than one slideset in the project-->
+    <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+        <div style="float: left;">
+            <h1 data-config-title style="float:left;"></h1>
+
+            <h2 data-config-subtitle></h2>
+
+            <p data-config-presenter></p>
+        </div>
+        <div style="float:left;margin-left: 2em;"><img src="images/node_logo.png" style="float:left"></div>
+    </hgroup>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>What is NodeJS</h2>
+    </hgroup>
+
+    <article>
+        <div>
+            Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network
+            applications.<br/>
+            It uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for
+            data-intensive real-time applications that run across distributed devices
+        </div>
+        <h3>Keywords:</h3>
+        <ul>
+            <li>Based on Googles V8 Engine</li>
+            <li>Event Driven</li>
+            <li>Highly targetet against async programming</li>
+            <li>Non-Blocking I/O</li>
+            <li>Easily Scalable</li>
+        </ul>
+
+    </article>
+
+</slide>
+<slide>
+    <hgroup>
+        <h2>What is NodeJS-2</h2>
+    </hgroup>
+
+    <article>
+        <div>
+            <h3>You can think of Node as another "kind of Java" (agreed, there are many differences)</h3>
+            <ul class="build">
+                <li>Runs on a Virtual Machine (Googles V8 Engine)</li>
+                <li>Runs on multiple platforms (Windows, Mac, Linux etc.)</li>
+                <li>You must include packages before you can use them
+                    <ul>
+                        <li>import in Java (import java.util.List)</li>
+                        <li>require in Node (require('net'))</li>
+                    </ul>
+                </li>
+                <li>You must obtain packages not included in the base installation before you can use them
+                    <ul>
+                        <li>Java: Get the jar's (gson.jar, ojdbc7.jar) somehow. Typically using tools like Maven or Cradle </li>
+                        <li>Node: Use Node's Package Manager - npm</li>
+                    </ul>
+                </li>
+            </ul>
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Why Nodejs</h2>
+    </hgroup>
+
+    <article>
+        <ul style="margin-top: 2em;">
+            <li>Because of it's non blocking API (think CA-1)</li>
+            <li>Builds high-performance servers</li>
+            <li>Node, combined with a browser, a document DB (ex. MongoDB) and JSON offers a <em>Unified JavaScript
+                Development Stack</em>
+                <ul style="color: #2a6496">
+                    <li>JavaScript on the Client (WEB, Mobile or desktop)</li>
+                    <li>JavaScript on the Server</li>
+                    <li>JavaScript on the DataBase</li>
+                </ul>
+            </li>
+            <li>Perfect for Single Page Apps</li>
+        </ul>
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Problems when selecting Nodejs</h2>
+    </hgroup>
+
+    <article>
+        <ul style="margin-top: 3em;">
+            <li>A technology under constant development (which version should I chose)</li>
+            <li>New packages pops up all the time</li>
+            <li>Existing packages changes all the time (versioning is very important)</li>
+            <li>Unhandled errors will shutdown the server</li>
+        </ul>
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Does anyone use it for real?</h2>
+    </hgroup>
+
+    <!--<article class="flexbox vcenter">-->
+    <article>
+        <p>
+        <a href="https://brainhub.eu/blog/2016/05/30/9-famous-apps-using-node-js/"
+           target="_this">9 famous apps built with node</a></p>
+        <p><a href="https://it.jobindex.dk/jobsoegning?q=node&supid=1">it.jobindex.dk</a></p>
+        <p>Some <a href="https://www.linux.com/news/event/Nodejs/2016/state-union-npm"> statistics </a>about npm, the package manager for Node.js.</p>
+        <ul>
+        <li><p>At over 400,000 packages, the npm registry contains more than double the next most populated package registry (which is the Apache Maven repository).
+                In fact, it is currently the largest package registry in the world."</li>
+            <li>In the preceding four weeks, users installed 18 billion packages.</li>
+            <li>This translates into 6 billion downloads, since 66 percent of the installs are being served from the cache.</li>
+            <li>ping.npmjs.com "shows that the registry's services offer a 99.999 uptime."</li>
+            <li>Every week roughly 160 people publish their first package in the registry</li>
+        </ul>
+
+    </article>
+
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Applications for which Nodejs is suited </h2>
+    </hgroup>
+
+    <article class="flexbox vcenter">
+        <ul>
+            <li>Applications involving a lot of IO</li>
+            <li>Real Time chat Server</li>
+            <li>Web servers</li>
+            <li>REST servers</li>
+            <li>Streaming servers</li>
+            <li>Games</li>
+        </ul>
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Applications for which Nodejs is <br/>NOT suited </h2>
+    </hgroup>
+
+    <article class="flexbox vcenter">
+        <ul>
+            <li>Heavy CPU intensive applications</li>
+        </ul>
+
+    </article>
+
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>Event Driven, and Non-blocking?</h2>
+
+        <h3>Node's Event Loop</h3>
+    </hgroup>
+
+    <article style="margin-top: 0px;" class="smaller">
+        <div>Think back to your third semester chat-CA, to refresh your understanding of the problems with a blocking API.</div>
+        <ul>
+            <li>When you read from a file, the calling thread blocks</li>
+            <li>When you read from a network stream, the calling thread blocks</li>
+            <li>Basically, when you do any IO, the calling thread block until the IO operation is done</li>
+            <li>Threads were necessary to solve these blocking problems, with all the problems that comes with threads
+            </li>
+        </ul>
+        <div>
+            <div style="float: left;width:40%;padding-top: 1em;"><p>Node is using non-threaded, event driven model to
+                create a non-blocking API as visualized in this figure</p>
+                <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">WATCH THIS VIDEO</a>
+            </div>
+            <div style="float: left;"></div>
+            <img src="images/eventloop.png" style="width: 55%;"></div>
+        </div>
+
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Blocking versus non-Blocking?</h2>
+    </hgroup>
+
+    <article>
+
+        <div>
+            <div style="float: left; width: 48%">
+                <div><img src="images/threaded_model.jpg" style="width: 100%; height:42%"></div>
+                <div>With a blocking API, code must wait for Blocking operations to finish, unless all blocking
+                    operations are executed in a separate thread
+                </div>
+            </div>
+            <div style="float: left;width:3%">&nbsp;</div>
+            <div style="float: left;width:48%">
+                <div><img src="images/node_way.jpg" style="width: 100%; height:42%"></div>
+                <div>With a non-blocking API there are "no" blocking problems</div>
+            </div>
+        </div>
+        <footer class="source">source: http://charwangles.com/2014/08/15/what-is-node-js/</footer>
+
+
+    </article>
+
+</slide>
+<slide>
+    <hgroup>
+        <h2>Multi Threaded Sever versus Node</h2>
+    </hgroup>
+
+    <article>
+
+        <div style="margin-top:35px;" class="build">
+            <div style="float: left; width: 48%;margin-right: 3%">
+                <div><img src="images/threaded_server.png" style="width: 100%"></div>
+                <div>
+                </div>
+            </div>
+            <div style="float: left;width:48%">
+                <div><img src="images/no-threading_node.png" style="width: 100%;"></div>
+                <div></div>
+            </div>
+          </div>
+        <footer class="source">source:<a
+                href="http://strongloop.com/strongblog/mobile-app-development-with-full-stack-javascript-part-1-of-4-loopback"/>...Full-Stack
+            Javascript</a></footer>
+
+    </article>
+
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Multi Threaded Sever versus Node</h2>
+    </hgroup>
+
+    <article>
+
+          <div style="clear: both;margin-left: auto; margin-right: auto;">
+                <div><img src="images/performance.png" style="width: 100%""></div>
+
+            </div>
+
+        <footer class="source">source:<a
+                href="http://strongloop.com/strongblog/mobile-app-development-with-full-stack-javascript-part-1-of-4-loopback"/>...Full-Stack
+            Javascript</a></footer>
+
+    </article>
+
+</slide>
+
+
+<slide>
+    <hgroup>
+        <h2>What about Multi Core CPU's?</h2>
+    </hgroup>
+    <article>
+
+        <div style="float: left;width:20%"><img src="images/icon_multi_core_cpu.png"/></div>
+        <div style="float: left;width:78%">
+            <div style="float: left;width:70%">
+                Even though Node uses a Single Threaded strategy it is easy to scale it to multi-core machines.
+                For CPU intensive task Node.js can fire up child processes, and for scaling up webservices the trick is
+                to start multiple node instances<br/><br/>
+                Node has built in support for this via the Clustering module and Express run multiple virtual hosts
+                (i.e. run multiple domains under one IP) out of the box.
+            </div>
+            <div style="float:left;width:25%">
+                <div style="float:left;"><img src="images/multiple_node_processes.PNG"></div>
+            </div>
+        </div>
+
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+        <h2>Scaling Node Servers</h2>
+
+        <h3>Scaling node on a per processor basis and across servers</h3>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: -50px;">
+        <img src="images/NodeJS-Architecture2.png">
+        <footer class="source">
+            source:href="http://www.appdynamics.com/blog/wp-content/uploads/2013/09/NodeJS-Architecture2.png"
+        </footer>
+    </article>
+</slide>
+
+
+<slide class="nobackground" style="background: #00163B">
+    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup>
+        <h2>End of part-1</h2>
+    </hgroup>
+    <article class="auto-fadein">
+
+
+    </article>
+    <p class="auto-fadein" data-config-contact>
+        <!-- populated from slide_config.json -->
+    </p>
+</slide>
+
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
