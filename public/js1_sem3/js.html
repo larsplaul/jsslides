@@ -62,7 +62,9 @@
       <p>Today:</p>
       <div>
         <ul>
-          <li>Short summary from 2. semester, what is JavaScript</li>
+          <li>Short summary from 2. semester, what is JavaScript (<code>var</code> and forgetting <code>var</code>,
+            == and ===, lack of type check, <code>null</code> and <code>undefined</code> etc.)
+          </li>
           <li>Functions and Callbacks and asynchronous Callbacks</li>
           <li>Variable/function-Hoisting</li>
           <li>The JavaScript Array methods</li>
@@ -94,14 +96,15 @@
               We will however only focus on <em>browsers</em> this semester
             </div>
             <div class="col-md-5">
-            <img style="width: 60%;" src="images/jseverywhere.PNG">
-              </div>
+              <img style="width: 60%;" src="images/jseverywhere.PNG">
+            </div>
           </div>
         </li>
         <li>JavaScript is a language which (today) evolves very quickly
           <a href="https://www.w3schools.com/js/js_versions.asp">JS Versions</a></li>
         <li>In this module we will only focus on ES5, but in module-3 we will also introduce ES6+7 features
-          and "tricks" to use them in a way so "all" browsers are supported</li>
+          and "tricks" to use them in a way so "all" browsers are supported
+        </li>
       </ul>
     </article>
   </slide>
@@ -139,6 +142,71 @@
       </div>
     </article>
 
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>JavaScript (some of) the strange things </h2>
+    </hgroup>
+    <article>
+      <div><b>var and forgetting var</b>
+        <pre class="prettyprint pre18">
+var number = 4; //OK
+// but what happens if we forget var ?
+function forgotVar() { name = "Donald Duck"}</pre>
+        <div style="margin-top: 10px;">
+          <b>JavaScript has types, but is loosely typed. Type Coercion</b>
+          <pre class="prettyprint pre18">
+var a = 123.45;
+a = a * 10;
+a = a + "Hello";
+"37" - 7
+"37" + 7</pre>
+        </div>
+        <div style="margin-top: 10px;">
+          <b>Type coercion also occurs when doing comparisons.
+            We can, however, forbid type coercion by using the === n</b>
+          <pre class="prettyprint pre18">
+1 == true;  // = true  
+1 === true; // = false    
+7 == "7";   // = true  
+7 === "7";  // = false; 
+</pre>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2><code>null</code> and <code>undefined</code></h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">Uninitialized properties in JavaScript are <b>NOT set to null as the default value</b>.
+        A property, when it has no definition, is <code>undefined</code>
+        Null values must be set explicitly
+      </p>
+      <pre class="prettyprint pre18">
+var x;
+x == null       //true  (Because of type cohesion)
+x == undefined  //true
+x === null      //false (was never set to a value)
+x === undefined //true
+
+x = null;
+x == null       //true
+x == undefined  //true (Because of type cohesion)
+x === null      //true
+x === undefined //false </pre>
+
+      <p style="margin-top: 10px;">Use the <code>typeof</code> operator to check whether a variable is undefined</p>
+      <pre class="prettyprint pre18">
+var myVar;  //Declared, but undefined
+if (typeof myVar === 'undefined'){
+  console.log("myVar is undefined");
+} </pre>
+
+    </article>
   </slide>
 
   <slide>
