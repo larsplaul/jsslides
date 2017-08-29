@@ -90,7 +90,7 @@
       <ul>
         <li>Typescript: transpiles TypeScript &rightarrow; ES 5</li>
         <li>CoffeeScript: transpiles CoffeeScript &rightarrow; ES 5</li>
-        <li>( BabelJS: transpiles es2015 &rightarrow; ES 5 )</li>
+        <li>BabelJS: transpiles es2015 &rightarrow; ES 5 </li>
       </ul>
       <p><em style="font-size: 0.8em;color: #2a6496">This has also lead to the prediction that JavaScript will end up as
         (or is) the <b>Virtual Machine Language of the WEB</b>, used by other, more complete languages, to transpile into</em></p>
@@ -114,7 +114,7 @@
             </p>
             <p>Can be used in "all" browsers using a polyfil or a transpiler</p>
             <p>Can be used with NodeJS (almost) out of the box with LTS v6.x, otherwise via a transpiler (Babel)</p>
-            <p>Available out of the box with newer versions of ReactJS</p>
+            <p>Available out of the box with newer versions of ReactJS (Using Babel)</p>
           </div>
         </div>
         <div class="col-md-6 build">
@@ -142,19 +142,9 @@
         <div class="col-md-8">
           <p>This link will be the main resource for <a href="http://es6-features.org/">es2015 features</a>
             . Use it as a reference for most of the exercises</p>
-          <p>Next week we will dig deeper into topics like promises and Generators and how to use these features to
-            simplify <em>asynchronous</em> programming</p>
-          <p style="color:#285e8e;font-weight: bold;">Setting up WEbStorm for es2015 Development<br/></p>
-          <p>Use this link for information
-            <a href="https://blog.jetbrains.com/webstorm/2015/05/ecmascript-6-in-webstorm-transpiling/">Transpiling in
-              Webstorm</a><br/>
-          <ul style="font-size: 0.8em;">
-            <li>Node version LTS v6.x &rightarrow; You (most likely) only need the step "set ECMAScript 6 as the
-              JavaScript version"
-            </li>
-            <li>Node version LTS v4.x &rightarrow; You need the step above + the step "Setting up Babel File Watcher"
-            </li>
-          </ul>
+          <p>Using Es6 with <a href="https://code.visualstudio.com/docs/languages/typescript">TypeScript from within vs-code </a> (we also get types, generics, ES7 and more)</p>
+          <p>
+            Using ES6++ with Babel and Webpack in browsers (see <a href="https://docs.google.com/document/d/1PIMMeYPqN8Qzo4qsgjjuNAC0_15RIEVjD0DbBhcaP-0/edit">exercises for today </a> )
           </p>
 
         </div>
@@ -165,195 +155,7 @@
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>es2015 - Getting started</h2>
-    </hgroup>
-    <article>
-      <div class="row" style="margin-top: 3em;">
-        <div class="col-md-6">
-          <img src="../images/Demo.png">
-        </div>
-        <div class="col-md-6" style="margin-top: 2em;">
-          <img style="width: 300px;" src="images/es2015.jpg"
-        </div>
-      </div>
-    </article>
-  </slide>
 
-  <slide>
-    <hgroup>
-      <h2>ECMAScript2015 - Selected Topics</h2>
-      <h2 style="font-size: 1em;">Iteration Protocols</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top: -25px;">A couple of additions to ECMAScript 2015 (ES6) aren't new built-ins or syntax, but
-        protocols. <br/>
-        These protocols can be implemented by any object respecting some conventions.</p>
-      <p>There are two protocols:
-        The <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols#iterable">iterable
-          protocol</a>
-        and the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols#iterator">iterator
-          protocol</a></p>
-      <p style="color:#285e8e;font-weight: bold;">The Iterable Protocol</p>
-      <p style="font-size: 0.8em;">The iterable protocol allows JavaScript objects to define or customize their
-        iteration behavior, such as what values are looped over in a for..of construct. Some built-in types are built-in
-        iterables with a default iteration behavior, such as Array or Map,
-        while other types (such as Object) are not.<br/>
-      </p>
-      <p style="color:#285e8e;font-weight: bold;">The Iterator Protocol</p>
-      <p style="font-size: 0.8em;">The iterator protocol defines a standard way to produce a sequence of values (either
-        finite or infinite).
-      </p>
-      <p>See here for details <a
-              href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols">Iteration
-        protocols</a></p>
-
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Iteration Protocols - Simple Examples</h2>
-    </hgroup>
-    <article>
-      <div class="row">
-        <div class="col-md-6">
-          <p>Example implementing the <em>iterator</em> protocol</p>
-          <pre class="prettyprint pre14">
-function makeIterator(array) {
-  var nextIndex = 0;
-
-  return {
-    next: function () {
-      return nextIndex < array.length ?
-      {value: array[nextIndex++], done: false} :
-      {done: true};
-    }
-  }
-}
-//Here we can do:
-let it = makeIterator(['yo', 'ya']);
-console.log(it.next().value); // 'yo'
-console.log(it.next().value); // 'ya'
-console.log(it.next().done);  // true
-        </pre>
-        </div>
-
-        <div class="col-md-6">
-          <p>Example implementing the <em>iterable</em> (and thereby also the iterator) protocol</p>
-          <pre class="prettyprint pre14">
-function makeIterator2(array) {
-  var itt= {};
-  itt[Symbol.iterator] = function() {
-    var nextIndex = 0;
-    return {
-      next: function () {
-        return nextIndex < array.length ?
-        {value: array[nextIndex++], done: false} :
-        {done: true};
-      }
-    }
-  }
-  return itt;
-}
-//Here we can iterate using the for-of syntax:
-var it2 = makeIterator2(['yo', 'ya']);
-for(let i of it2){
-  console.log(i);
-}
-        </pre>
-        </div>
-      </div>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Generators</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top: -20px;">Generators provide a powerful alternative to custom iterators: they allow us to define an iterative algorithm
-        by writing a single function which can maintain its own state.</p>
-      <p>A generator is a special type of function that works as a factory for iterators.
-        A function becomes a generator if it contains one or more <b>yield</b> expressions and if it uses the <b>function*</b>
-        syntax.</p>
-
-      <div class="row">
-        <div class="col-md-5">
-          <p style="color:#285e8e;font-weight:bold;font-size: 0.8em;">Simple Generator Function</p>
-          <pre class="prettyprint pre20">
-
-function<b>*</b> gen() {
-  <b>yield</b> "Hello";
-  <b>yield</b> "es2015";
-  <b>yield</b> "Generators";
-}
-          </pre>
-        </div>
-        <div class="col-md-7">
-          <p style="color:#285e8e;font-weight: bold;font-size: 0.8em;">
-            The generator function returns a Generator object which conforms to both the <em>iterable</em> and the <em>iterator</em> protocol.
-          </p>
-<pre class="prettyprint pre20">
-let g = gen();
-//Using the iterator protocol
-console.log(g.next().value); // Hello
-console.log(g.next().value); // ES2015
-console.log(g.next().value); // Generators
-
-//using the iterable protocol
-for(let i of gen()) {
-  console.log(i);
-}
-</pre>
-
-        </div>
-      </div>
-
-
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Generators another (infite) example </h2>
-    </hgroup>
-    <article>
-      <pre class="prettyprint">
-function* idMaker(){
-  var index = 0;
-  while(true)
-    yield index++;
-}
-
-var gen = idMaker();
-
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
-
-for(let i of gen){
-  console.log(i);
-  if(i === 5) //Will continue "forever" without this
-    break;
-}
-      </pre>
-    </article>
-  </slide>
-
-  <slide class=" nobackground" style="background: #00163B">
-    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
-    <hgroup>
-
-    </hgroup>
-    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
-      <h2>Rest of today; Exercises :-)</h2>
-
-    </article>
-    <p class="auto-fadein" data-config-contact>
-      <!-- populated from slide_config.json -->
-    </p>
-  </slide>
 
 
   <slide class="backdrop"></slide>
