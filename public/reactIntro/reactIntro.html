@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title></h1>
+        <h2 data-config-subtitle></h2>
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;margin-left: 5em;"><img src="images/React-JS.png" style="float:left;width: 200px;">
+      </div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>About Period-3</h2>
+    </hgroup>
+    <article>
+      <p>Period-3 is (almost) all about JavaScript</p>
+      <ul>
+        <li>We will use <b>React</b> to create Single Page Applications, using a REST backend</li>
+        <li>We will use <b>React Native</b> to create Native (Android/IOS) Apps, using a (the same) REST backend</li>
+      </ul>
+      <p>This Week</p>
+      <ul>
+        <li><b>DAY-1:</b> SPA's, Intro to React/React Native, ES6, React Build Environment</li>
+        <li><b>DAY-2:</b> JSX, Components and Props, Events</li>
+        <li><b>DAY-3:</b> State and Life Cycle methods, Lifting state up</li>
+        <li><b>DAY-4:</b> React With a Backend</li>
+        <li><b>DAY-5:</b> Take a wild guess ;-)</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Single Page Applications</h2>
+    </hgroup>
+    <article>
+      <p>Before we start focusing on React, you need to understand the concept Single Page Application (SPA)</p>
+      <p>A SPA is an application that runs inside a browser and <em>does not require page reloading</em> during use.
+        Think of a SPA as a traditional Desktop Client loaded from a web server.
+      </p>
+      <p>
+        A SPA is <em>not a boring application</em> with only one page.
+        It loads its static code as "one page" and dynamically update that page,
+        typically via a REST backend, when the user interacts with the page
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Single Page Applications Continued</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;"> Traditional Web apps, versus Single Page Application </p>
+      <div class="row build">
+        <div class="col-md-6">
+          <img style="width: 95%" src="images/ServerSideLifeCycle.png"/>
+          <p>In a traditional Web app, every time the app calls the server, the server renders a new HTML page.
+            This triggers a page refresh in the browser.
+            This is what you did on 2. semester using Java JSP.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img style="width: 95%" src="images/SPALifeCycle.png"/>
+          <p>In an SPA, after the first page loads, all interaction with the server happens through AJAX calls.
+            These AJAX calls return data—not markup—usually in JSON format.
+            The app uses the JSON data to update the page dynamically, without reloading the page</p>
+        </div>
+      </div>
+      <footer class="source"><a href="https://msdn.microsoft.com/en-us/magazine/dn463786.aspx">ref</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Single Page Applications Pros & Cons</h2>
+      <h3>The <b>Pros</b></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>SPA's is (sometimes) faster, since most resources (HTML+CSS+JS) are only loaded once throughout the lifespan
+          of application.
+          Only data is transmitted back and forth.
+        </li>
+        <li>Applications are more fluid and responsive, without the flickering effect of reloading and re-rendering the
+          page
+        </li>
+        <li>Another advantage comes from the fact, that they often use REST back-ends.
+          With REST we can reuse the same backend for Web, Mobile, Desktop, IOT etc.
+        </li>
+        <li>Rendering is done by clients. Saves the Server from rendering "millions" of pages.</li>
+        <li>SPA's can cache data locally. An application sends only one request, store all data,
+          then it can use this data and <em>works even offline</em></li>
+        <li>Easy to separate work among backend and frontend developers (REST)</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Single Page Applications Pros & Cons</h2>
+      <h3>The <b>CONS</b></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>It is more complex to make SEO optimization of a Single-Page Application,
+          since content is loaded asynchronously.
+        </li>
+        <li>Initial download can be slow, because:
+          <ul>
+            <li>Client frameworks (React etc.) are required to be loaded to the client</li>
+            <li>All static Code must be loaded upfront
+              (for large applications, static code can be divided up into smaller chunks,
+              which are only loaded when required, making it multipage, single page app ;-)
+            </li>
+          </ul>
+        </li>
+        <li>
+          It requires JavaScript to be present and enabled. If a user disables JavaScript, it won’t be possible to
+          present
+          the application in a correct way.
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SPA Frameworks</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">It should not come as a big surprise that there are many choices out there.</p>
+      <p>If you are a programmer, you can chose between: <em>Java, C#, C++ and "millions" of other languages</em></p>
+      <p>If you are a backend developer you can chose between:
+        <em>Java Based Solutions, .NET based solutions, PHP, Python and "thousands" of other technologies</em></p>
+      <p>If you are a SPA developer you can chose between:</p>
+      <ul>
+        <li>AngularJS (Google)</li>
+        <li>Angular (Google)</li>
+        <li>React (Facebook)</li>
+        <li>Vue.js</li>
+        <li>Ember.js</li>
+        <li>...</li>
+      </ul>
+      <p>They are all Open Source, some backed up by some really big companies</p>
+
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>SPA This Semester</h2>
+    </hgroup>
+    <article>
+      <p>In Denmark (according to <a href="https://www.jobindex.dk/jobsoegning?q=react">Jobindex.dk</a>)
+        and also worldwide Angular and React are some of the biggest players</p>
+      <p>We have decided to go with <span style="font-size: xx-large">React</span> since we had to pick one,
+        and because we hope React + React Native will make it possible for us to build this kind of applications :-)</p>
+      <img style="margin-left:5em; width:70%;" src="images/RestManyClients.png"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>React vs React Native</h2>
+    </hgroup>
+    <article>
+
+      <div class="row">
+        <div class="col-md-9">
+          <br/><br/><br/>
+          <p>When you Google for React, be aware of; that a great deal of the hits you get is for <b>React Native</b>
+            and not plain React</p>
+
+          <p>React Native is a way to build true <b>native</b> mobile apps (IOS or Android) with React
+          <p>We will introduce React Native in week 2</p>
+        </div>
+        <div class="col-md-3">
+          <img style="width: 100%" src="images/NativeVSNot.PNG">
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Babel, Webpack and Node</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">React requires (for realistic React Development) ES6 (and sometimes 7..) which older
+        browsers do not understand
+        and also JSX, which NO browsers understand </p>
+      <img style="width: 40%;margin-left:200px;margin-bottom: 5px;" src="images/jsxAndEs6.PNG"/>
+      <p>Because of this, React apps must be pre-compiled (transpiled is the corrrect term) into ES5.
+        This is done with the help of two tools:</p>
+      <ul>
+        <li><b>Babel</b> - the transpiler that transpiles ES6+JSX into ES5</li>
+        <li><b>Webpack</b> - the "build tool" we use to activate babel and to <em>combine</em>
+          all our static resources into one file (SPA)
+        </li>
+        <li><b>Node and npm</b> <em>Node</em> makes it possible to run JavaScript on our computer
+          (required for the tools above)and <em>npm</em> is what we will use to install required dependencies
+          (similar to how Maven handles Java dependencies)
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>React - Development/Deployment</h2>
+    </hgroup>
+    <article>
+      <p style="font-size: xx-large;margin-top:-25px;color:steelblue">
+        Development Strategy
+      </p>
+      <p>Because of the pre-compilation step, and the step that combines all static resources (HTML, CSS, JS etc.)
+        into a single step, it is hard (not impossible) to integrate this with a Java Maven project </p>
+      <p>So we suggest you create a separate project for your backend (NetBeans) and separate projects for your
+        front-ends (Web and App) using a suitable IDE/editor for JavaScript.
+        I will use Visual Studio Code in all my demos</p>
+      <p style="font-size: xx-large;color:steelblue">
+        Deployment Strategy
+      </p>
+      <p>The Development Strategy given above, mirrors the way we will deploy code </p>
+      <ul>
+        <li>Backend-code (REST-API) will be deployded to a Tomcat Server</li>
+        <li>Frontend-code (WEB) will be deployded to a simple Web Server (like Nginx)</li>
+        <li>Frontend-code (APP) must (eventually) be deployded to Google Play or App-Store.
+          (not this semester, but you will get your apps on your phone)
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>How to do React, Babel, Webpack etc.</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">Lets recap, on the terms Babel, Webpack, Node and npm</p>
+      <ul>
+        <li><b style="color: steelblue;">Babel:</b> Pre-compiles JSX and ES6+7 into ES5</li>
+        <li><b style="color: steelblue;">Webpack:</b> "Build tool" that controls Babel, bundles resources into a single
+          file,
+          and will provide us with a cool Development Server
+        </li>
+        <li><b style="color: steelblue;">Node:</b> Required to execute all the JavaScript based tools on our development
+          computer
+        </li>
+        <li><b style="color: steelblue;">npm:</b> Package manager we will use to fetch dependencies.
+          You have hopefully already used it to install <em>create-react-app</em>, like:<br/>
+          <code>npm install -g create-react-app</code>
+        </li>
+        <li><b style="color: steelblue;">yarn</b> Alternative (faster) package manager, created by facebook,
+          which you can install and use if like (you don't have to) <a href="https://yarnpkg.com/lang/en/docs/install/">yarn
+            install</a></li>
+      </ul>
+      <p>Don't let all of this scare you :-). The lines above is almost everything you need to know about this.
+        Facebook have created a start-up seed: <em>create-react-app</em> which will handle almost all the scary details
+      </p>
+
+      <p style="margin-top: -35px;">Lets give it a try :-)<img style="margin-left:10em;width:100px;"
+                                                               src="../images/Demo.png"/></span></div>
+      </p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>React - JS strategy for this week</h2>
+    </hgroup>
+    <article>
+      <p>In order to use React, you need to know JavaScript + the newer JavaScript ES6+7</p>
+      <p>Each day in this week we will include a little bit of JavaScript + the React "stuff"</p>
+      <p style="font-weight: bold;color:steelblue">JavaScript today</p>
+      <p style="font-weight: bold">First:</p>
+      <ul>
+        <li>Summary on JavaScript generally</li>
+        <li>Summary on Callbacks</li>
+      </ul>
+      <p style="font-weight: bold">Then the new "stuff" we found in our <em>create-react-app</em> application</p>
+      <ul>
+      <li>Classes in ES6 (es2015) <code>class App extends Component</code></li>
+      <li>Modules in ES6 <em>import</em> and <em>export</em></li>
+      <li>Object destructuring <code>import React, { Component } from 'react';</code></li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>React - The Virtual Dom</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -30px;">Manipulating the DOM is a fundamental part of all modern, interactive web.
+        DOM manipulation unfortunately, is much slower than plain JS-operations</p>
+      <p>React's solution to this problem, is a Virtual Dom. For every DOM object, there is a corresponding "virtual DOM
+        object."
+        A virtual DOM object is a representation of a DOM object, like a lightweight copy.</p>
+      <div class="row">
+        <div class="col-md-7">
+          <ul>
+            <li>The entire virtual DOM gets updated</li>
+            <li>The virtual DOM gets compared to what it looked like before you updated it.
+              React figures out which objects have changed
+            </li>
+            <li>The changed objects, <em>and only those</em>, gets updated on the real DOM</li>
+            <li>Changes on the real DOM cause the screen to change (re-render)</li>
+            <li>React's Virtual Dom is what makes React Native possible</li>
+          </ul>
+        </div>
+        <div class="col-md-5">
+          <img src="images/virtualDom.PNG" style="width: 100%"/>
+        </div>
+      </div>
+      <footer class="source">
+
+        <a href="http://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode">
+          The Virtual Dom on StackOverflow
+        </a> &nbsp;, &nbsp;&nbsp; <a href="https://www.codecademy.com/articles/react-virtual-dom">The Virtual Dom</a>
+      </footer>
+    </article>
+  </slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
