@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<!--Setup Angular for the full slide-set-->
+<!--<body ng-app="SlideApp" style="opacity: 0">-->
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;"></h1>
+        <h2 data-config-subtitle></h2>
+        <!--<img src="images/es2015_typescript.PNG" style="float:right; width:300px;">-->
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;"></div>
+    </hgroup>
+  </slide>
+
+
+
+  <slide class="backdrop"></slide>
+
+  <slide>
+    <hgroup><h2>Generators</h2></hgroup>
+    <article>
+      <p>Generators are functions which can be exited and later re-entered.
+        Their context (variable bindings) will be saved across re-entrances.</p>
+      <p>Important applications that can take advantage of this is:</p>
+      <ul>
+        <li>Implementing iterables</li>
+        <li>Blocking on asynchronous function calls</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Generators for iteration</h2>
+      <h3>Recap from last week</h3>
+    </hgroup>
+    <article>
+      <p style="margin-top: -35px;">Generators provide a powerful alternative to custom iterators: we can define an
+        iterative algorithm
+        by writing a single function which maintain its own state.</p>
+      <p>A generator is a special type of function that works as a factory for iterators.
+        A function becomes a generator if it contains one or more <b>yield</b> expressions and if it uses the <b>function*</b>
+        syntax.</p>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p style="color:#285e8e;font-weight:bold;font-size: 0.8em;">Simple Generator Function</p>
+          <pre class="prettyprint pre20">
+
+function<b>*</b> gen() {
+  <b>yield</b> "Hello";
+  <b>yield</b> "es2015";
+  <b>yield</b> "Generators";
+}
+          </pre>
+        </div>
+        <div class="col-md-7">
+          <p style="color:#285e8e;font-weight: bold;font-size: 0.8em;">
+            The generator function returns a Generator object which conforms to both the <em>iterable</em> and the <em>iterator</em>
+            protocol.
+          </p>
+          <pre class="prettyprint pre20">
+let g = gen();
+//Using the iterator protocol
+console.log(g.next().value); // Hello
+console.log(g.next().value); // ES2015
+console.log(g.next().value); // Generators
+
+//using the iterable protocol
+for(let i of gen()) {
+  console.log(i);
+}
+</pre>
+
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators another (infite) example </h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint pre18">
+function* idMaker(){
+  var index = 0;
+  while(true)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+
+for(let i of gen){
+  console.log(i);
+  if(i === 5) //Will continue "forever" without this
+    break;
+}
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators - Delegation</h2>
+    </hgroup>
+    <article>
+      <p></p>
+      <div class="row">
+        <div class="col-md-6">
+<pre class="prettyprint pre18">
+function* gen2(){
+  yield 3;
+  yield 4;
+}
+
+function* gen1() {
+  yield 1;
+  yield 2;
+  yield *gen2();
+  yield 5;
+  //Not included in a for-of
+  return 6;
+}
+
+for(let number of gen1()){
+  console.log(number); /1,2,<b>3,4</b>,5
+</pre>
+        </div>
+        <div class="col-md-6">
+          <p>Flow can be forwarded into another generator as demonstrated in this exampel</p>
+          <p>To delegate iteration control to another generator we use a variation of the yield keyword: <code>yield
+            *</code></p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Sending messages in an out</h2>
+    </hgroup>
+    <article>
+      <p></p>
+      <div class="row">
+        <div class="col-md-7">
+<pre class="prettyprint pre16">
+function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+}
+
+var it = foo( 5 ); //Initial value sent to generator
+
+// note: not sending anything into `next()` here
+console.log( it.next() );    // { value:6, done:false }
+console.log( it.next( 12 ) );// { value:8, done:false }
+console.log( it.next( 13 ) );// { value:42, done:true }
+  </pre>
+        </div>
+        <div class="col-md-5">
+          <p>This syntax is really weird ;-)</p>
+          <p>What's the value of <b>y</b> after the first <code>yield</code></p>
+          <div class="build">
+            <p style="font-weight: bold">24</p>
+            <p>What's the value of <b>z</b> after the second <code>yield</code></p>
+            <p style="font-weight: bold">13</p>
+            <p>Verify this by testing with Node</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Asynchronous Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        Often generators are emphasized because of the way they provide a single-threaded, synchronous-looking code
+        style,
+        while allowing you to hide the asynchronicity away as an implementation detail.</p>
+      <p>This lets us express in a very natural way what the flow of our program's steps/statements is without
+        simultaneously having to navigate asynchronous syntax and gotchas
+      </p>
+      <p>Many examples however, quickly become very complex and API's are changing all the time,
+        so a "great example" found in article might not work</p>
+      <p>Here we will only introduce one example using the <code>co-package</code> which brilliantly combines Generators
+        and Promises </p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Asynchronous Generators 2</h2>
+      <h4>Using Promises and the <em>co-package</em></h4>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;margin-bottom: 5px;">Assume we had this Promise-factory</p>
+      <pre class="prettyprint pre18">
+function promiseFactory(val){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=> {
+      resolve(val*2);
+    })
+  },100);
+};</pre>
+      <div class="row build">
+        <div class="col-md-6">
+          <p style="margin-top:20px;margin-bottom: 5px;">What would this print? (32)</p>
+          <pre class="prettyprint pre16">
+promiseFactory(2).
+  then(res => {return promiseFactory(res)}).
+  then(res => {return promiseFactory(res)}).
+  then(res => {return promiseFactory(res)}).
+  then(res =>console.log(res)).
+  catch(err => console.log(err))
+  </pre>
+        </div>
+        <div class="col-md-6">
+          <p style="margin-top:20px;margin-bottom: 5px;">The same with a generator</p>
+          <pre class="prettyprint pre16">
+co(function *(){
+  let v1 = yield promiseFactory(2);
+  let v2 = yield promiseFactory(v1);
+  let v3 = yield promiseFactory(v2);
+  let res = yield promiseFactory(v3);
+  console.log(res);
+}).catch(err=>console.log(err));</pre>
+          <p style="font-size: 0.8em;font-style: italic;color: #2a6496">
+            Observe the sequential nature and how the (async) promise seems to return a value
+          </p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

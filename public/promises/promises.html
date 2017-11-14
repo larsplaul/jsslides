@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" media="all" href="../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../theme/css/phone.css">
+
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/presenter.js"></script>
+
+  <base target="_blank">
+  <style>
+    code {
+      color: darkblue;
+    }
+  </style>
+
+  <!-- This opens all links in a new tab. -->
+  <script data-main="../js/slides" src="../js/require-1.0.8.min.js"></script>
+
+  <!--In order to have more than one slideset in the project-->
+  <script src="slides.js"></script>
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground" style="background: #00163B">
+    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
+    <hgroup class="auto-fadein" style="color: white;">
+      <div style="float: left;">
+        <h1 data-config-title style="float:left;width:400px;"></h1>
+        <h2 data-config-subtitle></h2>
+        <!--<img src="images/es2015_typescript.PNG" style="float:right; width:300px;">-->
+        <p data-config-presenter></p>
+      </div>
+      <div style="float:left;"></div>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup><h2>The Callback Hell</h2></hgroup>
+    <article>
+      <img style="width: 90%" src="images/cbHell.png"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>How to avoid the Callback Hell 1</h2></hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-6">
+          Callback Hell, also known as Pyramid of Doom, or the Christmas Tree Effect,
+          is an anti-pattern seen in code made by programmers not skilled enough in asynchronous programming.
+          <br/>
+
+        </div>
+        <div class="col-md-6">
+      <pre class="prettyprint pre18">
+async1(function(){
+    async2(function(){
+        async3(function(){
+            async4(function(){
+                async5(function(){
+                ....
+            });
+        });
+    });
+});</pre>
+        </div>
+      </div>
+      <br/>
+      <p>The problem becomes even more obvious when we start to consider error handling.
+      <p>
+      <p>Imagine the nightmare it would be, to debug the example if all methods where following the Node pattern:
+        <code>msg(Err,Data)</code> and if each methods on top of that could throw an exception.</p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>How to avoid the Callback Hell 2</h2></hgroup>
+    <article>
+      <p>There are several ways to solve the problem, with <em>Promises</em> and <em>async - await</em>
+        as the ones we will focus on</p>
+      <p>Promises are part of <em>es2005</em> and <em>TypeScript</em> and Promises has been in
+        use for a long time (via different libraries) as for example in JQuery and Angular</p>
+      <ul>
+        <li>Promises</li>
+        <li>async - await</li>
+      </ul>
+      Are the focus of todays lesson
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promises</h2>
+      <h4>We have already used Promises (many times) with <code>fetch(..)</code></h4>
+    </hgroup>
+
+    <article>
+      <p style="margin-top: -30px;margin-bottom: 5px;" ;>Promises with fetch</p>
+      <pre class="prettyprint build"><div>//<b>What does this request return?</b>
+let p1 = fetch("http://api.icndb.com/jokes/random");</div><div>//<b>What does this request return?</b>
+let p2 = p1.then((res)=>res.json());</div><div>//<b>What does this request return?</b>
+let p3 = p2.then(data=>console.log(JSON.stringify(data)));</div><div>p3.catch(err=>console.log("Error: "+ JSON.stringify(err)));</div></pre>
+      <div class="build">
+        <div>
+          <p style="margin-bottom: 5px;">This is how we usually write it</p>
+          <pre class="prettyprint">
+fetch("http://api.icndb.com/jokes/random")
+ .then((res)=> res.json())
+ .then(data => console.log(JSON.stringify(data)))
+ .catch(err => {console.log("Error: "+err.message)
+ })
+</pre>
+        </div>
+        <p style="color: #2a6496">
+          A JavaScript Promise represents the result of an operation that hasn't been completed yet,
+          but will at some undetermined point in the future
+        </p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promises in "Words"</h2>
+      <h3>So what is a JavaScript Promise</h3></h3>
+    </hgroup>
+    <article>
+      <p>
+        A promise is an object that may produce a single value some time in the future:</p>
+      <ul>
+        <li>Either a resolved value</li>
+        <li>Or a reason that it’s not resolved (e.g., a network error occurred)</li>
+      </ul>
+      <p>
+        A promise may be in one of 3 possible states:</p>
+      <ul>
+        <li>Pending: When the final value is not available yet</li>
+        <li>Fulfilled: When and if the final value becomes available</li>
+        <li>Rejected: If an error prevented the final value from being determined.</li>
+      </ul>
+      <p>
+        Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Promises in es2005</h2></hgroup>
+    <article>
+      <div class="row">
+        <p>Promises provide us with a way to perform asynchronous calls sequentially so:</p>
+        <div class="col-md-6">
+          <p>This code</p>
+          <pre class="prettyprint pre18">
+async1(function(){
+    async2(function(){
+        async3(function(){
+            async4(function(){
+                async5(function(){
+                ....
+            });
+        });
+    });
+});</pre>
+        </div>
+        <div class="col-md-6">
+          <p>will look "something" like this</p>
+          <pre class="prettyprint pre18">
+async1
+  then(async2).
+  then(async3).
+  then(async4).
+  then(async5).
+  catch(errorHandlingForAll);
+});</pre>
+        </div>
+      </div>
+      <br/>
+      <p>The single error handler will handle all errors that could occur (an error will halt the flow)</p>
+
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+  <slide>
+    <hgroup><h2>Creating es2005 Promises</h2></hgroup>
+    <article>
+      <p style="margin-top: -20px;">
+        A Promise is created using the <a
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise
+        Constructor</a>.
+        This accepts a function with two arguments (resolve & reject) as its only parameter.
+        The Promise will then either call resolve or reject
+      </p>
+      <p>Promises are only really useful for asynchronous calls, so the example below uses a timer as a simple
+        way to get async behaviour</p>
+      <div class="row">
+        <div class="col-md-7">
+          <pre class="prettyprint pre16">
+var p = new  Promise((resolve, reject)=> {
+  setTimeout(()=>{//To demonstrate an async call
+    var ok = true;//Simulates the result of the operation
+    if (ok) {
+      resolve("Msg from Promise");
+    }
+    else {
+      reject("UPPPPs");
+    }
+  },SOME_DELAY);
+});</pre>
+        </div>
+        <div class="col-md-5">
+          <img style="width:100%" src="images/Creating-Promises.png"/>
+        </div>
+      </div>
+      <br/>
+      <p style="font-size: medium;font-style: italic;color:steelblue">The promise constructor takes as its argument a
+        function, called the <b>"executor function"</b>.
+        This function should take two functions as parameters.
+        The first of these functions <b>(resolve)</b> is called when the asynchronous task completes successfully
+        and returns the results of the task as a value.
+        The second <b>(reject)</b> is called when the task fails, and returns the reason for failure,
+        which is typically an error object.
+      </p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>Creating promises for the examples</h2></hgroup>
+    <article>
+      <p>To simply some of the examples, we will create a promise as sketched below:</p>
+      <pre class="prettyprint">
+let promiseFactory = function(msg,delay) {
+  return new Promise((resolve, reject)=> {
+    setTimeout(()=> { //To demonstrate an async call
+      var ok = true;  // simulates the result of the operation
+      if (ok) {
+        <b>resolve(msg)</b>;
+      }
+      else {
+        <b>reject("UPPPPs")</b>;
+      }
+    }, delay);
+  });
+};
+<b>let p = promiseFactory("Msg from Promise",SOME_DELAY);</b>      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Promise States</h2></hgroup>
+    <article>
+      <p>A Promise is in <em>one</em> of these states</p>
+      <ul>
+        <li><b>pending</b>: Hasn't fulfilled or rejected yet</li>
+        <li><b>fulfilled</b>: The action relating to the promise succeeded</li>
+        <li><b>rejected</b>: The action relating to the promise failed</li>
+        <li><b>settled</b>: Has fulfilled or rejected.</li>
+      </ul>
+      <p>A pending promise can either be fulfilled with a value, or rejected with a reason (error).<br/>
+        When either of these happens, the associated handlers queued up by a promise's then method are called.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Using es2005 Promises</h2></hgroup>
+    <article>
+      <p>
+        We call the promise function by calling the <code>.then(..)</code> function.
+      </p>
+      <p>Depending on whether the promise was fulfilled or rejected,
+        either the first or the second callback will be called</p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <pre class="prettyprint pre18">
+p.then(data=> console.log(data),
+       err => console.log(err)
+);
+//OR a bit clearer, using the catch method
+p.then(data=> console.log(data));
+p.catch(err=> console.log(err));
+
+//Or using chaining
+p.then(data=> console.log(data)).
+  catch(err=> console.log(err));</pre>
+        </div>
+        <div class="col-md-6">
+          <img style="width:100%" src="images/Using-Promises.PNG"/>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Chaining es2005 Promises</h2></hgroup>
+    <article>
+      <p>
+        <code>.then()</code> <b>always</b> returns a promise, which enable us to chain method calls
+      </p>
+      <div class="row">
+        <div class="col-md-7">
+<pre class="prettyprint pre 16">
+let allResults = [];
+var p1 = makePromise("MsgPromise1",8000);
+p1.then(data => {
+  allResults.push(data);
+  return makePromise("MsgPromise2",7000);
+}).then(data =>{
+  allResults.push(data);
+  return makePromise("MsgPromise3",1000);
+}).then(data => {
+  allResults.push(data);
+  return "done: ";
+}).then(data=>{
+  console.log(data+allResults);
+}).catch(error => {
+  console.log("ERROR: "+error);
+});</pre>
+        </div>
+        <div class="col-md-5">
+          <p>This example executes all async calls:</p>
+          <ul>
+            <li>Synchronous</li>
+            <li>In the order they are started (independent on the timer value)</li>
+            <li>Handles all errors in centralized place</li>
+          </ul>
+          <p>When will we see the final result?</p>
+        </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Chaining Promises 2</h2></hgroup>
+    <article>
+      <p style="margin-top: -20px;">
+        Remember: <code>.then()</code> <b>always</b> returns a promise, which enable us to chain method calls
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <pre class="prettyprint pre18">
+p1.then(data => {
+  //Returns a specific promise
+  return makePromise("MsgPromise2",7000);
+}).then(data => {
+  //Will be settled with a Promise
+  return "done: ";
+}).then(..);
+}).catch(..);</pre>
+        </div>
+        <div class="col-md-6">
+          <img src="images/chaining.PNG" style="width: 90%">
+        </div>
+      </div>
+      <div style="margin-top: 0.5em;">
+        <p>How the Promise P returned by <code>then()</code> is settled depends on what its callback does:</p>
+        <ul>
+          <li>If it returns a Promise (as in the first <em>then</em>), the settlement of that Promise is forwarded to
+            the next in line
+          </li>
+          <li>If it returns a different value, that value is used to settle the Promise.</li>
+          <li>If throws an exception then P is rejected with that exception.</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Executing Promises in parallel</h2>
+      <h3><code>Promise.all(..)</code></h3>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">
+        If your Promises does not rely on the result from a previous promise, and the order of the results does not
+        matter,
+        we can execute the task in parallel
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <pre class="prettyprint pre16">
+let promises=[promiseFactory("MsgFromP1",7000),
+              promiseFactory("MsgFromP2",6000),
+              promiseFactory("MsgFromP3",5000)];
+
+Promise.<b>all(promises)</b>.then((data)=>{
+  console.log(data);
+}).catch(..);
+//Will print this:
+//['MsgFromP1', 'MsgFromP2', 'MsgFromP3']
+          </pre>
+        </div>
+        <div class="col-md-6"><img src="images/parallel.PNG" style="width: 90%"/></div>
+      </div>
+      <p>
+        <code>Promise.all()</code> enables us to be notified once all results are ready
+        (like when we did <em>join()</em> on a number of threads in Java).<br/>
+      <ul>
+        <li>Its input is an Array of Promises</li>
+        <li>It outputs a single Promise that is fulfilled with an <em>Array of the results</em>.</li>
+      </ul>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>References</h2></hgroup>
+    <article>
+      <br/>
+      <br/>
+      <br/>
+      <p><a href="https://bitsofco.de/javascript-promises-101/">JavaScript Promises</a></p>
+      <p><a href="http://exploringjs.com/es6/ch_promises.html">Promises for asynchronous programming</a></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Async functions</h2>
+      <h3>async/await</h3>
+    </hgroup>
+    <article>
+      <div class="row">
+        <div class="col-md-3">
+          <img style="width:100%;margin-top: 5px;" src="images/asyncawait.PNG"/>
+        </div>
+        <div class="col-md-9">
+          <!--<img src="images/asyncawait.PNG"/>-->
+          <p style="font-size: 45px;">async/await simply gives a <em>synchronous feel</em> to asynchronous code.
+            <br/>
+            <br/>
+            It's a very elegant form of syntactical sugar</p>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Async functions</h2>
+    </hgroup>
+ <article>
+    <div>
+
+      <ul class="build">
+        <li>Async/await is a new way to write asynchronous code.<br/>
+          Previous options for asynchronous code are callbacks and promises
+        </li>
+        <li>
+          Async/await is <em>built on top of promises</em>.<p>
+          It cannot be used with plain callbacks (but you have learned to wrap a callback-design,
+          inside a promise-based implementation)</p>
+        </li>
+        <li>
+          Async/await is, like promises, non-blocking
+        </li>
+        <li>  
+          Async/await makes asynchronous code look and behave a little more like synchronous code
+          <p><b>This is where all its power lies</b></p>
+        </li>
+        <li>
+          Async functions are available with:
+          <ul>
+            <li>Node (LTS)</li>
+            <li>React (via Babel) in create-react-app applications</li>
+            <li>React Native (via Babel) in create-react-native-app applications</li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>The "syntactic" difference</h2>
+    </hgroup>
+    <article>
+
+      <p style="margin-top: -25px;">In what order do we see the log statements below?</p>
+      <pre class="prettyprint">
+let promise = new promiseFactory("hello",1000);
+  console.log("before");
+  promise
+   .then(msg=>console.log("Result: "+msg))
+   .catch(err=>console.log("Error: "+err.msg));
+  console.log("After");
+</pre>
+      <div class="build"/>
+      <div>
+        <p>In what order do you expect to see the log statements below</p>
+        <pre class="prettyprint">
+<b>async</b> function demo1(){
+  let p = new promiseFactory("hello",1000);
+  console.log("before");
+  const msg = <b>await</b> p;
+  console.log("After");
+  console.log("Result :"+msg);
+}
+</pre>
+      </div>
+      </div>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Syntax</h2>
+    </hgroup>
+    <article>
+ <pre class="prettyprint">
+<b>async</b> function f(){
+  let p = new promiseFactory("hello",1000);
+  const msg = <b>await</b> p;
+  console.log("Result :"+msg);
+}
+//Or as an arrow function
+const fa = <b>async</b>() => {
+  let p = new promiseFactory("hello",1000);
+  const msg = <b>await</b> p;
+  console.log("Result :"+msg);
+} </pre>
+      <ol>
+        <li>
+          <p>Observe the keyword <b>async</b> before the functions.<br/>
+            The <b>await</b> keyword can <em>only</em> be used inside functions defined with <b>async</b></p>
+        </li>
+        <li>
+          The statement: <span style="font-family: monospace;color:steelblue"><b>await</b> p;</span> waits until the
+          promise resolves (after a second in this example)
+        </li>
+      </ol>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Error Handling</h2>
+    </hgroup>
+    <article>
+      <p>
+        With Async functions we can handle both synchronous and asynchronous errors with the same familiar construct:
+        <br/><span style="font-size: xx-large;color:steelblue">try/catch.</span>
+      </p>
+      <pre class="prettyprint">
+const faError = async () => {
+  <b>try {</b>
+    let p = new promiseFactory("hello", 1000);
+    const msg = await p;
+    console.log("Result :" + msg);
+  <b>} catch (err) {
+    console.log("Error: " + err.message);
+  }</b>
+}
+</pre>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Intermediate values</h2>
+    </hgroup>
+    <article>
+      <p style="margin-top: -25px;">In situations where the result from one promise is used as input to the next,
+        the code becomes much more readable (sequential like) with Async functions.</p>
+      <p>If you did the <span style="font-family: monospace">getPlanetforFirstSpecieInFirstMovieForPerson()</span>
+        you must really appreciate this version :-)</p>
+      <pre class="prettyprint pre18">
+async function fetchAsync(url) {
+  const response = await fetch(url);
+  return  await response.json();
+}
+async function getPlanetforFirstSpecieInFirstMovieForPersonAsync(id) {
+  try {
+    const p = await fetchAsync(START_URL + id);
+    const f = await fetchAsync(p.films[3]);
+    const s = await fetchAsync(f.species[3])
+    const p = await fetchAsync(s.homeworld);
+    return {name: p.name, title: f.title, species: s.name,planet: p.name};
+  } catch (err) {
+    //Handle the error
+  }
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promises in serial with async/await</h2>
+    </hgroup>
+    <article>
+      <p>In the previous example, the HTTP-requests had to be executed sequentially since the result from one was
+        used as input for the the next.</p>
+      <p>
+        For the example below however, this introduces an unnecessary performance overhead since the second
+        request does not depend on the first</p>
+      <pre class="prettyprint pre18">
+async function fetchHelper(url){
+  const response = await fetch(url);
+  return await response.json();
+}
+async function serial(){
+  const result1 = await fetchHelper("http://api.icndb.com/jokes/random");
+  const result2 = await fetchHelper("http://api.icndb.com/jokes/random");
+  console.log(result1.value.joke);
+  console.log(result2.value.joke);
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promises in parallel with async/await</h2>
+    </hgroup>
+    <article>
+      <p>Remember; async/await is "just" syntactic sugar around <em>promises</em> so:<br/>
+        any <b>async</b> function returns a promise implicitly</p>
+      <p>You can store this, for later reference, and use either; <b>.then</b> or <b>await</b> on it</p>
+      <pre class="prettyprint pre18">
+async function fetchHelper(url){
+  const response = await fetch(url);
+  return await response.json();
+}
+async function parallel(){
+  //These requests execute in parallel
+  const <b>promise1</b> = <span style="text-decoration: line-through">await</span> fetchHelper("http://api.icndb.com/jokes/random");
+  const <b>promise2</b> = <span style="text-decoration: line-through">await</span> fetchHelper("http://api.icndb.com/jokes/random");
+  //Now use await
+  const result1 = <b>await</b> promise1;
+  const result2 = <b>await</b> promise2;
+  console.log(result1.value.joke);
+  console.log(result2.value.joke);
+}</pre>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Debugging</h2>
+    </hgroup>
+    <article>
+      <p>
+        Promises are notoriously know for being hard to debug
+      </p>
+      <p>With async/await you can step through your code, exactly as if it had been normal synchronous code</p>
+      <p>Make sure to do the debugging part on the exercises!</p>
+    </article>
+  </slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
