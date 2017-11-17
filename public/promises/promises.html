@@ -506,7 +506,7 @@ let promise = new promiseFactory("hello",1000);
         <p>In what order do you expect to see the log statements below</p>
         <pre class="prettyprint">
 <b>async</b> function demo1(){
-  let p = new promiseFactory("hello",1000);
+  let p = promiseFactory("hello",1000);
   console.log("before");
   const msg = <b>await</b> p;
   console.log("After");
@@ -526,13 +526,13 @@ let promise = new promiseFactory("hello",1000);
     <article>
  <pre class="prettyprint">
 <b>async</b> function f(){
-  let p = new promiseFactory("hello",1000);
+  let p = promiseFactory("hello",1000);
   const msg = <b>await</b> p;
   console.log("Result :"+msg);
 }
 //Or as an arrow function
 const fa = <b>async</b>() => {
-  let p = new promiseFactory("hello",1000);
+  let p = promiseFactory("hello",1000);
   const msg = <b>await</b> p;
   console.log("Result :"+msg);
 } </pre>
@@ -561,7 +561,7 @@ const fa = <b>async</b>() => {
       <pre class="prettyprint">
 const faError = async () => {
   <b>try {</b>
-    let p = new promiseFactory("hello", 1000);
+    let p = promiseFactory("hello", 1000);
     const msg = await p;
     console.log("Result :" + msg);
   <b>} catch (err) {
