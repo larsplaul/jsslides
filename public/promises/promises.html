@@ -494,7 +494,7 @@ Promise.<b>all(promises)</b>.then((data)=>{
 
       <p style="margin-top: -25px;">In what order do we see the log statements below?</p>
       <pre class="prettyprint">
-let promise = new promiseFactory("hello",1000);
+let promise = promiseFactory("hello",1000);
   console.log("before");
   promise
    .then(msg=>console.log("Result: "+msg))

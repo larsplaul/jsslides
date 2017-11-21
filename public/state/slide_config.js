@@ -2,8 +2,8 @@ var SLIDE_CONFIG = {
   // Slide settings
   settings: {
     title: 'Handling State',
-    subtitle: 'State Handling with mobX',
-    date: 'Spring - 2017',
+    subtitle: 'State Handling with mobX or Redux',
+    date: 'Fall - 2017',
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
     enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
