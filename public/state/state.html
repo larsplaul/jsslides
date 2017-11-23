@@ -803,6 +803,296 @@ var store = Redux.createStore(userReducer);</pre>
             </div>
         </article>
     </slide>
+
+    <slide>
+        <hgroup>
+            <h2>Redux with React</h2>
+        </hgroup>
+        <article>
+            <p>Clone this project:</p>
+            <p><a href="https://github.com/CphbusFall2017FullStackJS/reactWithReduxCounter.git">
+                https://github.com/CphbusFall2017FullStackJS/reactWithReduxCounter.git</a> </p>
+            <p>to follow on with this presentation</p>
+            <div class="row">
+                <div class="col-md-7">
+                    <p>The project provides the same example implemented three different ways</p>
+                    <ul>
+                        <li>Redux + plain React (no use of react-redux)</li>
+                        <li>Redux + React with react-redux (no Controller/Presentations Components)</li>
+                        <li>Redux + React with react-redux (with Controller and Presentation Components)</li>
+                    </ul>
+
+                </div>
+                <div class="col-md-5">
+                    <img style="width:100%" , src="images/reactReduxLogo.PNG"/>
+                </div>
+            </div>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>Redux with React</h2>
+        </hgroup>
+        <article>
+            <p>"Basically" all three examples are built arround this design</p>
+            <img style="margin-left:4em;width:70%;" src="images/reactReduxCounter1.PNG"/>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>Redux with React 1</h2>
+            <h3>Redux with plain React</h3>
+        </hgroup>
+        <article>
+            <div class="row" style="margin-top: -30px;">
+                <div class="col-md-6" style="font-size: 0.9em;">
+                    <p>The store, returned from Redux's createStore method provides a subscribe method</p>
+                    <p>If we pass in a callback, it will be called whenever the store has changed</p>
+                </div>
+                <div class="col-md-6">
+                   <pre class="prettyprint pre16">
+const store = createStore(reducer);
+
+const renderProxy = () =&gt; {
+  render(&lt;App store={store} /&gt;,
+    document.getElementById(&quot;root&quot;));
+}
+renderProxy();
+store.subscribe(renderProxy); </pre>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6" style="font-size: 0.9em;">
+                    <p>Observe how the store passed in via props are destructured into a store variable </p>
+                    <p><b>count</b> and the <b>dispatch method</b> are passed on into the Counter Component and
+                        <b>count</b> are also
+                        passed into the Display component </p>
+                </div>
+                <div class="col-md-6">
+                    <pre class="prettyprint pre16">
+const App = ({store}) =&gt; (
+  &lt;div&gt;
+    &lt;Counter count={store.getState().count}
+     dispatch={store.dispatch}/&gt;
+    &lt;Display count={store.getState().count} /&gt;
+  &lt;/div&gt;
+)                    </pre>
+                </div>
+            </div>
+            <hr style="margin:2px;"/>
+
+            <div class="row" style="font-size: 0.7em; color:steelblue">
+                <div class="col-md-6">
+                    Find the code for this example is in:
+                    <p>Check the code to see how the props, passed into the <b>Counter</b> and <b>Display</b>
+                        components, are used
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li><b>indexSimple.js</b> (= index.js)</li>
+                        <li>The folder: <b>simple</b></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>Redux with react-redux and React 2</h2>
+            <h3>Redux from react with <b>Provider</b> and <b>connect</b></h3>
+        </hgroup>
+        <article>
+            <p>Redux suplies a package <b>react-redux</b> (<span
+                    style="font-family: monospace;">npm install --save react-redux</span>)</p>
+            <P>This package includes two features which make Redux integration "simpler"</P>
+            <ul>
+                <li> A <b>Provider</b> component which will "inject" the store in every component in the app tree</li>
+                <li> The store is now available in every component, but only via the <b>connect</b> method</li>
+            </ul>
+            <div class="row" style="font-size: 0.7em; color:steelblue">
+                <div class="col-md-5">
+                    Find the code for this example is in:
+                </div>
+                <div class="col-md-7">
+                    <ul>
+                        <li><b>indexNoController.js</b> (= index.js)</li>
+                        <li>The folder: <b>noContainers</b></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>react-redux </h2>
+            <h3><b>Provider</b></h3>
+        </hgroup>
+        <article>
+            <p style="margin-top: -20px;">
+                Redux holds the global state for the entire app, and by wrapping the entire app with the <b>Provider</b>
+                component
+                from <em>react-redux</em>, every component in the app tree will be able to use <b>connect</b> to access
+                the Redux store
+                (if it wants to)</p>
+
+            <pre class="prettyprint">
+const store = createStore(reducer);
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById('root'));
+            </pre>
+            <p>
+                The Provider might seem like a kind of magic. Under the hood it uses React’s “context” feature.
+                It provides access to the store for each component in the three, via the connect method.
+            </P>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>react-redux </h2>
+            <h3><b>connect</b></h3>
+        </hgroup>
+        <article>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>First observe that no prop values are passed down from App to neither Component or Display</p>
+                </div>
+                <div class="col-md-6">
+                   <pre class="prettyprint pre18">
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;Counter /&gt;
+    &lt;Display /&gt;
+  &lt;/div&gt;
+)</pre>
+                </div>
+            </div>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>react-redux </h2>
+            <h3><b>connect</b></h3>
+        </hgroup>
+        <article>
+            <div style="margin-top: -35px;">
+                <div class="row">
+                    <div class="col-md-6" style="font-size: 0.75em;">
+                        <p>Note in this code the call to:<br/> <code>connect(mapStateToProps)(Counter)</code></p>
+                        <p><code>connect</code> is a <em>higher-order</em> function, which returns a function when you
+                            call it,
+                            and then, calling that function with a component returns a new (wrapped) component.</p>
+                        <p>What <code>connect</code> does is; it hooks into Redux, pulls out the entire state, and pass
+                            it through
+                            the <code>mapStateToProps</code> function that you provide.</p>
+                        <p>Te entire state is passed by <code>connect</code> into <code>mapStateToProps</code> and you
+                            decide what to
+                            pass on forward to the Control </p>
+                        <p>The object returned from <code>mapStateToProps</code> gets injected into your component as
+                            <b>props</b>.</p>
+                        <p>This example will pass state.count as the value of the <em>val prop</em>: the keys in the
+                            object
+                            become prop names, and their corresponding values become the props’ values. </p>
+                        <p style="font-weight: bold">So this function literally defines a mapping from state into
+                            props.</p>
+
+                    </div>
+                    <div class="col-md-6">
+<pre class="prettyprint pre16">
+//Display.js
+
+const Display = (props)=&gt;(
+  &lt;div className=&quot;head&quot;&gt;
+     &lt;h1 &gt;{props.count}&lt;/h1&gt;
+  &lt;/div&gt;
+)
+
+function <b>mapStateToProps(state)</b> {
+  return {
+    count: state.count
+  };
+}
+export default <b>connect(mapStateToProps)(Display)</b>
+</pre>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>react-redux </h2>
+            <h3><b>connect</b></h3>
+        </hgroup>
+        <article>
+            <div class="row" style="margin-top: -30px;">
+                <div class="col-md-5" style="font-size: 0.9em;">
+                    <p>Similar to what we did with <code>mapStateToProps</code>, container components can dispatch
+                        actions. </p>
+                    <p>You can define a function called <code>mapDispatchToProps()</code> that receives the <code>dispatch()</code>
+                        method and returns callback props that you want to inject into the presentational component</p>
+                    <br/>
+                    <p><b>We will investigate this with the debugger</b></p>
+                </div>
+                <div class="col-md-7">
+                    <pre class="prettyprint pre16">
+const Counter = (props) =&gt; {
+  return (
+     ...
+     &lt;button onClick={props.onDecrement}&gt;-&lt;/button&gt;
+     &lt;span className=&quot;counter&quot;&gt; {props.count} &lt;/span&gt;
+     &lt;button onClick={props.onIncrement}&gt;+&lt;/button&gt;
+     ...
+  )
+}
+
+function mapStateToProps(state) {
+  return { count: state.count };
+}
+
+const <b>mapDispatchToProps</b> = dispatch =&gt; {
+  return {
+    onIncrement: ()=&gt; dispatch({type: INCREMENT,val: 1}),
+    .....
+  }
+}
+export default <b>connect(mapStateToProps,
+                        mapDispatchToProps)(Counter)</b>; </pre>
+                </div>
+            </div>
+        </article>
+    </slide>
+    <slide>
+        <hgroup>
+            <h2>React with Redux 3 </h2>
+            <h3> with Controller and Presentation Components</h3>
+        </hgroup>
+        <article>
+            <p>Facebook suggest a React/Redux-architecture based on Container and Presentation components </p>
+            <p>
+                <a href="https://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components">Read
+                    more about this here</a>
+            </p>
+            <p>The code example used up until now, provides an example of this.
+                You are not required to use this architecture for the hand-in</p>
+            <div class="row" style="font-size: 0.7em; color:steelblue">
+                <div class="col-md-5">
+                    Find the code for this example is in:
+                </div>
+                <div class="col-md-7">
+                    <ul>
+                        <li><b>indexController.js</b> (= index.js)</li>
+                        <li>The folder: <b>withcontainercomponents</b></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </slide>
+
     <slide class="nobackground" style="background: #00163B">
         <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
         <hgroup>
