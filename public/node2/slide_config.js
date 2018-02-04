@@ -3,7 +3,7 @@ var SLIDE_CONFIG = {
   settings: {
     title: 'Node - Getting Started<br>',
     subtitle: '',
-    date: 'Spring - 2016',
+    date: 'Spring - 2018',
     //eventInfo: {
     //  title: 'Google I/O',
     //  date: '6/x/2013'

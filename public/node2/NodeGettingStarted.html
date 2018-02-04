@@ -150,23 +150,7 @@ console.log('Server running at http://127.0.0.1:5555/');
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Recommended IDE for Javascript<br/> Development</h2>
-    </hgroup>
-    <article class="flexbox vcenter" style="margin-top: -50px;">
-      <img src="images/webstorm_logo.gif"/>
-    </article>
-  </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Using Node with WebStorm</h2>
-    </hgroup>
-    <article class="flexbox vcenter" style="margin-top: -50px;">
-      <img src="../images/demo.png"/>
-    </article>
-  </slide>
 
   <slide>
     <hgroup>
@@ -438,37 +422,7 @@ server.listen(1337, '127.0.0.1');
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Node networking</h2>
-
-      <h3>TCP Echo-Client/Chat-Client Demo</h3>
-    </hgroup>
-    <article>
-        <pre class="prettyprint pre18" data-lang="javascript" style="margin-top: -30px;">
-var client = require('net').Socket();
-
-//client.connect(9999, 'plaul3.cloudapp.net', function() {
-client.connect(1337, 'localhost', function() {
-  client.write('CONNECT#Lars\n');
-  client.write('SEND#*#Hello everybody\n');
-  client.write('CLOSE#\n');
-});
-
-client.on('data', function(data) {
-  console.log('Received: ' + data);
-});
-        </pre>
-      <div style="margin-top: 15px;">What would you see, if you connect this client to the <em>Echo Server</em>
-        (previous slide)?
-      </div>
-      <div class="build">
-        <div>What would you see, if you connect this client to your 3. semester <em>Chat server (CA1)</em>?</div>
-        <div><b>Write and execute this example</b></div>
-      </div>
-
-    </article>
-  </slide>
+  
 
   <slide class="nobackground" style="background: #00163B">
     <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
