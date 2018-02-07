@@ -583,19 +583,16 @@ const faError = async () => {
       <p>If you did the <span style="font-family: monospace">getPlanetforFirstSpecieInFirstMovieForPerson()</span>
         you must really appreciate this version :-)</p>
       <pre class="prettyprint pre18">
-async function fetchAsync(url) {
-  const response = await fetch(url);
-  return  await response.json();
-}
-async function getPlanetforFirstSpecieInFirstMovieForPersonAsync(id) {
+async function getPlanetforFirstSpeciesInFirstMovieForPersonAsync(id) {
   try {
-    const p = await fetchAsync(START_URL + id);
-    const f = await fetchAsync(p.films[3]);
-    const s = await fetchAsync(f.species[3])
-    const p = await fetchAsync(s.homeworld);
-    return {name: p.name, title: f.title, species: s.name,planet: p.name};
-  } catch (err) {
-    //Handle the error
+    const n = await fetch(URL + id).then(res => res.json());
+    const f = await fetch(n.films[0]).then(res => res.json());
+    const s = await fetch(f.species[0]).then(res => res.json());
+    const p = await fetch(s.homeworld).then(res => res.json());
+    return "Name: " + n.name + ", Title: " + f.title + ", Specie: " + s.name + ", Planet: " + p.name;
+  }
+  catch (err) {
+    console.log(err);
   }
 }
 </pre>
@@ -612,17 +609,14 @@ async function getPlanetforFirstSpecieInFirstMovieForPersonAsync(id) {
       <p>
         For the example below however, this introduces an unnecessary performance overhead since the second
         request does not depend on the first</p>
-      <pre class="prettyprint pre18">
-async function fetchHelper(url){
-  const response = await fetch(url);
-  return await response.json();
-}
+      <pre class="prettyprint pre20">
 async function serial(){
-  const result1 = await fetchHelper("http://api.icndb.com/jokes/random");
-  const result2 = await fetchHelper("http://api.icndb.com/jokes/random");
-  console.log(result1.value.joke);
-  console.log(result2.value.joke);
-}</pre>
+   const res1 = await fetch("https://swapi.co/api/people/1").then(r=>r.json());
+   const res2 = await fetch("https://swapi.co/api/people/2").then(r=>r.json());
+   console.log(res1.name);
+   console.log(res2.name);
+}
+</pre>
     </article>
   </slide>
 
@@ -634,21 +628,18 @@ async function serial(){
       <p>Remember; async/await is "just" syntactic sugar around <em>promises</em> so:<br/>
         any <b>async</b> function returns a promise implicitly</p>
       <p>You can store this, for later reference, and use either; <b>.then</b> or <b>await</b> on it</p>
-      <pre class="prettyprint pre18">
-async function fetchHelper(url){
-  const response = await fetch(url);
-  return await response.json();
-}
+      <pre class="prettyprint pre20">
 async function parallel(){
-  //These requests execute in parallel
-  const <b>promise1</b> = <span style="text-decoration: line-through">await</span> fetchHelper("http://api.icndb.com/jokes/random");
-  const <b>promise2</b> = <span style="text-decoration: line-through">await</span> fetchHelper("http://api.icndb.com/jokes/random");
+  //These requests execute in parallel (don't use await here)
+  const promise1 = <span style="text-decoration: line-through">await</span> fetch("https://swapi.co/api/people/3").then(r=>r.json());
+  const promise2 = <span style="text-decoration: line-through">await</span> fetch("https://swapi.co/api/people/4").then(r=>r.json());
   //Now use await
-  const result1 = <b>await</b> promise1;
-  const result2 = <b>await</b> promise2;
-  console.log(result1.value.joke);
-  console.log(result2.value.joke);
-}</pre>
+  const res1 = await promise1;
+  const res2 = await promise2;
+  console.log(res1.name);
+  console.log(res2.name);
+ }
+</pre>
 
     </article>
   </slide>

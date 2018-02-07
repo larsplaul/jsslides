@@ -3,7 +3,7 @@ var SLIDE_CONFIG = {
   settings: {
     title: "Promises",
     subtitle: 'Handling Asynchronous Request',
-    date: 'Fall - 2017',
+    date: 'Spring - 2018',
     //eventInfo: {
     //  title: 'Google I/O',
     //  date: '6/x/2013'
