@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title></title>
   <meta charset="utf-8">
@@ -30,89 +31,91 @@
 
 <!--Setup Angular for the full slide-set-->
 <!--<body ng-app="SlideApp" style="opacity: 0">-->
+
 <body style="opacity: 0">
 
-<slides class="layout-widescreen">
+  <slides class="layout-widescreen">
 
-  <slide class="title-slide segue nobackground" style="background: #00163B">
-    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
-    <hgroup class="auto-fadein" style="color: white;">
-      <div style="float: left;">
-        <h1 data-config-title style="float:left;"></h1>
-        <h2>JavaScript that scales ;-)</h2>
-        <h2 data-config-subtitle></h2>
+    <slide class="title-slide segue nobackground" style="background: #00163B">
+      <aside class="gdbar">
+        <img src="../images/logo.png" style="width: 200px;">
+      </aside>
+      <hgroup class="auto-fadein" style="color: white;">
+        <div style="float: left;">
+          <h1 data-config-title style="float:left;"></h1>
+          <h2>JavaScript that scales ;-)</h2>
+          <h2 data-config-subtitle></h2>
 
-        <p data-config-presenter></p>
-      </div>
-      <img src="images/tslogo.png" style="float:right; width:300px;margin-left: 300px;">
-      <div style="float:left;"></div>
-    </hgroup>
-
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>TypeScript</h2>
-    </hgroup>
-
-    <article>
-      <div class="row">
-        <div class="col-md-8">
-          <ul class="build">
-            <li>TypeScript is a free and open source programming language developed and maintained by Microsoft.
-              It is a strict <b>superset</b>
-              of JavaScript, and adds optional static typing interfaces, class-based object-oriented
-              programming and much more to the language.
-            </li>
-            <li>
-              TypeScript is designed for development of large applications and transcompiles to JavaScript.
-            </li>
-            <li> As a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs</li>
-
-            <li>The TypeScript compiler is itself written in TypeScript, transcompiled to JavaScript</li>
-            <li>TypeScript is strongly supported by Microsoft and is included as a first-class programming language in
-              Microsoft Visual Studio 2013 Update 2 and later, beside C# and other Microsoft languages
-            </li>
-          </ul>
+          <p data-config-presenter></p>
         </div>
-        <div class="col-md-4">
-          <img style="width: 100%;margin-top: 3em;" src="images/Superset.png">
+        <img src="images/tslogo.png" style="float:right; width:300px;margin-left: 300px;">
+        <div style="float:left;"></div>
+      </hgroup>
+
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>TypeScript</h2>
+      </hgroup>
+
+      <article>
+        <div class="row">
+          <div class="col-md-8">
+            <ul class="build">
+              <li>TypeScript is a free and open source programming language developed and maintained by Microsoft. It is a strict
+                <b>superset</b>
+                of JavaScript, and adds optional static typing interfaces, class-based object-oriented programming and much more to the language.
+              </li>
+              <li>
+                TypeScript is designed for development of large applications and transcompiles to JavaScript.
+              </li>
+              <li> As a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs</li>
+
+              <li>The TypeScript compiler is itself written in TypeScript, transcompiled to JavaScript</li>
+              <li>TypeScript is strongly supported by Microsoft and is included as a first-class programming language in Microsoft
+                Visual Studio 2013 Update 2 and later, beside C# and other Microsoft languages
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <img style="width: 100%;margin-top: 3em;" src="images/Superset.png">
+          </div>
         </div>
-      </div>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Why should I focus on TypeScript</h2>
-      <h3>Trends for typescript versus similar technologies</h3>
-    </hgroup>
-    <article>
-      <div class="row" style="margin-top: -30px;">
-        <div class="col-md-9">
-          <img src="images/trends.PNG" style="border: #353866 solid; width: 95%;">
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Why should I focus on TypeScript</h2>
+        <h3>Trends for typescript versus similar technologies</h3>
+      </hgroup>
+      <article>
+        <div class="row" style="margin-top: -30px;">
+          <div class="col-md-9">
+            <img src="images/trends.PNG" style="border: #353866 solid; width: 95%;">
+          </div>
+          <div class="col-md-3">
+            <p style="margin-top: 3em;">
+              <a href="https://g.co/trends/HlMrB">Live Data</a>
+            </p>
+          </div>
         </div>
-        <div class="col-md-3">
-          <p style="margin-top: 3em;">
-            <a href="https://g.co/trends/HlMrB">Live Data</a>
-          </p>
-        </div>
-      </div>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>TypeScript - Getting Started</h2>
-    </hgroup>
-    <article>
-      <p style="margin-bottom: 2px;">Install TypeScript</p>
-      <pre class="pre18">
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>TypeScript - Getting Started</h2>
+      </hgroup>
+      <article>
+        <p style="margin-bottom: 2px;">Installing the TypeScript compiler</p>
+        <pre class="pre18">
         npm install -g typescript
         //Verify that typescript is installed
         tsc -v   //version x.x.x</pre>
-      <div class="row" style="margin-top: 10px;">
-        <div class="col-md-6">
-          <p style="margin-bottom: 2px;">Write some typescript</p>
-          <pre class="prettyprint pre16" data-file="ts1.ts">
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-6">
+            <p style="margin-bottom: 2px;">Write some typescript</p>
+            <pre class="prettyprint pre16" data-file="ts1.ts">
 class Greeter {
     greeting: <b>string</b>;
     constructor(message: string) {
@@ -124,13 +127,13 @@ class Greeter {
 }
 let greeter = new Greeter("world");
 console.log(greeter.greet());</pre>
-        </div>
-        <div class="col-md-6 build">
-          <div>
-            <p style="margin-bottom: 2px;">And transpile it into typescript</p>
-            <pre class="prettyprint pre16">tsc ts1.ts</pre>
-            <div style="margin: -4px;">&nbsp;</div>
-            <pre class="prettyprint pre16" data-file="myTsFile.ts">
+          </div>
+          <div class="col-md-6 build">
+            <div>
+              <p style="margin-bottom: 2px;">And transpile it into typescript</p>
+              <pre class="prettyprint pre16">tsc ts1.ts</pre>
+              <div style="margin: -4px;">&nbsp;</div>
+              <pre class="prettyprint pre16" data-file="myTsFile.ts">
 
 var Greeter = (function () {
     function Greeter(message) {
@@ -143,157 +146,195 @@ var Greeter = (function () {
 }());
 var greeter = new Greeter("world");
 console.log(greeter.greet());</pre>
-          </div>
-        </div>
-      </div>
-      <div class="build">
-      <img src="../images/Demo.png" style="width:100px;margin-top: -25px;">
-        </div>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>TypeScript and IDEs</h2>
-    </hgroup>
-    <article>
-      <p>Since TypeScript is a MicroSoft "invention" Visual Studio include it, as a first-class programming language
-        together
-        with C# etc.<br/>
-        With Visual Studio you can also write <a href="https://msdn.microsoft.com/en-us/magazine/dn201754.aspx">
-          Apps for Windows Store</a> using TypeScript <br/><br/>
-        If you already have Visual Studio you should definitely give it a try, if not, WebStorm is still our friend ;-)
-      </p>
-      <p>With WebStorm you just need to upgrade to the newest version and it ships with built in support for
-        TypeScript</p>
-      <p><a href="https://www.jetbrains.com/help/webstorm/2016.2/typescript-support.html">See here for WebStorm
-        details</a></p>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2 style="font-size: 1.5em;"><em>tsconfig.json</em> + Third-party Declaration Files</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top: -25px;">The presence of a <a
-              href="http://www.typescriptlang.org/docs/handbook/tsconfig-json.html">tsconfig.json</a>
-        file in a directory indicates that the directory is the root of a TypeScript project.
-        The tsconfig.json file specifies the root files and the compiler options required to compile the project.
-      </p>
-      <div class="row">
-        <div class="col-md-5">
-          <p style="font-size: 0.7em;"><b>tsconfig.json</b> made by WebStorm to setup a project for TypeScript with Node
-          </p>
-          <pre class="prettyprint pre20">{
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "sourceMap": true
-  },
-  "types" : ["node"],
-  "exclude": [
-    "node_modules"
-  ]
-}     </pre>
-        </div>
-
-        <div class="col-md-7 build">
-          <div>
-
-            <p style="color: #2a6496">Third Party Declaration Files</p>
-            <p style="font-size: 0.8em;">
-              When using a library that was originally designed for regular JavaScript, we need to apply a declaration
-              file to make that library compatible with TypeScript.
-              A declaration file has the extension <em style="font-weight: bold">.d.ts</em> and contains various
-              information about the library and its API.
-            </p>
-            <p>Setup Node for a TypeScript Project</p>
-            <div style="font-size: 0.75em">
-              <p>Add node.d.ts: <code>npm install @types/node --save-dev</code></p>
-              <p>Compile with --module set to "commonjs"</p>
-              <p>Add node to the global resolution by simply adding it to types in your <em>tsconfig</em></p>
             </div>
-            <p><a href="https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/">
-              The future of declaration files </a></p>
           </div>
         </div>
-
-      </div>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2 style="font-size: 1.6em;">WebStorm setup for TypeScript with Node</h2>
-    </hgroup>
-    <article>
-      <img style="margin-top: 3em; " src="../images/Demo.png">
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>The Type System</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top: -25px;">The built in Type System is probably the single most compelling feature in
-        TypeScript.
-        Having types provides us with much better code completion and <em>Compile Time Errors</em></p>
-      <p>The type system in TypeScript is optional so that your javascript is typescript</p>
-      <div class="row">
-        <div class="col-md-4">
-          <p style="margin-bottom: 5px;font-weight: bold; color: #2a6496 ">Basic Types</p>
-          <ul>
-            <li>Boolean</li>
-            <li>Number</li>
-            <li>Boolean</li>
-            <li>Array</li>
-            <li>Tuple</li>
-            <li>Enum</li>
-            <li>Any</li>
-            <li>Void</li>
-          </ul>
+        <div class="build">
+          <img src="../images/Demo.png" style="width:100px;margin-top: -25px;">
         </div>
-        <div class="col-md-8">
-          <p style="margin-bottom: 3px;">
-            Types are annotated using <em><b>:</b>typeAnnotation</em> syntax.
-            Anything that is available in the type declaration space can be used as a Type Annotation.
-          </p>
-          <pre class="prettyprint pre18">
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>TypeScript and VS-code 1</h2>
+      </hgroup>
+      <article>
+        <p style="font-weight: bold">VS Code's TypeScript support can operate in two different modes:</p>
+        <ul>
+
+          <li>
+            <b>File Scope:</b> TypeScript files opened in Visual Studio Code are treated as independent units.</li>
+          <li>
+            <b>Explicit Project: (recommended)</b> A TypeScript project is defined via a
+            <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">
+              tsconfig.json file</a>. The presence of such a file in a directory indicates that the directory is the root
+            of a TypeScript project.</li>
+        </ul>
+        <div class="row">
+          <div class=" col-md-5 ">
+            <p>Create the
+              <em>tsconfig.js</em> like this:</p>
+            <p class="code" style="font-weight: bold"> tsc --init</p>
+            </br>
+            </br>
+            <p>Suggested setup for the exercises today ---------></p>
+          </div>
+          <div class="col-md-7">
+            <pre class="prettyprint pre16 ">{
+ "compilerOptions ": {
+   "target ": "es2015 ",           
+   "module ": "commonjs ",                     
+   "sourceMap ": true, 
+   "outDir ": "build",
+   "rootDir ": "src", 
+   "strict ": true,   
+   "esModuleInterop ": true,                  
+   /* Source Map Options */
+   "sourceRoot ": "src ",
+   "mapRoot ": "src ",            
+  }
+}</pre>
+          </div>
+        </div>
+        </p>
+      </article>
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>TypeScript and VS-code 2</h2>
+      </hgroup>
+      <article>
+        <p style="font-weight: bold;margin-top: -25px;">Run the TypeScript Build</p>
+        <p>I suggest you make Type Script the default Build, which you do like this:</p>
+        <ul>
+          <li>In the Task menu, select: <em>Configure Default Build Task</em> </li>
+          <li>No select one of the following options:<ul>
+            <li><b>tsc: build</b></li>
+            <li><b>tsc: watch </b>(recomended)</li>
+          </ul></li>
+        </ul>
+        <p>This will create the file task.json ind the hidden folder .vscode</p>
+        <pre class="prettyprint pre16">{
+            "version": "2.0.0",
+            "tasks": [
+                {
+                    "type": "typescript",
+                    "tsconfig": "tsconfig.json",
+                    "option": "watch",
+                    "problemMatcher": ["$tsc-watch"],
+                    "group": {"kind": "build","isDefault": true }
+                }
+            ]
+        }</pre>
+
+      </article>
+    </slide>
+
+
+    <slide>
+      <hgroup>
+        <h2 style="font-size: 1.5em; ">
+          <em>tsconfig.json</em> + Third-party Declaration Files</h2>
+      </hgroup>
+      <article>
+       
+            <div>
+
+              <p style="color: #2a6496 ">Third Party Declaration Files</p>
+              <p style="font-size: 0.8em; ">
+                When using a library that was originally designed for regular JavaScript, we need to apply a declaration file to make that
+                library compatible with TypeScript. A declaration file has the extension
+                <em style="font-weight: bold ">.d.ts</em> and contains various information about the library and its API.
+              </p>
+              <p>Setup Node for a TypeScript Project</p>
+              <div style="font-size: 0.75em ">
+                <p>Add node.d.ts:
+                  <code>npm install @types/node --save-dev</code>
+                </p>
+                <p>Compile with --module set to "commonjs "</p>
+              </div>
+              <p>
+                <a href="https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/ ">
+                  See here for details </a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </slide>
+
+
+    <slide>
+      <hgroup>
+        <h2>The Type System</h2>
+      </hgroup>
+      <article>
+        <p style="margin-top: -25px; ">The built in Type System is probably the single most compelling feature in TypeScript. Having types provides us with
+          much better code completion and
+          <em>Compile Time Errors</em>
+        </p>
+        <p>The type system in TypeScript is optional so that your javascript is typescript</p>
+        <div class="row ">
+          <div class="col-md-4 ">
+            <p style="margin-bottom: 5px;font-weight: bold; color: #2a6496 ">Basic Types</p>
+            <ul>
+              <li>Boolean</li>
+              <li>Number</li>
+              <li>Boolean</li>
+              <li>Array</li>
+              <li>Tuple</li>
+              <li>Enum</li>
+              <li>Any</li>
+              <li>Void</li>
+            </ul>
+          </div>
+          <div class="col-md-8 ">
+            <p style="margin-bottom: 3px; ">
+              Types are annotated using
+              <em>
+                <b>:</b>typeAnnotation</em> syntax. Anything that is available in the type declaration space can be used as
+              a Type Annotation.
+            </p>
+            <pre class="prettyprint pre18 ">
 let isDone: <b>boolean</b> = false;
-let msg: <b>string</b> = "Hello World";
+let msg: <b>string</b> = "Hello World ";
 //Array
 let numbers: <b>Array&ltnumber&gt</b> = [1,2,3];
 //Enum
 <b>enum</b> Color {Red, Green, Blue}
 //void
 function warnUser(): <b>void</b> {
-    alert("This is my warning message");
+    alert("This is my warning message ");
 }</pre>
+          </div>
         </div>
-      </div>
-      <p><a href="http://www.typescriptlang.org/docs/handbook/basic-types.html">Types</a></p>
-    </article>
-  </slide>
+        <p>
+          <a href="http://www.typescriptlang.org/docs/handbook/basic-types.html ">Types</a>
+        </p>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Type Inference</h2>
-    </hgroup>
-  </slide>
+    <slide>
+      <hgroup>
+        <h2>Type Inference</h2>
+      </hgroup>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Interfaces</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top: -28px;">One of TypeScript’s core principles is that type-checking focuses on the shape that
-        values have.
-        In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts
-        within your code as well as contracts with code outside of your project</p>
-      <div class="row">
-        <div class="col-md-6 build">
-          <div>
-            <p style="margin-bottom: 3px;">Basic interface</p>
-            <pre class="prettyprint pre16">
+    <slide>
+      <hgroup>
+        <h2>Interfaces</h2>
+      </hgroup>
+      <article>
+        <p style="margin-top: -28px; ">One of TypeScript’s core principles is that type-checking focuses on the shape that values have. In TypeScript, interfaces
+          fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts
+          with code outside of your project</p>
+        <div class="row ">
+          <div class="col-md-6 build ">
+            <div>
+              <p style="margin-bottom: 3px; ">Basic interface</p>
+              <pre class="prettyprint pre16 ">
 interface Person {
     fName: string;
     lName: string;
@@ -301,59 +342,57 @@ interface Person {
 function name(p: Person) {
     return `${p.fName} ${p.lName}`;
 }
-var user = {fName:"Kurt",lName:"Wonnegut"};</pre>
-          </div>
-          <div>
-            <p style="margin-bottom: 3px;">Optional Properties</p>
-            <pre class="prettyprint pre16">
+var user = {fName:"Kurt ",lName:"Wonnegut "};</pre>
+            </div>
+            <div>
+              <p style="margin-bottom: 3px; ">Optional Properties</p>
+              <pre class="prettyprint pre16 ">
 interface Person {
     fName<b>?</b>: string;
     lName<b>?</b>: string;
 }
 //We can do this:
-var user = {fName:"Kurt"};
+var user = {fName:"Kurt "};
 //But not this
-user.l<b>ast</b>Name = "Wonnegut";</pre>
+user.l<b>ast</b>Name = "Wonnegut ";</pre>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6 build">
-          <div>
-            <p style="margin-bottom: 3px;">Readonly Properties</p>
-            <pre class="prettyprint pre18">
+          <div class="col-md-6 build ">
+            <div>
+              <p style="margin-bottom: 3px; ">Readonly Properties</p>
+              <pre class="prettyprint pre18 ">
 interface Person {
     readonly fName: string;
     readonly lName: string;
 }
 //We can do this:
-var user = {fName:"Kurt",lName="Wonnegut"};
+var user = {fName:"Kurt ",lName="Wonnegut "};
 //But not this
-user.lName = "Hansen"</pre>
+user.lName = "Hansen "</pre>
+            </div>
           </div>
         </div>
-      </div>
-    </article>
-  </slide>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Interfaces</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top: -28px;"></p>
-      <div class="row">
-        <div class="col-md-6">
-          <div>
-            <p style="margin-bottom: 3px; color: #2a6496">Function Types</p>
-            <p style="font-size: 0.8em;">To describe a function type with an interface, we give the interface a call
-              signature.
-              This is like a function declaration with only the parameter list and return type given</p>
-            <pre class="prettyprint pre16">
+    <slide>
+      <hgroup>
+        <h2>Interfaces</h2>
+      </hgroup>
+      <article>
+        <p style="margin-top: -28px; "></p>
+        <div class="row ">
+          <div class="col-md-6 ">
+            <div>
+              <p style="margin-bottom: 3px; color: #2a6496 ">Function Types</p>
+              <p style="font-size: 0.8em; ">To describe a function type with an interface, we give the interface a call signature. This is like a function
+                declaration with only the parameter list and return type given</p>
+              <pre class="prettyprint pre16 ">
 interface SearchFunc {
   (source: string, subString: string): boolean;
 }</pre>
-            <p style="font-size: 0.8em;margin-bottom: 3px;">Once defined, we can use this function type interface like
-              we would other interfaces</p>
-            <pre class="prettyprint pre16">
+              <p style="font-size: 0.8em;margin-bottom: 3px; ">Once defined, we can use this function type interface like we would other interfaces</p>
+              <pre class="prettyprint pre16 ">
 let s: SearchFunc;
 s = function(source:string, subString:string){
     let result = source.search(subString);
@@ -364,14 +403,14 @@ s = function(source:string, subString:string){
         return true;
     }
 }</pre>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-6 build">
-          <div>
-            <p style="margin-bottom: 3px; color: #2a6496">Implementing an interface</p>
-            <p style="font-size: 0.8em;">Like in Java, we can enforce that a class meets a particular contract</p>
-            <pre class="prettyprint pre16">
+          <div class="col-md-6 build ">
+            <div>
+              <p style="margin-bottom: 3px; color: #2a6496 ">Implementing an interface</p>
+              <p style="font-size: 0.8em; ">Like in Java, we can enforce that a class meets a particular contract</p>
+              <pre class="prettyprint pre16 ">
 interface ClockInterface {
     currentTime: Date;
     setTime(d: Date);
@@ -385,26 +424,28 @@ class Clock implements ClockInterface {
     constructor(h: number, m: number) { }
 }
               </pre>
-            <br/>
-            <p><a href="http://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces</a></p>
+              <br/>
+              <p>
+                <a href="http://www.typescriptlang.org/docs/handbook/interfaces.html ">Interfaces</a>
+              </p>
+            </div>
+
           </div>
 
+
         </div>
+      </article>
+    </slide>
 
+    <slide>
+      <hgroup>
+        <h2>Classes and Inheritance</h2>
+      </hgroup>
+      <article>
 
-      </div>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Classes and Inheritance</h2>
-    </hgroup>
-    <article>
-
-      <div class="row" style="margin-top: -20px;">
-        <div class="col-md-8">
-      <pre class="prettyprint pre16">
+        <div class="row " style="margin-top: -20px; ">
+          <div class="col-md-8 ">
+            <pre class="prettyprint pre16 ">
 <b>abstract</b> class Animal {
   <b>static</b> animalCount: number = 0;
   <b>protected</b> legs: number = 0;
@@ -425,144 +466,152 @@ class Horse extends Animal {
   }
   move() { super.move(45); }
 }
-let sam = new Snake("Sammy the Python");
-let tom: Animal = new Horse("King", 4);
+let sam = new Snake("Sammy the Python ");
+let tom: Animal = new Horse("King ", 4);
 sam.move();
 tom.move(34);
 console.log(Animal.animalCount); //2</pre>
-        </div>
-        <div class="col-md-4" style="font-size: 0.84em;">
-          <p style="color: #2a6496">TypeScript add Classes and Inheritance "much" like we know from Java/C# with:</p>
-          <ul>
-            <li>Class</li>
-            <li>Constructor</li>
-            <li>Extends</li>
-            <li>Implements</li>
-            <li>Access Modifiers</li>
+          </div>
+          <div class="col-md-4 " style="font-size: 0.84em; ">
+            <p style="color: #2a6496 ">TypeScript add Classes and Inheritance "much " like we know from Java/C# with:</p>
             <ul>
-              <li>public (default)</li>
-              <li>private</li>
-              <li>protected</li>
-              <li><em style="color: darkred">readonly </em></li>
+              <li>Class</li>
+              <li>Constructor</li>
+              <li>Extends</li>
+              <li>Implements</li>
+              <li>Access Modifiers</li>
+              <ul>
+                <li>public (default)</li>
+                <li>private</li>
+                <li>protected</li>
+                <li>
+                  <em style="color: darkred ">readonly </em>
+                </li>
+              </ul>
+              <li>Parameter properties</li>
+              <li>abstract</li>
+              <li>static</li>
+              <li>getters/setters (like C#)</li>
             </ul>
-            <li>Parameter properties</li>
-            <li>abstract</li>
-            <li>static</li>
-            <li>getters/setters (like C#)</li>
-          </ul>
-          <p><a href="http://www.typescriptlang.org/docs/handbook/classes.html">Classes</a></p>
+            <p>
+              <a href="http://www.typescriptlang.org/docs/handbook/classes.html ">Classes</a>
+            </p>
+          </div>
         </div>
-      </div>
 
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Generics</h2>
-    </hgroup>
-    <article>
-      <p>As claimed initially, types is what really makes JavaScript-Typescript climb toward languages like Java, C#,
-        C++ etc.<br/>
-        Having a type system only on the simple types however is not enough, fortunately TypeScript also support <b>Generics</b>
-      </p>
-      <p>The syntax for using generics should be familiar, given what you know from Java</p>
-      <pre class="prettyprint pre20">
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Generics</h2>
+      </hgroup>
+      <article>
+        <p>As claimed initially, types is what really makes JavaScript-Typescript climb toward languages like Java, C#, C++
+          etc.
+          <br/> Having a type system only on the simple types however is not enough, fortunately TypeScript also support
+          <b>Generics</b>
+        </p>
+        <p>The syntax for using generics should be familiar, given what you know from Java</p>
+        <pre class="prettyprint pre20 ">
 let numberList: Array&ltnumber&gt = [1, 2, 3];
-let stringList: Array&ltstring&gt = ["Hello", "World"];</pre>
-      <br/>
-      <p>We have however, not until now, had any focus on how to write our own generics.</p>
-      <p>We will do that today ;-)</p>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Why Generics</h2>
-    </hgroup>
-    <article>
-      <p>Some bugs are easier to detect than others. <b style="color: #2a6496">Compile-time bugs</b>, for example, can
-        be detected early on;
-        you can use the compiler's error messages to figure out what the problem is and fix it, right then and there.
+let stringList: Array&ltstring&gt = ["Hello ", "World "];</pre>
         <br/>
-        <br/><b style="color: #2a6496">Runtime bugs</b>, however, can be much more problematic; they don't always
-        surface immediately,
-        and when they do, it may be at a point in the program that is far removed from the actual cause of the problem
+        <p>We have however, not until now, had any focus on how to write our own generics.</p>
+        <p>We will do that today ;-)</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Why Generics</h2>
+      </hgroup>
+      <article>
+        <p>Some bugs are easier to detect than others.
+          <b style="color: #2a6496 ">Compile-time bugs</b>, for example, can be detected early on; you can use the compiler's error messages to figure
+          out what the problem is and fix it, right then and there.
+          <br/>
+          <br/>
+          <b style="color: #2a6496 ">Runtime bugs</b>, however, can be much more problematic; they don't always surface immediately, and when they do,
+          it may be at a point in the program that is far removed from the actual cause of the problem
+        </p>
+        <ul style="color: #2a6496 ">
+          <li>Generics add stability to our code by making more of our bugs detectable at compile time</li>
+          <li>They helps us to maximize code reuse</li>
+          <li>They helps us to maximize type safety and performance</li>
+          <li>We can now create Generic Collection Classes</li>
+          <li>We can now create Generic Collection Classes</li>
+          <li>We crete generic interfaces, classes, functions, promises etc.</li>
+        </ul>
+
+      </article>
+    </slide>
+
+
+    <slide>
+      <hgroup>
+        <h2>Generics</h2>
+      </hgroup>
+      <article>
+        <div class="row " style="margin-top: 2em; ">
+          <div class="col-md-4 ">
+            <p style="margin-left: 2em;margin-top: 2em; ">
+              <a href="http://www.typescriptlang.org/docs/handbook/generics.html ">Generics</a>
+            </p>
+          </div>
+          <div class="col-md-4 ">
+            <img src="../images/Demo.png ">
+          </div>
+        </div>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Modules and Namespaces</h2>
+      </hgroup>
+      <article>
+        <h2>TODO</h2>
+      </article>
+    </slide>
+
+    <slide class=" nobackground " style="background: #00163B ">
+      <aside class="gdbar right ">
+        <img src="../images/logo.png " style="width: 200px; ">
+      </aside>
+      <hgroup>
+
+      </hgroup>
+      <article class="flexbox auto-fadein " style="margin-top: 25%; ">
+        <h2>Rest of today; Exercises :-)</h2>
+
+      </article>
+      <p class="auto-fadein " data-config-contact>
+        <!-- populated from slide_config.json -->
       </p>
-      <ul style="color: #2a6496 ">
-        <li>Generics add stability to our code by making more of our bugs detectable at compile time</li>
-        <li>They helps us to maximize code reuse</li>
-        <li>They helps us to maximize type safety and performance</li>
-        <li>We can now create Generic Collection Classes</li>
-        <li>We can now create Generic Collection Classes</li>
-        <li>We crete generic interfaces, classes, functions, promises etc.</li>
-      </ul>
-
-    </article>
-  </slide>
+    </slide>
 
 
-  <slide>
-    <hgroup>
-      <h2>Generics</h2>
-    </hgroup>
-    <article>
-      <div class="row" style="margin-top: 2em;">
-        <div class="col-md-4">
-          <p style="margin-left: 2em;margin-top: 2em;">
-            <a href="http://www.typescriptlang.org/docs/handbook/generics.html">Generics</a>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <img src="../images/Demo.png">
-        </div>
-      </div>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Modules and Namespaces</h2>
-    </hgroup>
-    <article>
-      <h2>TODO</h2>
-    </article>
-  </slide>
+    <slide class="backdrop "></slide>
 
-  <slide class=" nobackground" style="background: #00163B">
-    <aside class="gdbar right"><img src="../images/logo.png" style="width: 200px;"></aside>
-    <hgroup>
+  </slides>
 
-    </hgroup>
-    <article class="flexbox  auto-fadein" style="margin-top: 25%;">
-      <h2>Rest of today; Exercises :-)</h2>
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
 
-    </article>
-    <p class="auto-fadein" data-config-contact>
-      <!-- populated from slide_config.json -->
-    </p>
-  </slide>
+    (function () {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
-
-  <slide class="backdrop"></slide>
-
-</slides>
-
-<script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function () {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js "></script>
 <script>CFInstall.check({mode: 'overlay'});</script>
 <![endif]-->
 </body>
+
 </html>

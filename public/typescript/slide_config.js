@@ -3,7 +3,7 @@ var SLIDE_CONFIG = {
   settings: {
     title: "TypeScript",
     subtitle: '',
-    date: 'Fall - 2016',
+    date: 'Spring - 2018',
     //eventInfo: {
     //  title: 'Google I/O',
     //  date: '6/x/2013'
