@@ -51,7 +51,7 @@
     </slide>
 
 
-   
+
 
     <slide>
       <hgroup>
@@ -143,7 +143,8 @@
           <li style="color: lightgray">
             <b>Digest</b> (not used very often)</li>
           <li>
-            <b>Client Certificate</b></li>
+            <b>Client Certificate</b>
+          </li>
         </ul>
         <p>Technologies in
           <span style="color:steelblue">blue</span> will be covered today + </p>
@@ -198,27 +199,27 @@
         <h3>Using the built in security features, we can add security Declaratively </h3>
       </hgroup>
       <article>
-          <a href="https://docs.oracle.com/javaee/7/tutorial/security-webtier002.htm">Securing Web Applications</a>
+        <a href="https://docs.oracle.com/javaee/7/tutorial/security-webtier002.htm">Securing Web Applications</a>
 
-          <br/>
-          <br/>
-          <img src="../images/Demo.png"/>
+        <br/>
+        <br/>
+        <img src="../images/Demo.png" />
 
       </article>
     </slide>
 
-   <slide>
-    <hgroup>
-      <h2>REST-end points, SPA's, Mobile Apps</h2>
-      <h3>API-authentication using Tokens</h3>
-    </hgroup>
+    <slide>
+      <hgroup>
+        <h2>REST-end points, SPA's, Mobile Apps</h2>
+        <h3>API-authentication using Tokens</h3>
+      </hgroup>
 
-    <article>
-      <img style="margin:6em;margin-top:-0px;width:65%;" src="images/AppSPAAccesscontroll.png">
+      <article>
+        <img style="margin:6em;margin-top:-0px;width:65%;" src="images/AppSPAAccesscontroll.png">
 
-    </article>
+      </article>
 
-  </slide>
+    </slide>
 
 
     <slide>
@@ -340,18 +341,17 @@
 
     <slide>
       <hgroup>
-        <h2> Basic HTTP Authentication??</h2>
+        <h2> Basic HTTP Auth and API's??</h2>
         <h3>Is that an option?</h3>
       </hgroup>
       <article>
         <p style="margin-top: -15px;">For Authentication, this has been around almost since HTTP was invented</p>
-          <p>It is the simplest possible way to enforce access control as it doesn't require cookies, sessions or anything else
+        <p>It is the simplest possible way to enforce access control as it doesn't require cookies, sessions or anything else
           State is held by the HTTP client (as an encoded (not encrypted) string with username and password) and sent with
           each request.
         </p>
         <p>
-          <b>Used with SSL</b> it can be an acceptable solution for our requirements, but it does suffer from a number of
-          problems:
+          <b>Used with SSL</b> it can be an acceptable solution for our requirements, but it does suffer from a number of problems:
         </p>
         <ul>
           <li>The username and password are sent with every request, potentially exposing them - even if sent via a secure connection
@@ -561,16 +561,25 @@ HMACSHA256(
       </hgroup>
 
       <article>
-        <img style="margin-top: -35px;margin-left:5%;width:72%;" src="images/jsonwebtoken.png">
+        <div class="row">
+          <div class="col-md-7">
+          </br>
+            <img style="margin-top: -35px;margin-left:5%;width:100%;" src="images/jsonwebtoken.png">
 
-        <p style="font-size: 0.8em;">
-          <a href="http://scytl.github.io/restguide/#_security">
-            http://scytl.github.io/restguide/#_security</a>
-        </p>
+            <p style="font-size: 0.8em;">
+              <a href="http://scytl.github.io/restguide/#_security">
+                http://scytl.github.io/restguide/#_security</a>
+            </p>
+          </div>
+          <div class="col-md-5">
+            </br>
+            <p style="color:steelblue;font-size: 1.7em;">You will implement this strategy via today's exercise</p>
+          </div>
+        </div>
       </article>
     </slide>
 
-    <slide>
+    <!-- <slide>
       <hgroup>
         <h2>Where to Store the Token</h2>
         <h3></h3>
@@ -668,7 +677,7 @@ Authorization: Bearer eeyJhbGciOiJIUzI1Ni..........  </pre>
         </p>
 
       </article>
-    </slide>
+    </slide> -->
     <slide>
       <hgroup>
         <div style="float: left">
@@ -734,9 +743,9 @@ Authorization: Bearer eeyJhbGciOiJIUzI1Ni..........  </pre>
       </article>
     </slide>
 
-  
 
-    
+
+
 
 
     <slide class="backdrop"></slide>
