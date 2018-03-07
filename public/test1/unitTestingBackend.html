@@ -134,10 +134,10 @@
   <slide>
     <hgroup>
       <h2>Testing this Semester</h2>
-      <h3>This semester we will, as a minimum </h3>
+      <h3>This semester you should demonstrate </h3>
     </hgroup>
     <article style="margin-top: 0px;">
-      <p style="font-size: 0.8em">Using an example you hopefully know (just as an example)</p>
+      <p style="font-size: 0.8em">Using a Momondo-like example </p>
       <img src="images/TestingThisSemester.JPG">
     </article>
   </slide>
@@ -145,11 +145,10 @@
   <slide>
     <hgroup>
       <h2>Selecting a Unit Testing Framework</h2>
-
       <h3></h3>
     </hgroup>
     <article>
-      <p style="margin-top:-20px; ">Before we can start to test. we need to decide for a Testing Framework</p>
+      <p style="margin-top:-20px; ">Before we can start testing, we need to choose a Testing Framework</p>
 
       <p><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript">Pick one ;-)</a></p>
 
@@ -157,8 +156,7 @@
         <ul>
           <li>We will use the <a href="http://mochajs.org/">Mocha Testing Framework</a></li>
           <img src="images/mocha-chaijs.png" style="width: 40%">
-          <li>It very popular</li>
-          <li>It's supported "out of the box" by a WebStorm Configuration</li>
+          <li>Because it seems to be one of the most popular JavaScript test frameworks (for backend testing)</li>
         </ul>
       </div>
 
@@ -228,12 +226,11 @@ describe('Array', function(){
   <slide>
     <hgroup>
       <h2>Installing Mocha</h2>
-      <h3><b>npm</b> of course :-)</h3>
     </hgroup>
     <article>
-      <p style="margin-top:-40px; ">&nbsp;</p>
-      <p style="font-size: 65px;color: #000066">npm install mocha -g</p>
-      <h3><a href="https://www.youtube.com/watch?v=4mKiGkokyx8">Mocha with WebStorm</a></h3>
+      <p style="margin-top:30px; ">&nbsp;</p>
+      <p style="font-size: 65px;font-family: 'Courier New', Courier, monospace; color: #000066">npm install mocha -g</p>
+      <h3><a href="https://marketplace.visualstudio.com/items?itemName=maty.vscode-mocha-sidebar">Mocha help in VS Code (Mocha sidebar)</a></h3>
 
     </article>
   </slide>
@@ -291,7 +288,7 @@ describe('Array', function(){
       </div>
       <p>Remember: <b>npm install chai --save-dev</b></p>
         <pre class="prettyprint">
-var expect = require("chai").expect;
+const expect = require("chai").expect;
 
 describe('Array', function(){
   describe('Verify the #indexOf()', function(){
@@ -329,9 +326,13 @@ describe('Array', function(){
       <h3>A quick glance at the documentation</h3>
 
     </hgroup>
-    <article style="margin-top: 0px;">
-      <iframe data-src="https://mochajs.org/#getting-started" class="scaled_iframe" style="height: 550px;"></iframe>
-      <footer class="source"><a href="https://mochajs.org/">Mocha</a></footer>
+    <article >
+      <!-- <iframe data-src="https://mochajs.org/#getting-started" class="scaled_iframe" style="height: 550px;"></iframe> -->
+      <div style="margin-top: 4em;margin-left:10em;">
+      <a href="https://mochajs.org/">
+      <img src="images/mocha.png">
+      </a>
+    </div>
     </article>
   </slide>
 
@@ -349,7 +350,7 @@ describe('Array', function(){
 
       <p style="color: #000088">Testing the "Make It Modular Exercise" from Learnyounode</p>
         <pre class="pre18 prettyprint ">
-dvar expect = require("chai").expect;
+const expect = require("chai").expect;
 
 describe("Testing async behaviour", function(){
   var foo = false;
@@ -443,23 +444,24 @@ var n = nock('http://myapp.iriscouch.com')
     <h3>Example part-1 - code to be tested</h3>
     </hgroup>
     <article style="margin-top: 0px;">
-      <p >Assume we had a module that encapsulated requests to a remote REST-API</b> like: <a href="http://jokes-plaul.rhcloud.com/api/joke">http://jokes-plaul.rhcloud.com/api/joke</a></p>
+      <p >Assume we had a module that encapsulated requests to a remote REST-API</b> like: <a href="https://swapi.co/api/people/1">
+        https://swapi.co/api/people/1</a></p>
       <p style="font-size: 0.9em;">Testing a module like this will be hard, since it depends on an external resource (what if net is unavailable) and return replies that will change</p>
-        <pre class="pre18 prettyprint" data-lang="jokes.js">
-var request = require("request");
-var URL = "http://jokes-plaul.rhcloud.com/api/joke";
-
-function getJoke(callback) {
-  request(URL, function (error, response, body) {
-    if(error || response.statusCode >=400){
-      return callback(error || body );
+        <pre class="pre18 prettyprint" data-lang="swapiModule.js">
+const fetch = require("node-fetch")
+var URL = "https://swapi.co/api/people/";
+          
+function getPerson(id){            
+  return fetch(URL+id)
+  .then(res=>{
+    if(!res.ok){
+      return res.json().then(data=> {throw data});
     }
-    callback(null,JSON.parse(body));
+    return res.json()
   });
-};
-module.exports = {
-  getJoke : getJoke //....
-} </pre>
+}
+          
+module.exports = {getPerson:getPerson}</pre>
 
     </article>
 
@@ -470,32 +472,29 @@ module.exports = {
     <h3>Example part-2,The test code with MOCK's</h3>
     </hgroup>
     <article style="margin-top: 0px;">
-      <p style="font-size: 0.9em; color: #2a6496">Test Code for the getJoke function</b></p>
-        <pre class="prettyprint pre14" data-lang="jokestest.js">
-          var expect = require("chai").expect;
-var jokes = require("../module/joke");
-var nock = require("nock");
-var testJoke = {"id": 1234, "joke": "ha ha ha", "reference": "unknown"};
+      <p style="font-size: 0.9em; color: #2a6496">Test Code for the getPerson function</b></p>
+        <pre class="prettyprint pre16" data-lang="swapiModule.js">
+const expect = require("chai").expect;
+<b>const swapi = require("../swapiModule");</b>
+const nock = require("nock");
+const testPerson = {"name": "Luke Skywalker", "height": "172", "mass": "77",}
 
-var n = nock('http://jokes-plaul.rhcloud.com');
+const n = nock('https://swapi.co');
 
-describe('Person API Get', function () {
-  before(function (done) {
-    n.get('/api/joke')
-      .reply(200,testJoke );
-    done();
-  });
+describe('swapiModule Get person', function () {
+    //If you comment out this part, it will fetch from the REAL API (swapi.co/api)
+    before(function (done) {
+        n.get('/api/people/1').reply(200, testPerson);
+        done();
+    });
 
-  it('should fetch the vampire joke', function (done) {
-    jokes.getJoke(function (err, joke) {
-      if (err) {
-        throw err;
-      }
-      expect(joke.reference).to.be.equal("unknown");
-      expect(joke).to.be.eql(testJoke);
-      done();
-    })
-  });
+    it('should fetch Luke Skywalker', function (done) {
+        let promise= <b>swapi.getPerson(1)</b>;
+        promise.then(person=>{
+           expect(person.name).to.be.equal("Luke Skywalker");
+           done();
+        })
+    });
 });
 </pre>
 
