@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Node- Getting Started</title>
   <meta charset="utf-8">
@@ -26,160 +27,165 @@
 
 <!--Setup Angular for the full slide-set-->
 <!--<body ng-app="SlideApp" style="opacity: 0">-->
+
 <body style="opacity: 0">
 
-<slides class="layout-widescreen">
+  <slides class="layout-widescreen">
 
 
-  <slide class="title-slide segue nobackground" style="background: #00163B">
-    <aside class="gdbar"><img src="../images/logo.png" style="width: 200px;"></aside>
-    <hgroup class="autofadein" style="color: white;">
-      <div style="float: left">
-        <h1 data-config-title style="float:left;"></h1>
+    <slide class="title-slide segue nobackground" style="background: #00163B">
+      <aside class="gdbar">
+        <img src="../images/logo.png" style="width: 200px;">
+      </aside>
+      <hgroup class="autofadein" style="color: white;">
+        <div style="float: left">
+          <h1 data-config-title style="float:left;"></h1>
 
-        <h2 data-config-subtitle></h2>
+          <h2 data-config-subtitle></h2>
 
-        <p data-config-presenter></p>
-      </div>
-      <!--<div style="float:left;margin-left: 2em;"><img src="images/node_logo.png" style="float:left"></div>-->
-    </hgroup>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>The Test Process</h2>
-
-      <h3> A Short recap</h3>
-    </hgroup>
-    <article>
-      <img src="images/TheTEstProcess.PNG" style="width:90%;margin-top: -60px;margin-left: 5%;">
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Testing systems that grows in size</h2>
-
-      <h3> Mocks - a short recap</h3>
-    </hgroup>
-    <article>
-      <img src="images/Mock1.PNG" style="width:90%;margin-top: -60px;margin-left: 5%;">
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Testing systems that grows in size</h2>
-
-      <h3> Mocks - a short recap</h3>
-    </hgroup>
-    <article>
-      <ul>
-        <li>Mock objects are simulated objects that mimic the behavior of real objects in controlled ways.</li>
-        <li>Mock objects have the same interface as the real objects they mimic, allowing a client object to remain
-          unaware
-          of whether it is using a real object or a mock object.
-        </li>
-        <li>Many available mock object frameworks allow the programmers to create mocks Automatically from existing
-          code/interfaces
-        </li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Mocking</h2>
-    </hgroup>
-    <article>
-      <div class="row" style="margin-top: 75px;">
-        <div class="col-md-6">
-          <img src="images/mocks2.PNG" style="width:100%;">
+          <p data-config-presenter></p>
         </div>
-        <div class="col-md-6" style="margin-top: 25px;">
-          <p>For the coming days we will have great focus on <b>Mocking</b> and tools that helps us with doing
-            just that</p>
+        <!--<div style="float:left;margin-left: 2em;"><img src="images/node_logo.png" style="float:left"></div>-->
+      </hgroup>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>The Test Process</h2>
+
+        <h3> A Short recap</h3>
+      </hgroup>
+      <article>
+        <img src="images/TheTEstProcess.PNG" style="width:90%;margin-top: -60px;margin-left: 5%;">
+      </article>
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>Testing systems that grows in size</h2>
+
+        <h3> Mocks - a short recap</h3>
+      </hgroup>
+      <article>
+        <img src="images/Mock1.PNG" style="width:90%;margin-top: -60px;margin-left: 5%;">
+      </article>
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>Testing systems that grows in size</h2>
+
+        <h3> Mocks - a short recap</h3>
+      </hgroup>
+      <article>
+        <ul>
+          <li>Mock objects are simulated objects that mimic the behavior of real objects in controlled ways.</li>
+          <li>Mock objects have the same interface as the real objects they mimic, allowing a client object to remain unaware
+            of whether it is using a real object or a mock object.
+          </li>
+          <li>Many available mock object frameworks allow the programmers to create mocks Automatically from existing code/interfaces
+          </li>
+        </ul>
+      </article>
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>Mocking</h2>
+      </hgroup>
+      <article>
+        <div class="row" style="margin-top: 75px;">
+          <div class="col-md-6">
+            <img src="images/mocks2.PNG" style="width:100%;">
+          </div>
+          <div class="col-md-6" style="margin-top: 25px;">
+            <p>For the coming days we will have great focus on
+              <b>Mocking</b> and tools that helps us with doing just that</p>
+          </div>
         </div>
-      </div>
-    </article>
-  </slide>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Testing</h2>
+    <slide>
+      <hgroup>
+        <h2>Testing</h2>
 
-      <h3> What have we used up until now</h3>
-    </hgroup>
+        <h3> What have we used up until now</h3>
+      </hgroup>
 
-    <article>
-      <div class="row">
-        <div class="col-md-3" style="height:6em;">
-          <img src="images/junit-logo.png">
+      <article>
+        <div class="row">
+          <div class="col-md-3" style="height:6em;">
+            <img src="images/junit-logo.png">
+          </div>
+          <div col-md-9>
+            <p>For the first two semesters, and the start of this semester, we unit-tested with JUnit since it's the most popular
+              Unit Test Framework for Java.</p>
+
+            <p>It was easy to get started because JUnit includes it "all"</p>
+            <ul style="margin-left: 300px;">
+              <li>A Test Runner</li>
+              <li>A visual GUI</li>
+              <li>A console</li>
+              <li>The necessary assertions</li>
+            </ul>
+          </div>
         </div>
-        <div col-md-9><p>For the first two semesters, and the start of this semester, we unit-tested with JUnit since
-          it's
-          the most popular Unit Test Framework for Java.</p>
 
-          <p>It was easy to get started because JUnit includes it "all"</p>
-          <ul style="margin-left: 300px;">
-            <li>A Test Runner</li>
-            <li>A visual GUI</li>
-            <li>A console</li>
-            <li>The necessary assertions</li>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Testing this Semester</h2>
+        <h3>This semester you should demonstrate </h3>
+      </hgroup>
+      <article style="margin-top: 0px;">
+        <p style="font-size: 0.8em">Using a Momondo-like example </p>
+        <img src="images/TestingThisSemester.JPG">
+      </article>
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>Selecting a Unit Testing Framework</h2>
+        <h3></h3>
+      </hgroup>
+      <article>
+        <p style="margin-top:-20px; ">Before we can start testing, we need to choose a Testing Framework</p>
+
+        <p>
+          <a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript">Pick one ;-)</a>
+        </p>
+
+        <div class="build">
+          <ul>
+            <li>We will use the
+              <a href="http://mochajs.org/">Mocha Testing Framework</a>
+            </li>
+            <img src="images/mocha-chaijs.png" style="width: 40%">
+            <li>Because it seems to be one of the most popular JavaScript test frameworks (for backend testing)</li>
           </ul>
         </div>
-      </div>
-
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Testing this Semester</h2>
-      <h3>This semester you should demonstrate </h3>
-    </hgroup>
-    <article style="margin-top: 0px;">
-      <p style="font-size: 0.8em">Using a Momondo-like example </p>
-      <img src="images/TestingThisSemester.JPG">
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Selecting a Unit Testing Framework</h2>
-      <h3></h3>
-    </hgroup>
-    <article>
-      <p style="margin-top:-20px; ">Before we can start testing, we need to choose a Testing Framework</p>
-
-      <p><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript">Pick one ;-)</a></p>
-
-      <div class="build">
-        <ul>
-          <li>We will use the <a href="http://mochajs.org/">Mocha Testing Framework</a></li>
-          <img src="images/mocha-chaijs.png" style="width: 40%">
-          <li>Because it seems to be one of the most popular JavaScript test frameworks (for backend testing)</li>
-        </ul>
-      </div>
 
 
-    </article>
-  </slide>
+      </article>
+    </slide>
 
 
-  <slide>
-    <hgroup>
-      <h2>Testing with Mocha and Chai</h2>
-    </hgroup>
-    <article>
+    <slide>
+      <hgroup>
+        <h2>Testing with Mocha and Chai</h2>
+      </hgroup>
+      <article>
 
-      <p>Mocha is a feature-rich JavaScript test framework running on Node.js and the browser, making asynchronous
-        testing simple and fun.
-        Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the
-        correct test case</p>
-      <p style="margin-top:-20px;">Mocha can use any assertion library <a href="http://mochajs.org/#assertions">Assertions</a>
-        but I will use Chai in all my examples
-      </p>
-      <h3>Testing using Chai (expect)</h3>
-       <pre class="prettyprint pre17">
+        <p>Mocha is a feature-rich JavaScript test framework running on Node.js and the browser, making asynchronous testing
+          simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught
+          exceptions to the correct test case</p>
+        <p style="margin-top:-20px;">Mocha can use any assertion library
+          <a href="http://mochajs.org/#assertions">Assertions</a>
+          but I will use Chai in all my examples
+        </p>
+        <h3>Testing using Chai (expect)</h3>
+        <pre class="prettyprint pre17">
 describe('Array', function(){
   before(function(){
     // ...
@@ -194,18 +200,18 @@ describe('Array', function(){
        </pre>
 
 
-    </article>
-  </slide>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Behavior-Driven Development</h2>
+    <slide>
+      <hgroup>
+        <h2>Behavior-Driven Development</h2>
 
-    </hgroup>
-    <article>
-      <p style="margin-top:-40px; ">&nbsp;</p>
+      </hgroup>
+      <article>
+        <p style="margin-top:-40px; ">&nbsp;</p>
 
-       <pre class="" style="background-color: #f9cc46;">
+        <pre class="" style="background-color: #f9cc46;">
 <b>Describe</b> User Registration
   While validating the registration info
    - <b>it</b> should make sure the email address is valid
@@ -214,38 +220,40 @@ describe('Array', function(){
   While creating the user's database record
    - <b>it</b> should save successfully in the database
      ...       </pre>
-      <div style="font-size: xx-large;color: #000066; font-weight: bold">With BDD testing, Test Cases can and should be
-        used for
-        Documentation
-      </div>
+        <div style="font-size: xx-large;color: #000066; font-weight: bold">With BDD testing, Test Cases can and should be used for Documentation
+        </div>
 
-    </article>
-  </slide>
+      </article>
+    </slide>
 
 
-  <slide>
-    <hgroup>
-      <h2>Installing Mocha</h2>
-    </hgroup>
-    <article>
-      <p style="margin-top:30px; ">&nbsp;</p>
-      <p style="font-size: 65px;font-family: 'Courier New', Courier, monospace; color: #000066">npm install mocha -g</p>
-      <h3><a href="https://marketplace.visualstudio.com/items?itemName=maty.vscode-mocha-sidebar">Mocha help in VS Code (Mocha sidebar)</a></h3>
+    <slide>
+      <hgroup>
+        <h2>Installing Mocha</h2>
+      </hgroup>
+      <article>
+        <p style="margin-top:30px; ">&nbsp;</p>
+        <p style="font-size: 65px;font-family: 'Courier New', Courier, monospace; color: #000066">npm install mocha -g</p>
+        <h3>
+          <a href="https://marketplace.visualstudio.com/items?itemName=maty.vscode-mocha-sidebar">Mocha help in VS Code (Mocha sidebar)</a>
+        </h3>
 
-    </article>
-  </slide>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>First Mocha Test</h2>
-      <h3>Using Nodes built in assert module</h3>
-    </hgroup>
-    <article>
-      <div style="margin-top: -40px;">
-        <p style="font-size: 0.9em;">An often confusing thing for JUNIT testers is that with Mocha the test framework
-          and the assertion library are two different things.
-          With Mocha we decide which one to use (flexibility). In the example below <b>describe</b> and <b>it</b> is
-          <em>mocha</em>, and the <b>assert</b> statements comes from the initial require("assert") </p>
+    <slide>
+      <hgroup>
+        <h2>First Mocha Test</h2>
+        <h3>Using Nodes built in assert module</h3>
+      </hgroup>
+      <article>
+        <div style="margin-top: -40px;">
+          <p style="font-size: 0.9em;">An often confusing thing for JUNIT testers is that with Mocha the test framework and the assertion library are
+            two different things. With Mocha we decide which one to use (flexibility). In the example below
+            <b>describe</b> and
+            <b>it</b> is
+            <em>mocha</em>, and the
+            <b>assert</b> statements comes from the initial require("assert") </p>
           <pre class="pre16 prettyprint">
 var assert = require("assert"); //Use Nodes built in assertion libraty
 describe('Array', function(){
@@ -257,36 +265,42 @@ describe('Array', function(){
   })
 })
 </pre>
-        <div style="margin-top: 15px;color:#000066">
-          <ul style="list-style: none;">
-            <li>The <b>describe()</b> block is used to group individual specs into a <b>suite</b>. At least one describe
-              block is
-              required
-            </li>
-            <li>The <b>it()</b> block sets up the code for a single test (spec)</li>
-            <li style="color: darkgreen">The <b>assert</b> module contains a series of matchers which perform the
-              comparison
-            </li>
-          </ul>
+          <div style="margin-top: 15px;color:#000066">
+            <ul style="list-style: none;">
+              <li>The
+                <b>describe()</b> block is used to group individual specs into a
+                <b>suite</b>. At least one describe block is required
+              </li>
+              <li>The
+                <b>it()</b> block sets up the code for a single test (spec)</li>
+              <li style="color: darkgreen">The
+                <b>assert</b> module contains a series of matchers which perform the comparison
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      </div>
+        </div>
 
-    </article>
-  </slide>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>First Mocha Test</h2>
+    <slide>
+      <hgroup>
+        <h2>First Mocha Test</h2>
 
-      <h3>Using <b>chai</b></h3>
-    </hgroup>
-    <article>
-      <div style="margin-top: -35px;margin-bottom: 10px;">
-        Using the the <em>chai</em> assertion module
-      </div>
-      <p>Remember: <b>npm install chai --save-dev</b></p>
+        <h3>Using
+          <b>chai</b>
+        </h3>
+      </hgroup>
+      <article>
+        <div style="margin-top: -35px;margin-bottom: 10px;">
+          Using the the
+          <em>chai</em> assertion module
+        </div>
+        <p>Remember:
+          <b>npm install chai --save-dev</b>
+        </p>
         <pre class="prettyprint">
 const expect = require("chai").expect;
 
@@ -299,56 +313,58 @@ describe('Array', function(){
     })
   })
 });        </pre>
-      <p>Again: Note how this test case could expand to a full requirement specification for Array Type</p>
-    </article>
+        <p>Again: Note how this test case could expand to a full requirement specification for Array Type</p>
+      </article>
 
-  </slide>
-  <style>
-    .scaled_iframe {
-      width: 1200px;
-      -moz-transform: scale(0.85, 0.85);
-      -webkit-transform: scale(0.85, 0.85);
-      -o-transform: scale(0.85, 0.85);
-      -ms-transform: scale(0.85, 0.85);
-      transform: scale(0.85, 0.85);
-      -moz-transform-origin: top left;
-      -webkit-transform-origin: top left;
-      -o-transform-origin: top left;
-      -ms-transform-origin: top left;
-      transform-origin: top left;
-    }
+    </slide>
+    <style>
+      .scaled_iframe {
+        width: 1200px;
+        -moz-transform: scale(0.85, 0.85);
+        -webkit-transform: scale(0.85, 0.85);
+        -o-transform: scale(0.85, 0.85);
+        -ms-transform: scale(0.85, 0.85);
+        transform: scale(0.85, 0.85);
+        -moz-transform-origin: top left;
+        -webkit-transform-origin: top left;
+        -o-transform-origin: top left;
+        -ms-transform-origin: top left;
+        transform-origin: top left;
+      }
+    </style>
 
-  </style>
+    <slide>
+      <hgroup>
+        <h2>Mocha Features</h2>
+        <h3>A quick glance at the documentation</h3>
 
-  <slide>
-    <hgroup>
-      <h2>Mocha Features</h2>
-      <h3>A quick glance at the documentation</h3>
-
-    </hgroup>
-    <article >
-      <!-- <iframe data-src="https://mochajs.org/#getting-started" class="scaled_iframe" style="height: 550px;"></iframe> -->
-      <div style="margin-top: 4em;margin-left:10em;">
-      <a href="https://mochajs.org/">
-      <img src="images/mocha.png">
-      </a>
-    </div>
-    </article>
-  </slide>
-
-
-  <slide>
-    <hgroup>
-      <h2>Testing Asynchronous Code 1</h2>
-      <h3>Using the <b>done</b> callback</h3>
+      </hgroup>
+      <article>
+        <!-- <iframe data-src="https://mochajs.org/#getting-started" class="scaled_iframe" style="height: 550px;"></iframe> -->
+        <div style="margin-top: 4em;margin-left:10em;">
+          <a href="https://mochajs.org/">
+            <img src="images/mocha.png">
+          </a>
+        </div>
+      </article>
+    </slide>
 
 
-    </hgroup>
-    <article style="margin-top: 0px;">
-      <p>Mocha provides a callback that lets it know when an asynchronous test is complete. By adding a callback
-        (usually named <b>done</b>) to <b>it()</b> Mocha will know that it should wait for completion</p>
+    <slide>
+      <hgroup>
+        <h2>Testing Asynchronous Code 1</h2>
+        <h3>Using the
+          <b>done</b> callback</h3>
 
-      <p style="color: #000088">Testing the "Make It Modular Exercise" from Learnyounode</p>
+
+      </hgroup>
+      <article style="margin-top: 0px;">
+        <p>Mocha provides a callback that lets it know when an asynchronous test is complete. By adding a callback (usually
+          named
+          <b>done</b>) to
+          <b>it()</b> Mocha will know that it should wait for completion</p>
+
+        <p style="color: #000088">Testing the "Make It Modular Exercise" from Learnyounode</p>
         <pre class="pre18 prettyprint ">
 const expect = require("chai").expect;
 
@@ -364,15 +380,15 @@ describe("Testing async behaviour", function(){
     expect(foo).to.equal(true);
   });
 });       </pre>
-    </article>
-  </slide>
+      </article>
+    </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Testing Asynchronous Code</h2>
-      <h3>Testing the "Make It Modular Exercise" from Learnyounode</h3>
-    </hgroup>
-    <article>
+    <slide>
+      <hgroup>
+        <h2>Testing Asynchronous Code</h2>
+        <h3>Testing the "Make It Modular Exercise" from Learnyounode</h3>
+      </hgroup>
+      <article>
 
 
         <pre class="prettyprint ">
@@ -387,46 +403,139 @@ describe('myModule', function () {
         <b>done();</b>
       });
    });           </pre>
-    </article>
-  </slide>
+      </article>
+    </slide>
 
+    <slide>
+      <hgroup>
+        <h2>Mocha and Promises</h2>
+      </hgroup>
+      <article>
+        <div>
+          <p>Mocha can handle promises, but not in the most elegant way. There are several ways to simplify this, with the use
+            of the ES7 feature
+            <code>async-await</code> as the simplest</p>
+          <p>The next two slides will show how to test the example below, first with
+            <code>async-await</code> and the without (using
+            <code>done</code>)</p>
+          <pre class="prettyprint pre16">
+function delayMsg(msg,delay) {
+    return new Promise((resolve, reject)=> {
+      setTimeout(()=> { 
+        if(!(msg && delay) || msg===""){
+            reject("Wrong arguments")
+        } else
+        resolve(msg.toUpperCase());
+      }, delay);
+    });
+  };
 
-  <slide>
-    <hgroup>
-      <h2>First Mocha + Chai example</h2>
-    </hgroup>
-    <article>
-      <img src="../images/Demo.png">
-    </article>
+module.exports = delayMsg;
+      </pre>
+        </div>
+      </article>
+    </slide>
 
-  </slide>
+    <slide>
+      <hgroup>
+        <h2>Mocha+Promises with async-await</h2>
+      </hgroup>
+      <article>
+        <div>
+          <p>Testing the delayMsg function using <code>async-await</code>. Observe no need for the <code>done</code> callback</p>
+          <pre class="prettyprint pre18">
+const expect = require("chai").expect;
+const delayMsg = require("../delayMsg");
 
-  <slide>
-    <hgroup>
-      <h2>JavaScript Mock Frameworks</h2>
-    </hgroup>
-    <article>
-      <h3>Spies, Stubs and Mocks</h3>
+describe("DelayMsg behaviour", function () {
+    it("Should eventually provide HELLO", <b>async</b> function () {
+        const msg = <b>await</b> delayMsg("hello", 100);
+        expect(msg).to.be.equal("HELLO");
+    })
+    it("Should eventulally reject", <b>async</b> function () {
+        try {
+            const msg = <b>await</b> delayMsg("", 100);
+        } catch (err) { //<b>Observe --> normal try-catch, when you use async-await</b>
+            expect(err).to.be.equal("Wrong arguments");
+        }
+    })
+})          </pre>
+<footer class="source"><a href="https://wietse.loves.engineering/testing-promises-with-mocha-90df8b7d2e35">How to Test Promises with Mocha</a></footer>
+        </div>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Mocha+Promises without async-await</h2>
+      </hgroup>
+      <article>
+        <div style="margin-top:-30px;">
+          <p>Testing the delayMsg function using mocha's promise support, the <code>done</code> callback and <code>finally(done)</code> to call done always</p>
+          <pre class="prettyprint pre18">
+const expect = require("chai").expect;
+const delayMsg = require("../delayMsg");
 
-      <p><a href="http://sinonjs.org/docs/">Sinon.JS</a></p>
-      </p>
-    </article>
+describe("DelayMsg behaviour", function () {
+  it("Should eventually provide HELLO", function (<b>done</b>) {
+      delayMsg("hello", 100)
+          .then(function (msg) {expect(msg).to.be.equal("HELLO");})
+          //.<b>finally(done)</b> //Use this with node Ver10 and above otherwise do
+          .then(done, done)
+  })
+  it("Should eventually provide HELLO", function (<b>done</b>) {
+      delayMsg("", 100)
+          .catch(function (err) {
+              expect(err).to.be.equal("Wrong arguments");
+          })//.<b>finally(done)</b> //Use this with node Ver10 and above otherwise do
+          .then(done, done)
+  })
+})          </pre>
+<footer class="source"><a href="https://wietse.loves.engineering/testing-promises-with-mocha-90df8b7d2e35">How to Test Promises with Mocha</a></footer>
+        </div>
+      </article>
+    </slide>
 
-  </slide>
+    <slide>
+      <hgroup>
+        <h2>First Mocha + Chai example</h2>
+      </hgroup>
+      <article>
+        <img src="../images/Demo.png">
+      </article>
 
-  <slide>
-    <h2>Mocking HTTP Requests</h2>
-    <hgroup>
-      Using <b>nock</b> to Mock HTTP Requests
-    </hgroup>
-    <article>
-      <ul style="font-size: xx-large">
-        <li>Nock is an HTTP mocking and expectations library for Node.js</li>
-        <li>Nock can be used to test modules that perform HTTP requests in isolation (that is without performing a real
-          network operation)
-        </li>
-      </ul>
-      <p><b>npm install nock</b></p>
+    </slide>
+
+    <slide>
+      <hgroup>
+        <h2>JavaScript Mock Frameworks</h2>
+      </hgroup>
+      <article>
+        <h3>Spies, Stubs and Mocks</h3>
+
+        <p>
+          <a href="http://sinonjs.org/docs/">Sinon.JS</a>
+        </p>
+        </p>
+      </article>
+
+    </slide>
+
+    <slide>
+      <h2>Mocking HTTP Requests</h2>
+      <hgroup>
+        Using
+        <b>nock</b> to Mock HTTP Requests
+      </hgroup>
+      <article>
+        <ul style="font-size: xx-large">
+          <li>Nock is an HTTP mocking and expectations library for Node.js</li>
+          <li>Nock can be used to test modules that perform HTTP requests in isolation (that is without performing a real network
+            operation)
+          </li>
+        </ul>
+        <p>
+          <b>npm install nock</b>
+        </p>
         <pre class="prettyprint">
 var nock = require('nock');
 var n = nock('http://myapp.iriscouch.com')
@@ -434,19 +543,22 @@ var n = nock('http://myapp.iriscouch.com')
                 .reply(200, {id: '123ABC',username: 'kurt', email: 'kurt@gmail.com'});
         </pre>
 
-    </article>
+      </article>
 
-  </slide>
+    </slide>
 
-  <slide>
-    <hgroup>
-    <h2>Mocking HTTP Requests</h2>
-    <h3>Example part-1 - code to be tested</h3>
-    </hgroup>
-    <article style="margin-top: 0px;">
-      <p >Assume we had a module that encapsulated requests to a remote REST-API</b> like: <a href="https://swapi.co/api/people/1">
-        https://swapi.co/api/people/1</a></p>
-      <p style="font-size: 0.9em;">Testing a module like this will be hard, since it depends on an external resource (what if net is unavailable) and return replies that will change</p>
+    <slide>
+      <hgroup>
+        <h2>Mocking HTTP Requests</h2>
+        <h3>Example part-1 - code to be tested</h3>
+      </hgroup>
+      <article style="margin-top: 0px;">
+        <p>Assume we had a module that encapsulated requests to a remote REST-API</b> like:
+          <a href="https://swapi.co/api/people/1">
+            https://swapi.co/api/people/1</a>
+        </p>
+        <p style="font-size: 0.9em;">Testing a module like this will be hard, since it depends on an external resource (what if net is unavailable) and
+          return replies that will change</p>
         <pre class="pre18 prettyprint" data-lang="swapiModule.js">
 const fetch = require("node-fetch")
 var URL = "https://swapi.co/api/people/";
@@ -463,68 +575,66 @@ function getPerson(id){
           
 module.exports = {getPerson:getPerson}</pre>
 
-    </article>
+      </article>
 
-  </slide>
-  <slide>
-    <hgroup>
-    <h2>Mocking HTTP Requests</h2>
-    <h3>Example part-2,The test code with MOCK's</h3>
-    </hgroup>
-    <article style="margin-top: 0px;">
-      <p style="font-size: 0.9em; color: #2a6496">Test Code for the getPerson function</b></p>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Mocking HTTP Requests</h2>
+        <h3>Example part-2,The test code with MOCK's</h3>
+      </hgroup>
+      <article style="margin-top: 0px;">
+        <p style="font-size: 0.9em; color: #2a6496">Test Code for the getPerson function (observe the use of <code>async-await</code></b>
+        </p>
         <pre class="prettyprint pre16" data-lang="swapiModule.js">
 const expect = require("chai").expect;
-<b>const swapi = require("../swapiModule");</b>
+const swapi = require("../swapi/swapiModule");
 const nock = require("nock");
 const testPerson = {"name": "Luke Skywalker", "height": "172", "mass": "77",}
 
 const n = nock('https://swapi.co');
-
 describe('swapiModule Get person', function () {
     //If you comment out this part, it will fetch from the REAL API (swapi.co/api)
-    before(function (done) {
+    beforeEach(function () {
         n.get('/api/people/1').reply(200, testPerson);
-        done();
+    });
+    //Observe the use of async/await to handle promises (no need for done)
+    it('should fetch Luke Skywalker', async function () {
+        let person = await swapi.getPerson(1);
+        expect(person.name).to.be.equal("Luke Skywalker");
     });
 
-    it('should fetch Luke Skywalker', function (done) {
-        let promise= <b>swapi.getPerson(1)</b>;
-        promise.then(person=>{
-           expect(person.name).to.be.equal("Luke Skywalker");
-           done();
-        })
-    });
 });
 </pre>
 
-    </article>
+      </article>
 
-  </slide>
+    </slide>
 
 
-  <slide class="backdrop"></slide>
+    <slide class="backdrop"></slide>
 
-</slides>
+  </slides>
 
-<script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
-  _gaq.push(['_trackPageview']);
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
 
-  (function () {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    (function () {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
-<!--[if IE]>
+  <!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <script>CFInstall.check({mode: 'overlay'});</script>
 <![endif]-->
 </body>
+
 </html>
