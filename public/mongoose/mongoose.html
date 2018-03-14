@@ -403,7 +403,7 @@ var mongoose = require( 'mongoose' );
 var User = mongoose.model("User"););
 
 // create a new user
-var newUser = User({
+var newUser = new User({
   username: 'Kurt Wonnegut',
   email: "kw@somewhere.dk"
 });
