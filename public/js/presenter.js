@@ -15,7 +15,7 @@ function getNamePlain(str) {
 function isImage(str) {
   var index = str.lastIndexOf(".") + 1;
   var type = str.substr(index);
-  return (type==="png" || type==="jpg" || type==="svg");
+  return ( type==="PNG" || type==="jpg" || type==="svg");
 }
 
 var entityMap = {
@@ -144,6 +144,7 @@ function makeHandler(path, fileName, content, iframe, btnDiv, comment, first, sh
       commentClass: "",
       commentStyle: "",
       btnDivStyle: "",
+      imageTitle: "Architecture",
       manifest:"manifest.json"
     }, options);
     var control = this;
