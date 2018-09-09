@@ -63,7 +63,8 @@
         <div class="row">
           <div class="col-md-8">
             <ul class="build">
-              <li>TypeScript is a free and open source programming language developed and maintained by Microsoft. It is a strict
+              <li>TypeScript is a free and open source programming language developed and maintained by Microsoft. It is
+                a strict
                 <b>superset</b>
                 of JavaScript, and adds optional static typing interfaces, class-based object-oriented programming and much more to the language.
               </li>
@@ -73,8 +74,8 @@
               <li> As a superset of JavaScript, any existing JavaScript programs are also valid TypeScript programs</li>
 
               <li>The TypeScript compiler is itself written in TypeScript, transcompiled to JavaScript</li>
-              <li>TypeScript is strongly supported by Microsoft and is included as a first-class programming language in Microsoft
-                Visual Studio 2013 Update 2 and later, beside C# and other Microsoft languages
+              <li>TypeScript is strongly supported by Microsoft and is included as a first-class programming language in
+                Microsoft Visual Studio 2013 Update 2 and later, beside C# and other Microsoft languages
               </li>
             </ul>
           </div>
@@ -102,6 +103,25 @@
         </div>
       </article>
     </slide>
+
+    <slide>
+      <hgroup>
+        <h2>Static Type Checking with React</h2>
+      </hgroup>
+      <article>
+        <div>
+          Facebook have created their own system for Static Type Checking <a href="https://reactjs.org/docs/static-type-checking.html">Flow</a>
+        </div>
+        <div style="margin-top: 20px;">
+          Nothing however prevents you from using <em>TypeScript</em> with React, which is what I would recommend over <em>Flow</em>
+        </div>
+        <div style="margin-top: 20px;">
+          <em>Typescript</em> is used "all over", <em>Flow</em>, as far as I can see, only with some React-projects</div>
+        <div>
+
+        </div>
+      </article>
+    </slide>
     <slide>
       <hgroup>
         <h2>TypeScript - Getting Started</h2>
@@ -110,6 +130,8 @@
         <p style="margin-bottom: 2px;">Installing the TypeScript compiler</p>
         <pre class="pre18">
         npm install -g typescript
+        //OR install it locally
+        npm install --save-dev typescript
         //Verify that typescript is installed
         tsc -v   //version x.x.x</pre>
         <div class="row" style="margin-top: 10px;">
@@ -209,10 +231,12 @@ console.log(greeter.greet());</pre>
         <p>I suggest you make Type Script the default Build, which you do like this:</p>
         <ul>
           <li>In the Task menu, select: <em>Configure Default Build Task</em> </li>
-          <li>No select one of the following options:<ul>
-            <li><b>tsc: build</b></li>
-            <li><b>tsc: watch </b>(recomended)</li>
-          </ul></li>
+          <li>No select one of the following options:
+            <ul>
+              <li><b>tsc: build</b></li>
+              <li><b>tsc: watch </b>(recomended)</li>
+            </ul>
+          </li>
         </ul>
         <p>This will create the file task.json ind the hidden folder .vscode</p>
         <pre class="prettyprint pre16">{
@@ -238,28 +262,28 @@ console.log(greeter.greet());</pre>
           <em>tsconfig.json</em> + Third-party Declaration Files</h2>
       </hgroup>
       <article>
-       
-            <div>
 
-              <p style="color: #2a6496 ">Third Party Declaration Files</p>
-              <p style="font-size: 0.8em; ">
-                When using a library that was originally designed for regular JavaScript, we need to apply a declaration file to make that
-                library compatible with TypeScript. A declaration file has the extension
-                <em style="font-weight: bold ">.d.ts</em> and contains various information about the library and its API.
-              </p>
-              <p>Setup Node for a TypeScript Project</p>
-              <div style="font-size: 0.75em ">
-                <p>Add node.d.ts:
-                  <code>npm install @types/node --save-dev</code>
-                </p>
-                <p>Compile with --module set to "commonjs "</p>
-              </div>
-              <p>
-                <a href="https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/ ">
-                  See here for details </a>
-              </p>
-            </div>
+        <div>
+
+          <p style="color: #2a6496 ">Third Party Declaration Files</p>
+          <p style="font-size: 0.8em; ">
+            When using a library that was originally designed for regular JavaScript, we need to apply a declaration file to make that
+            library compatible with TypeScript. A declaration file has the extension
+            <em style="font-weight: bold ">.d.ts</em> and contains various information about the library and its API.
+          </p>
+          <p>Setup Node for a TypeScript Project</p>
+          <div style="font-size: 0.75em ">
+            <p>Add node.d.ts:
+              <code>npm install @types/node --save</code>
+            </p>
+            <p>Compile with --module set to "commonjs "</p>
           </div>
+          <p>
+            <a href="https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/ ">
+              See here for details </a>
+          </p>
+        </div>
+        </div>
 
         </div>
       </article>
@@ -271,8 +295,8 @@ console.log(greeter.greet());</pre>
         <h2>The Type System</h2>
       </hgroup>
       <article>
-        <p style="margin-top: -25px; ">The built in Type System is probably the single most compelling feature in TypeScript. Having types provides us with
-          much better code completion and
+        <p style="margin-top: -25px; ">The built in Type System is probably the single most compelling feature in TypeScript.
+          Having types provides us with much better code completion and
           <em>Compile Time Errors</em>
         </p>
         <p>The type system in TypeScript is optional so that your javascript is typescript</p>
@@ -280,22 +304,22 @@ console.log(greeter.greet());</pre>
           <div class="col-md-4 ">
             <p style="margin-bottom: 5px;font-weight: bold; color: #2a6496 ">Basic Types</p>
             <ul>
-              <li>Boolean</li>
-              <li>Number</li>
-              <li>Boolean</li>
-              <li>Array</li>
-              <li>Tuple</li>
-              <li>Enum</li>
-              <li>Any</li>
-              <li>Void</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>boolean</li>
+              <li>array</li>
+              <li>tuple</li>
+              <li>enum</li>
+              <li>any</li>
+              <li>void</li>
             </ul>
           </div>
           <div class="col-md-8 ">
             <p style="margin-bottom: 3px; ">
               Types are annotated using
               <em>
-                <b>:</b>typeAnnotation</em> syntax. Anything that is available in the type declaration space can be used as
-              a Type Annotation.
+                <b>:</b>typeAnnotation</em> syntax. Anything that is available in the type declaration space can be used
+              as a Type Annotation.
             </p>
             <pre class="prettyprint pre18 ">
 let isDone: <b>boolean</b> = false;
@@ -320,6 +344,11 @@ function warnUser(): <b>void</b> {
       <hgroup>
         <h2>Type Inference</h2>
       </hgroup>
+      <article>
+        <div>
+          <a href="https://www.typescriptlang.org/docs/handbook/type-inference.html">Type Inference</a>
+        </div>
+      </article>
     </slide>
 
     <slide>
@@ -327,9 +356,9 @@ function warnUser(): <b>void</b> {
         <h2>Interfaces</h2>
       </hgroup>
       <article>
-        <p style="margin-top: -28px; ">One of TypeScript’s core principles is that type-checking focuses on the shape that values have. In TypeScript, interfaces
-          fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts
-          with code outside of your project</p>
+        <p style="margin-top: -28px; ">One of TypeScript’s core principles is that type-checking focuses on the shape that
+          values have. In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining
+          contracts within your code as well as contracts with code outside of your project</p>
         <div class="row ">
           <div class="col-md-6 build ">
             <div>
@@ -348,13 +377,14 @@ var user = {fName:"Kurt ",lName:"Wonnegut "};</pre>
               <p style="margin-bottom: 3px; ">Optional Properties</p>
               <pre class="prettyprint pre16 ">
 interface Person {
-    fName<b>?</b>: string;
+    fName<b></b>: string;
     lName<b>?</b>: string;
 }
-//We can do this:
-var user = {fName:"Kurt "};
-//But not this
-user.l<b>ast</b>Name = "Wonnegut ";</pre>
+//Now, we can do this:
+function make(fName:string,lName?:string):Person{
+  return lName ? {fName,lName} :{fName};
+}
+var pFirstnameOnly = make("Kurt");</pre>
             </div>
           </div>
           <div class="col-md-6 build ">
@@ -385,13 +415,14 @@ user.lName = "Hansen "</pre>
           <div class="col-md-6 ">
             <div>
               <p style="margin-bottom: 3px; color: #2a6496 ">Function Types</p>
-              <p style="font-size: 0.8em; ">To describe a function type with an interface, we give the interface a call signature. This is like a function
-                declaration with only the parameter list and return type given</p>
+              <p style="font-size: 0.8em; ">To describe a function type with an interface, we give the interface a call signature.
+                This is like a function declaration with only the parameter list and return type given</p>
               <pre class="prettyprint pre16 ">
 interface SearchFunc {
   (source: string, subString: string): boolean;
 }</pre>
-              <p style="font-size: 0.8em;margin-bottom: 3px; ">Once defined, we can use this function type interface like we would other interfaces</p>
+              <p style="font-size: 0.8em;margin-bottom: 3px; ">Once defined, we can use this function type interface like
+                we would other interfaces</p>
               <pre class="prettyprint pre16 ">
 let s: SearchFunc;
 s = function(source:string, subString:string){
@@ -501,6 +532,41 @@ console.log(Animal.animalCount); //2</pre>
 
       </article>
     </slide>
+
+
+
+    <slide>
+      <hgroup>
+        <h2>Modules</h2>
+      </hgroup>
+      <article>
+        <div style="margin-top:-25px;">
+          Typescript share its module terminology with ECMAScript 2015’s terminology.
+        </div>
+        <br/>
+        <div><b>Export Syntax</b></div>
+        <pre class="prettyprint pre18">
+  const NORTH = new Direction(0, 1); 
+  function turnLeft(direction) {
+    return new Direction(-direction.dy, direction.dx);
+  }
+               
+  export { NORTH, turnLeft }; </pre>
+
+        <div style="margin-top: 15px;"><b>Import Syntax</b></div>
+        <div style="margin:10px;"><em>Either import everything as one object</em></div>
+        <pre class="prettyprint pre18">
+  import * as car from './carutils';
+   
+  const direction = taxicab.turnLeft(taxicab.NORTH);</pre>
+        <div style="margin:10px;"><em>Or, specify the individual variables you want to import</em></div>
+        <pre class="prettyprint pre18">
+  import { NORTH, turnLeft } from './carutils';
+  
+  const direction = turnLeft(NORTH);     </pre>
+      </article>
+    </slide>
+
     <slide>
       <hgroup>
         <h2>Generics</h2>
@@ -526,12 +592,12 @@ let stringList: Array&ltstring&gt = ["Hello ", "World "];</pre>
       </hgroup>
       <article>
         <p>Some bugs are easier to detect than others.
-          <b style="color: #2a6496 ">Compile-time bugs</b>, for example, can be detected early on; you can use the compiler's error messages to figure
-          out what the problem is and fix it, right then and there.
+          <b style="color: #2a6496 ">Compile-time bugs</b>, for example, can be detected early on; you can use the compiler's
+          error messages to figure out what the problem is and fix it, right then and there.
           <br/>
           <br/>
-          <b style="color: #2a6496 ">Runtime bugs</b>, however, can be much more problematic; they don't always surface immediately, and when they do,
-          it may be at a point in the program that is far removed from the actual cause of the problem
+          <b style="color: #2a6496 ">Runtime bugs</b>, however, can be much more problematic; they don't always surface immediately,
+          and when they do, it may be at a point in the program that is far removed from the actual cause of the problem
         </p>
         <ul style="color: #2a6496 ">
           <li>Generics add stability to our code by making more of our bugs detectable at compile time</li>
@@ -544,7 +610,6 @@ let stringList: Array&ltstring&gt = ["Hello ", "World "];</pre>
 
       </article>
     </slide>
-
 
     <slide>
       <hgroup>
@@ -563,14 +628,7 @@ let stringList: Array&ltstring&gt = ["Hello ", "World "];</pre>
         </div>
       </article>
     </slide>
-    <slide>
-      <hgroup>
-        <h2>Modules and Namespaces</h2>
-      </hgroup>
-      <article>
-        <h2>TODO</h2>
-      </article>
-    </slide>
+
 
     <slide class=" nobackground " style="background: #00163B ">
       <aside class="gdbar right ">
