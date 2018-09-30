@@ -492,7 +492,7 @@
 var mongoose = require("mongoose");
 var mongoDB = 'mongodb://.....'; //Connection string to mlab DB
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoDB,{useMongoClient:true});
+mongoose.connect(mongoDB, { useNewUrlParser: true, useCreateIndex: true });
 </pre>
         </div>
       </article>
@@ -543,7 +543,7 @@ process.on('SIGINT', function() {
 
         <pre class="prettyprint">
 var userSchema = new mongoose.Schema({
-  username: String,
+  userName: String,
   email: <b>{type: String, unique:true}</b>,
   created: <b>{ type: Date, default: Date.now }</b>,
   modified: Date,
@@ -616,7 +616,7 @@ var schema = new Schema({
 var mongoose = require( 'mongoose' ),
 ....
 var userSchema = new mongoose.Schema({
-  username: String,
+  userName: String,
   email: {type: String, unique:true},
   modified : {type: Date, default: Date.now}
 });
@@ -744,7 +744,7 @@ var userSchema = new Schema({
             <br/>
             <pre class="pre18">
 var userSchema = new mongoose.Schema({
-  username: String,
+  userName: String,
   modified : {type: Date, default: Date.now}
 });
 
@@ -767,7 +767,7 @@ userSchema.<b>pre</b>('<b>save</b>', function(next) {
 var mongoose = require( 'mongoose' ),
 ....
 var userSchema = new mongoose.Schema({
-  username: String,
+  userName: String,
   email: {type: String, unique:true},
   modified : {type: Date, default: Date.now}
 });
@@ -791,7 +791,7 @@ var User = mongoose.model("User"););
 
 // create a new user
 var newUser = new User({
-  username: 'Kurt Wonnegut',
+  userName: 'Kurt Wonnegut',
   email: "kw@somewhere.dk"
 });
 
@@ -809,7 +809,7 @@ newUser.save(function(err) {
             </p>
             <pre class="prettyprint pre18">
 User.create({
-  username: 'Kurt Wonnegut',
+  userName: 'Kurt Wonnegut',
   email: "kw@somewhere.dk"
 }, function( err, user ){
 if(!err){
@@ -834,13 +834,13 @@ if(!err){
             <p>Simple find</p>
             <pre class="prettyprint pre18">
 User.find(
-  {'username' : 'Kurt Wonnegut'}, // Find Kurt
+  {'userName' : 'Kurt Wonnegut'}, // Find Kurt
   function (err, users){
   if (!err){console.log(users);}
 });
 //<b>LIKE</b> 'Kurt' (regEx)
 User.find(
-  {'username' : <b>/Kurt/i</b>}, //Find all Kurt's
+  {'userName' : <b>/Kurt/i</b>}, //Find all Kurt's
   function (err, users){
   if (!err){console.log(users);}
 });            </pre>
@@ -849,7 +849,7 @@ User.find(
             <p>Specify which fields to return</p>
             <pre class="prettyprint pre18">
 User.find(
-  {'username' : 'Kurt Wonnegut'}, //Find Kurt
+  {'userName' : 'Kurt Wonnegut'}, //Find Kurt
   'name email', // return name and email
   function (err, users){
   if (!err){console.log(users);}
@@ -879,10 +879,10 @@ User.find(
       </hgroup>
       <article style="margin-top: 20px;">
         <pre class="prettyprint pre18">
-var myQuery = User.find({'username' : /Wonnegut/i})
+var myQuery = User.find({'userName' : /Wonnegut/i})
 myQuery.where('modified').gt(new Date(""2014-03-09T00:00:00.000Z")
-myQuery.sort('+username')
-myQuery.select('_id username modified')
+myQuery.sort('+userName')
+myQuery.select('_id userName modified')
 myQuery.exec(function (err, users){
  if (!err){
  console.log(users);
@@ -891,10 +891,10 @@ myQuery.exec(function (err, users){
         <br/>
         <p>Using chaining syntax</p>
         <pre class="prettyprint pre18">
-User.find({'username' : /Wonnegut/i})
+User.find({'userName' : /Wonnegut/i})
 .where('modified').gt(new Date(""2014-03-09T00:00:00.000Z");
-.sort('+username');
-.select('_id username modified');
+.sort('+userName');
+.select('_id userName modified');
 .exec(function (err, users){
  if (!err){
  console.log(users);
@@ -916,7 +916,7 @@ User.find({'username' : /Wonnegut/i})
               <b>save</b>
             </p>
             <pre class="prettyprint pre18">
-User.find({username: "Kurt Wonnegut"},
+User.find({userName: "Kurt Wonnegut"},
         function(err, user) {
           if (err) throw err;
           // change the users location
@@ -933,7 +933,7 @@ User.find({username: "Kurt Wonnegut"},
             </p>
             <pre class="prettyprint pre18">
 User.findOneAndUpdate(
-            {username: 'Kurt Wonnegut' },
+            {userName: 'Kurt Wonnegut' },
             {email: 'wonnegut.gmail.com' },
             function(err, user) {
               if (err) throw err;
@@ -958,7 +958,7 @@ User.findOneAndUpdate(
               <b>remove</b>
             </p>
             <pre class="prettyprint pre18">
-User.find({username: 'Kurt Wonnegut' },
+User.find({userName: 'Kurt Wonnegut' },
         function(err, user) {
            if (err) throw err;
            // delete him
@@ -975,7 +975,7 @@ User.find({username: 'Kurt Wonnegut' },
             </p>
             <pre class="prettyprint pre18">
 User.findOneAndRemove(
-            {username: 'Kurt Wonnegut' },
+            {userName: 'Kurt Wonnegut' },
              function(err, user) {
               if (err) throw err;
               console.log("User Deleted);
