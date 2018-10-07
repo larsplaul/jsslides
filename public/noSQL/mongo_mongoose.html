@@ -997,108 +997,6 @@ User.findOneAndRemove(
       </article>
     </slide>
 
-    <slide>
-      <hgroup>
-        <h2>MongoDB Schema Design</h2>
-        <h3>How to handle One to .. One, "a few", Many, "Squillions" </h3>
-      </hgroup>
-      <article>
-        <p>
-          <a href="https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1">Read this article as reference</a>
-        </p>
-        <p>You can</p>
-        <ul>
-          <li>embed</li>
-          <li>reference from the “one” side</li>
-          <li>reference from the “N” side</li>
-          <li>combine a pair of these techniques</li>
-          <li>You can denormalize as many fields as you like into the “one” side or the “N” side</li>
-        </ul>
-        </p>
-      </article>
-
-    </slide>
-    <slide>
-      <hgroup>
-        <h2>MongoDB Relations</h2>
-        <h3>Rules of thumb </h3>
-      </hgroup>
-      <article>
-       
-        <ol style="margin-top:-30px;">
-         <li>favor embedding unless there is a compelling reason not to</li>
-<li>needing to access an object on its own is a compelling reason not to embed it</li>
-<li> Arrays should not grow without bound. If there are more than a couple of hundred documents on the “many” side, don’t embed them; if there are more than a few thousand documents on the “many” side, don’t use an array of ObjectID references. High-cardinality arrays are a compelling reason not to embed.</li>
-<li>Don’t be afraid of application-level joins: if you index correctly and use the projection specifier (as shown in part 2) then application-level joins are barely more expensive than server-side joins in a relational database.</li>
-<li> Consider the write/read ratio when denormalizing. A field that will mostly be read and only seldom updated is a good candidate for denormalization: if you denormalize a field that is updated frequently then the extra work of finding and updating all the instances is likely to overwhelm the savings that you get from denormalizing.</li>
-<li> As always with MongoDB, how you model your data depends – entirely – on your particular application’s data access patterns. </li>
-        </ol>
-        </p>
-      </article>
-
-    </slide>
-
-    <slide>
-      <hgroup>
-        <h2>One to ??? Relations</h2>
-      </hgroup>
-      <article>
-        <div style="margin-top:-30px;" class="build">
-          <div class="row">
-            <div class="col-md-4">
-              <br/> Embed (Sub Docs)
-            </div>
-            <div class="col-md-8">
-              <pre class="prettyprint pre14">
-var addressSchema = new Schema({
-    street : String, zip : String
-})
-var userSchema = new Schema({
-    name: String,
-    addresses :[addressSchema]
-});</pre>
-            </div>
-          </div>
-          <div class="row" style="margin-top: 5px">
-            <div class="col-md-4">
-              </br>
-              Reference on the one-side
-            </div>
-            <div class="col-md-8">
-              <pre class="prettyprint pre14">
-var userSchema = new Schema({
-    name: String,
-    addresses : [{ type: Schema.Types.ObjectId, ref: 'Address' }]
-  });
-  var addressSchema = new Schema({
-      street : String,zip : String
-  })
-  let User = mongoose.model('User', userSchema);
-  let Address = mongoose.model('Address', addressSchema);</pre>
-            </div>
-          </div>
-          <div class="row" style="margin-top: 5px;">
-            <div class="col-md-4">
-              Reference on the N-side
-            </div>
-            <div class="col-md-8">
-              <pre class="prettyprint pre14">
-  var userSchema = new Schema({
-    name: String,
-  });
-  var addressSchema = new Schema({
-      street : String,zip : String,
-      owner: {type: Schema.Types.ObjectId, ref : "User"}
-  })
-  let User = mongoose.model('User', userSchema);
-  let Address = mongoose.model('Address', addressSchema);
-</pre>
-            </div>
-          </div>
-      </article>
-
-    </slide>
-
 
     <slide class="nobackground" style="background: #00163B">
       <aside class="gdbar right">
@@ -1141,6 +1039,7 @@ var userSchema = new Schema({
 <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <script>CFInstall.check({mode: 'overlay'});</script>
 <![endif]-->
+
 </body>
 
 </html>
