@@ -85,24 +85,7 @@
         </div>
       </article>
     </slide>
-    <slide>
-      <hgroup>
-        <h2>Why should I focus on TypeScript</h2>
-        <h3>Trends for typescript versus similar technologies</h3>
-      </hgroup>
-      <article>
-        <div class="row" style="margin-top: -30px;">
-          <div class="col-md-9">
-            <img src="images/trends.PNG" style="border: #353866 solid; width: 95%;">
-          </div>
-          <div class="col-md-3">
-            <p style="margin-top: 3em;">
-              <a href="https://g.co/trends/HlMrB">Live Data</a>
-            </p>
-          </div>
-        </div>
-      </article>
-    </slide>
+   
 
     <slide>
       <hgroup>
@@ -127,28 +110,31 @@
         <h2>TypeScript - Getting Started</h2>
       </hgroup>
       <article>
-        <p style="margin-bottom: 2px;">Installing the TypeScript compiler</p>
+        <p style="margin-bottom: 2px;margin-top: -25px;">Installing the TypeScript compiler</p>
         <pre class="pre18">
         npm install -g typescript
-        //OR install it locally
-        npm install --save-dev typescript
-        //Verify that typescript is installed
+        npm install --save-dev typescript //OR install it locally
         tsc -v   //version x.x.x</pre>
         <div class="row" style="margin-top: 10px;">
           <div class="col-md-6">
             <p style="margin-bottom: 2px;">Write some typescript</p>
             <pre class="prettyprint pre16" data-file="ts1.ts">
 class Greeter {
-    greeting: <b>string</b>;
-    constructor(message: string) {
-        this.greeting = message;
-    }
-    greet() {
-        return "Hello, " + this.greeting;
-    }
+  <b>private</b> _greeting: <b>string</b>;
+  constructor(message: <b>string</b>) {
+      this._greeting = message;
+  }
+  greet() : <b>string</b> {
+      return "Hello, " + this._greeting;
+  }
+  set greeting(str <b>:string</b>){
+    this._greeting = str;
+  }
 }
 let greeter = new Greeter("world");
-console.log(greeter.greet());</pre>
+console.log(greeter.greet());
+            </pre>
+            <p>Press "h" to see the cool stuff ;-)</p>
           </div>
           <div class="col-md-6 build">
             <div>
@@ -159,11 +145,12 @@ console.log(greeter.greet());</pre>
 
 var Greeter = (function () {
     function Greeter(message) {
-        this.greeting = message;
+        this._greeting = message;
     }
     Greeter.prototype.greet = function () {
-        return "Hello, " + this.greeting;
+        return "Hello, " + this._greeting;
     };
+    ....
     return Greeter;
 }());
 var greeter = new Greeter("world");
@@ -196,24 +183,18 @@ console.log(greeter.greet());</pre>
           <div class=" col-md-5 ">
             <p>Create the
               <em>tsconfig.js</em> like this:</p>
-            <p class="code" style="font-weight: bold"> tsc --init</p>
+            <p class="code"> tsc --init</p>
             </br>
-            </br>
-            <p>Suggested setup for the exercises today ---------></p>
+            <p>Suggested setup for the exercises today &rarr;</p>
           </div>
           <div class="col-md-7">
-            <pre class="prettyprint pre16 ">{
- "compilerOptions ": {
-   "target ": "es5",           
-   "module ": "commonjs ",                     
-   "sourceMap ": true, 
-   "outDir ": "build",
-   "rootDir ": "src", 
-   "strict ": true,   
-   "esModuleInterop ": true,                  
-   /* Source Map Options */
-   "sourceRoot ": "src",
-   "mapRoot ": "src",            
+            <pre class="prettyprint pre18 ">
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "build",
+    "sourceMap": true
   }
 }</pre>
           </div>
@@ -231,10 +212,10 @@ console.log(greeter.greet());</pre>
         <p>I suggest you make Type Script the default Build, which you do like this:</p>
         <ul>
           <li>In the Task menu, select: <em>Configure Default Build Task</em> </li>
-          <li>No select one of the following options:
+          <li>Now, select one of the following options:
             <ul>
               <li><b>tsc: build</b></li>
-              <li><b>tsc: watch </b>(recomended)</li>
+              <li><b>tsc: watch </b>(recommended)</li>
             </ul>
           </li>
         </ul>
@@ -266,20 +247,19 @@ console.log(greeter.greet());</pre>
         <div>
 
           <p style="color: #2a6496 ">Third Party Declaration Files</p>
-          <p style="font-size: 0.8em; ">
+          <p>
             When using a library that was originally designed for regular JavaScript, we need to apply a declaration file to make that
-            library compatible with TypeScript. A declaration file has the extension
+            library compatible with TypeScript (Get all the cool intellisense in our editor). A declaration file has the extension
             <em style="font-weight: bold ">.d.ts</em> and contains various information about the library and its API.
           </p>
-          <p>Setup Node for a TypeScript Project</p>
-          <div style="font-size: 0.75em ">
-            <p>Add node.d.ts:
-              <code>npm install @types/node --save</code>
+          <p>Include node-fetch in a TypeScript Project</p>
+          <div >
+            <p>
+              <code>npm install --save <b>@types/</b>node-fetch</code>
             </p>
-            <p>Compile with --module set to "commonjs "</p>
           </div>
           <p>
-            <a href="https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/ ">
+            <a href="https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html">
               See here for details </a>
           </p>
         </div>
@@ -296,12 +276,11 @@ console.log(greeter.greet());</pre>
       </hgroup>
       <article>
         <p style="margin-top: -25px; ">The built in Type System is probably the single most compelling feature in TypeScript.
-          Having types provides us with much better code completion and
-          <em>Compile Time Errors</em>
+          Having types provides us with much better code completion and <em>Static Compile Time Checking</em>
         </p>
-        <p>The type system in TypeScript is optional so that your javascript is typescript</p>
+        <p>The type system in TypeScript is optional so javascript is also typescript</p>
         <div class="row ">
-          <div class="col-md-4 ">
+          <div class="col-md-3 ">
             <p style="margin-bottom: 5px;font-weight: bold; color: #2a6496 ">Basic Types</p>
             <ul>
               <li>boolean</li>
@@ -314,14 +293,12 @@ console.log(greeter.greet());</pre>
               <li>void</li>
             </ul>
           </div>
-          <div class="col-md-8 ">
+          <div class="col-md-9 ">
             <p style="margin-bottom: 3px; ">
-              Types are annotated using
-              <em>
-                <b>:</b>typeAnnotation</em> syntax. Anything that is available in the type declaration space can be used
-              as a Type Annotation.
+              Example
             </p>
-            <pre class="prettyprint pre18 ">
+            <pre class="prettyprint">
+
 let isDone: <b>boolean</b> = false;
 let msg: <b>string</b> = "Hello World ";
 //Array
@@ -340,23 +317,14 @@ function warnUser(): <b>void</b> {
       </article>
     </slide>
 
-    <slide>
-      <hgroup>
-        <h2>Type Inference</h2>
-      </hgroup>
-      <article>
-        <div>
-          <a href="https://www.typescriptlang.org/docs/handbook/type-inference.html">Type Inference</a>
-        </div>
-      </article>
-    </slide>
 
     <slide>
       <hgroup>
         <h2>Interfaces</h2>
       </hgroup>
       <article>
-        <p style="margin-top: -28px; ">One of TypeScript’s core principles is that type-checking focuses on the shape that
+        <p style="margin-top: -28px; ">
+          One of TypeScript’s core principles is that type-checking focuses on the shape that
           values have. In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining
           contracts within your code as well as contracts with code outside of your project</p>
         <div class="row ">
