@@ -174,9 +174,9 @@
       <h2>Installing Express</h2>
     </hgroup>
     <article>
-      <p style="margin-top: -20px;">Install the Express-generator: <code>npm install express-generator -g</code></p>
+      
 
-      <div class="row small">
+      <div class="row small" style="margin-top: -30px;">
         <div class="col-md-3">
           <p style="color: #000088">Creating an Express project manually</p>
         </div>
@@ -205,9 +205,11 @@
             </li>
           </ul>
         </div>
-
       </div>
+      <hr style="margin:5px;"/>
+      <br/>
       <div class="row small">
+          <p style="margin-top: -20px;">Install the Express-generator: <code>npm install express-generator -g</code></p>
         <div class="col-md-3">
           <p style="color: #000088">Creating an Express project with the Express Generator</p>
           <p><a href="http://expressjs.com/en/starter/generator.html">Express-generator</a></p>
@@ -258,6 +260,9 @@
         <code>
           DEBUG=myapp:* nodemon ./bin/www
         </code>
+      </div>
+      <div style="margin-top: 30px;">
+        <a href="https://github.com/remy/nodemon#nodemon">Full Documentation</a>
       </div>
     </article>
   </slide>
@@ -571,11 +576,12 @@ app.listen(3000); </pre>
           <p>It seems like, judging by the use in literature and tutorials, that the following are widely
             used:</p>
           <ul>
-            <li>Jade</li>
+            <li> <span style="text-decoration: line-through">Jade</span> <b>Pug</b></li>
             <li>EJS (Embedded JavaScript</li>
             <li>Handlebars</li>
           </ul>
-          <p>We will introduce all three, but place focus on <b></B>Jade</b>  and <b>Handlebars (my preference)</b></p>
+          <p>We will introduce all three, but place focus on <b>EJS</b> since this is not a major topic for this period, 
+            and since EJS should be straight-forward to use, given its resemblance to JSP</p>
         </div>
       </div>
     </article>
@@ -598,8 +604,8 @@ app.listen(3000); </pre>
 
   <slide>
     <article>
-      <iframe src="http://www.embeddedjs.com/" class="scaled_iframe" style="height: 700px;"></iframe>
-      <footer class="source"><a href="http://www.embeddedjs.com/">EJS</a></footer>
+      <iframe src="https://ejs.co//" class="scaled_iframe" style="height: 700px;"></iframe>
+      <footer class="source"><a href="https://ejs.co/">EJS</a></footer>
     </article>
   </slide>
 
@@ -689,7 +695,7 @@ app.listen(3000); </pre>
       <h2>MVC Involving Both Client and Server</h2>
     </hgroup>
     <article>
-      <p>In the previous example everything was done on the server</p>
+      <p>In the previous example everything was done on the server (similar to what you did on 2. semester)</p>
       <ul>
         <li>The view was generated on the server</li>
         <li>The Model Existed on the Server</li>

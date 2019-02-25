@@ -3,7 +3,7 @@ var SLIDE_CONFIG = {
   settings: {
     title: 'Express',
     subtitle: 'An introduction',
-    date: 'Spring - 2015',
+    date: 'Spring - 2019',
     //eventInfo: {
     //  title: 'Google I/O',
     //  date: '6/x/2013'
