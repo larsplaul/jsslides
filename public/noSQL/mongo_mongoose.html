@@ -473,20 +473,13 @@
 
       <article>
         <div style="margin-top: -20px;">
-          <p>Usually I would always recommend a local database for development. Since we only have "one day" for this topic;create
-            a free account on mlab.com as outlined below
+          <p>Usually I would recommend a local database for development. Since we only have "one day" for this topic;create
+            a free account on <a href="https://www.mongodb.com/cloud/atlas?jmp=docs">MongoDB Atlas</a> as outlined in the getting started document
           </p>
-          <p>First do this:</p>
-          <ul style="font-size: medium">
-            <li> Create an Account on mlab.com</li>
-            <li> Log in</li>
-            <li>Create new database</li>
-            <li> Just choose amazon or Google or .. and SANDBOX</li>
-            <li> Select Europe, Give it a name</li>
-            <li> Click on the database and select Users</li>
-            <li> Add database user (otherwise we can’t connect)</li>
-            <li> Then copy the standard URI (mongodb// …) See below:</li>
-          </ul>
+          <p>
+            <a href="https://docs.atlas.mongodb.com/getting-started/?_ga=2.174146016.338595222.1552207628-1043058831.1552053789">Getting started</a>
+          </p>
+          <br/>
           <p>Then, in (all) your project(s)</p>
           <pre class="prettyprint16">
 var mongoose = require("mongoose");
@@ -621,7 +614,7 @@ var userSchema = new mongoose.Schema({
   modified : {type: Date, default: Date.now}
 });
 <b style="font-size: large">// Build the User model
-mongoose.model( 'User', userSchema )</b>;
+var User = mongoose.model( 'User', userSchema )</b>;
             </pre>
         <br/>
         <p>Using the model "somewhere"</p>
@@ -757,6 +750,27 @@ userSchema.<b>pre</b>('<b>save</b>', function(next) {
         </div>
       </article>
     </slide>
+
+    <slide>
+      <hgroup>
+        <h2>Mongoose and Promises</h2>
+      </hgroup>
+      <article>
+        <p>ref: <a href="https://mongoosejs.com/docs/promises.html#plugging-in-your-own-promises-library">Mongoose and Promises</a></p>
+        <p>Almost all examples in the mongoose documentation uses callback to demonstrate behavior</p>
+        <p>This however is kind off old-fashioned, since all async operations and queries returns <code>thenables</code> </p> 
+        <p>
+          This means that you can do things like: 
+       </p>
+       <p>
+           <code>MyModel.findOne({}).then()</code> and <br/><br/>
+           <code>await MyModel.findOne({}).exec()</code> if you're using async/await
+        </p>
+        <p>I suggest you use async-await whenever you have to deal with async behavior</p>
+      </article>
+    </slide>
+
+
     <slide>
       <hgroup>
         <h2>CRUD with mongoose</h2>
@@ -787,7 +801,7 @@ mongoose.model( 'User', userSchema );
             <p>Instance Method</p>
             <pre class="prettyprint pre18">
 var mongoose = require( 'mongoose' );
-var User = mongoose.model("User"););
+var User = mongoose.model("User");
 
 // create a new user
 var newUser = new User({
@@ -804,7 +818,7 @@ newUser.save(function(err) {
 });  </pre>
           </div>
           <div class="col-md-6">
-            <p>The Models shortcut method
+            <p>The Models static method
               <b>create</b>
             </p>
             <pre class="prettyprint pre18">
@@ -822,7 +836,65 @@ if(!err){
       </article>
     </slide>
 
+    <slide>
+      <hgroup>
+        <h2>Create, with Promises + async-await</h2>
+      </hgroup>
+      <article style="margin-top: 35px;">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Instance Method</p>
+            <pre class="prettyprint pre16">
+var mongoose = require( 'mongoose' );
+var User = mongoose.model("User");
+
+<b>async</b> function addUser(userName,email){
+  var user = new User({userName, email});
+  return <b>await</b> user.save();
+}
+
+<b>async</b> function testAddUser(){
+  try{
+    var user = <b>await</b> addUser("Kurt","kw.@g.dk");
+    console.log(user);
+  }
+  catch(err){
+    console.log(err);
+  }
+          </pre>
+          </div>
+          <div class="col-md-6">
+            <p>The Models static method
+              <b>create</b>
+            </p>
+            <pre class="prettyprint pre16">
+<b>async</b> function addUser(userName,email){
+  var u = <b>await</b> User.create({userName, email});
+  return user;
+}
+
+<b>async</b> function testAddUser(){
+  try{
+    var user = <b>await</b> addUser("Kurt","k.@g.dk");
+    console.log(user);
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+//testAddUser();
+          </pre>
+          </div>
+
+        </div>
+      </article>
     </slide>
+
+
+
+
+
+  
 
     <slide>
       <hgroup>
@@ -878,31 +950,28 @@ User.find(
         <h2>Using the Query Builder</h2>
       </hgroup>
       <article style="margin-top: 20px;">
+        <p>These examples uses Promises and <code>async await</code></p>
         <pre class="prettyprint pre18">
-var myQuery = User.find({'userName' : /Wonnegut/i})
-myQuery.where('modified').gt(new Date(""2014-03-09T00:00:00.000Z")
-myQuery.sort('+userName')
-myQuery.select('_id userName modified')
-myQuery.exec(function (err, users){
- if (!err){
- console.log(users);
- }
-});</pre>
+<b>async</b> function runQuery() {
+  var myQuery = User.find({ userName: /Wonnegut/i });
+  myQuery.where("modified").gt(new Date("2014-03-09T00:00:00.000Z"));
+  myQuery.sort({ userName: 1 });
+  myQuery.select("-_id userName modified");
+  var res = <b>await</b> myQuery.exec();
+  console.log(res);
+}</pre>
         <br/>
         <p>Using chaining syntax</p>
         <pre class="prettyprint pre18">
-User.find({'userName' : /Wonnegut/i})
-.where('modified').gt(new Date(""2014-03-09T00:00:00.000Z");
-.sort('+userName');
-.select('_id userName modified');
-.exec(function (err, users){
- if (!err){
- console.log(users);
- }
-});</pre>
+<b>async</b> function runQuery() {
+  var res = <b>await</b> User.find({ userName: /Wonnegut/i })
+    .where("modified").gt(new Date("2014-03-09T00:00:00.000Z"))
+    .sort({ userName: 1 })
+    .select("-_id userName modified");
+  console.log(res);
+}</pre>
       </article>
     </slide>
-
 
     <slide>
       <hgroup>
@@ -910,35 +979,30 @@ User.find({'userName' : /Wonnegut/i})
       </hgroup>
       <article>
         <div class="row">
-          <div class="col-md-6">
-            <p>Using
-              <b>find</b> and
-              <b>save</b>
-            </p>
+          <div class="col-md-5">
+            <p>Using <b>callbacks</b> </p>
             <pre class="prettyprint pre18">
-User.find({userName: "Kurt Wonnegut"},
-        function(err, user) {
-          if (err) throw err;
-          // change the users location
-          user.email= 'wonnegut.gmail.com';
-         // save the user
-         user.save(function(err) {
-           if (err) throw err;
-         });
-}); </pre>
-          </div>
-          <div class="col-md-6">
-            <p>Using
-              <b>findOneAndUpdate</b>
-            </p>
-            <pre class="prettyprint pre18">
+
 User.findOneAndUpdate(
-            {userName: 'Kurt Wonnegut' },
-            {email: 'wonnegut.gmail.com' },
-            function(err, user) {
-              if (err) throw err;
-              console.log(user);
-            });
+  {userName: 'Kurt Wonnegut' },
+  {email: 'wonnegut.gmail.com' },
+  function(err, user) {
+      if (err) throw err;
+      console.log(user);
+  }); 
+</pre>
+          </div>
+          <div class="col-md-7">
+            <p>Using <b>async - await</b>
+            </p>
+            <pre class="prettyprint pre18">
+
+var u = await User.findOneAndUpdate(
+    {userName: "Kurt Wonnegut"},
+    {email:"kurtwonnegut.@gmail.com"},
+    {new: true}// Without this option, it will return the original value
+)
+console.log(u);
       </pre>
           </div>
         </div>
@@ -953,33 +1017,35 @@ User.findOneAndUpdate(
       <article>
         <div class="row">
           <div class="col-md-6">
-            <p>Using
-              <b>find</b> and
-              <b>remove</b>
-            </p>
+            <p>Using <b>callback</b></p>
             <pre class="prettyprint pre18">
-User.find({userName: 'Kurt Wonnegut' },
-        function(err, user) {
-           if (err) throw err;
-           // delete him
-           user.remove(function(err) {
-             if (err) throw err;
-             console.log('User deleted!');
-           });
-});
+
+User.findOneAndDelete(
+       {userName: 'Kurt Wonnegut' },
+       function(err, user) {
+          if (err) throw err;
+       console.log("User Deleted);
+       }
+);
+              
       </pre>
           </div>
           <div class="col-md-6">
-            <p>Using
-              <b>findOneAndRemove</b>
+            <p>Using <b>async - await</b>
             </p>
             <pre class="prettyprint pre18">
-User.findOneAndRemove(
-            {userName: 'Kurt Wonnegut' },
-             function(err, user) {
-              if (err) throw err;
-              console.log("User Deleted);
-            });
+
+await User.findOneAndDelete(
+  {userName: "Kurt Wonnegut"}
+  );
+  <hr/>
+//Verify that Kurt is gone
+var deleted = await User.findOne(
+  {userName:"Kurt Wonnegut"}
+ )
+console.log(deleted === null)  
+</span>
+
       </pre>
           </div>
         </div>

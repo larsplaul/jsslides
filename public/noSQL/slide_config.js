@@ -3,7 +3,7 @@ var SLIDE_CONFIG = {
   settings: {
     title: 'NoSQL, MongoDB and Mongoose',
     subtitle: 'A quick Intro',
-    date: 'Fall - 2018',
+    date: 'Spring - 2019',
     //eventInfo: {
     //  title: 'Google I/O',
     //  date: '6/x/2013'
