@@ -978,11 +978,23 @@ User.find(
         <h2>Update</h2>
       </hgroup>
       <article>
-        <div class="row">
-          <div class="col-md-5">
-            <p>Using <b>callbacks</b> </p>
+        <div style="margin-top: -25px;" class="row">
+          <div class="col-md-6">
+            <p style="margin-bottom: 10px;">Using <b>Query First</b> </p>
             <pre class="prettyprint pre18">
-
+User.<b>find</b>({username: "Kurt Wonnegut"},
+   function(err, user) {
+     if (err) throw err;
+       // change the users location
+       user.email= 'wonnegut.gmail.com';
+       // save the user
+       user.<b>save</b>(function(err) {
+        if (err) throw err;
+       });
+});
+</pre>
+            <p style="margin-bottom: 10px;margin-top:10px;">Using <b>Update First</b> </p>
+            <pre class="prettyprint pre18">
 User.findOneAndUpdate(
   {userName: 'Kurt Wonnegut' },
   {email: 'wonnegut.gmail.com' },
@@ -990,17 +1002,21 @@ User.findOneAndUpdate(
       if (err) throw err;
       console.log(user);
   }); 
+
+
 </pre>
           </div>
-          <div class="col-md-7">
-            <p>Using <b>async - await</b>
+          <div class="col-md-6">
+            <p style="margin-bottom: 10px;">With <b>promises</b> and <b>async - await</b>
             </p>
             <pre class="prettyprint pre18">
 
 var u = await User.findOneAndUpdate(
     {userName: "Kurt Wonnegut"},
     {email:"kurtwonnegut.@gmail.com"},
-    {new: true}// Without this option, it will return the original value
+    // Without this, it will return the 
+    //original value
+    {new: true}
 )
 console.log(u);
       </pre>
